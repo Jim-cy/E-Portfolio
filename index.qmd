@@ -1,6 +1,6 @@
 ---
 title: "My E-Portfolio"
-image: images/MGEM_logo.png
+image: images/example_visualization.png
 about:
   template: trestles
   image-width: 20em
@@ -16,7 +16,7 @@ about:
       href: https://github.com/ramonmelser
     - icon: envelope-at
       text: Email
-      href: mailto:melser@student.ubc.ca
+      href: cjin14@student.ubc.ca
 ---
 
 Hey there people,

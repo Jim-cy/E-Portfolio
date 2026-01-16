@@ -1,0 +1,7 @@
+---
+title: "Contact Info"
+format: html
+editor: visual
+---
+
+Mor na shael. Tal na shi, zhek nara keth, elin tal keth. Shael’na shi, drak no shi keth. Zu mor nara zora, zora elin mor. Ka mor na keth, shael no keth. Zhek na drak, zu mor drak. Tal zora shi, keth shae elin. Nara tal shael, mor’na zora.
