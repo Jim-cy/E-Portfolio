@@ -22,7 +22,7 @@ title: "Resume"
 
 <p style="display: flex; justify-content: space-between;">
   <span>
-  Beijing Forestry University, Beijing, China
+  Beijing Forestry University, Beijing, China<br>
   Bachelor of Wood Science and Engineering
   </span>
   <span>Sept. 2019 - June 2022</span>
