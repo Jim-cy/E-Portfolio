@@ -32,7 +32,7 @@
     "href": "content.html",
     "title": "Content & Deliverables",
     "section": "",
-    "text": "This is a sample page where you can archive project deliverables. Every header you use will correspond to a tab in the legend - shown on the right-hand side of your screen (“On this page”).\nIf you’ve produced any GIS layers for your 599 project, this may be a good place to share them as interactive maps through leaflet. Alternatively, you can upload high-res figures showing correlations, box-plots, etc. from your report here, and provide a brief overview of key project results. If you have written some useful functions, you may also want to share those here to demonstrate proficiency in particular coding languages or synergies between notable coding packages.\n\n\nSample leaflet - for detailed leaflet instructions, visit the FCOR 599 workshop archive page here.\n\n\n\n\n\n\n\n\n\nSample code snippet. Notice that you can provide a toggle to switch between coding languages - this is referred to as a ‘tabset’ in quarto. It is good practice to try and convert your R code to python, and vice-versa to demonstrate coding proficiency. For example, let’s showcase a function for calculating NDVI in R and Python.\n\nRPython\n\n\ncalc_ndvi &lt;- function(nir, red){\n  ndvi &lt;- (nir-red)/(nir+red)\n  return(ndvi)\n}\n(Assuming nir and red are terra rast objects)\n\n\ndef calc_ndvi(nir, red): \n  ndvi = (nir - red)/(nir + red)\n  return(ndvi)\n(Assuming nir and red are numpy arrays)\n\n\n\n\n\n\nYou can also provide a frame linking to external websites. For example, here is a Google Earth Engine application I developed - which I embedded in this webpage using the code below:\n\n\n&lt;iframe width=\"900\" height=\"700\"\nsrc=\"https://ee-melserramon.projects.earthengine.app/view/thermal-analysis-tool\"&gt;\n&lt;/iframe&gt;\n\nThe full-screen GEE application is available here in case you’re interested.\n(To use the GEE tool, navigate to any city you’d like, hit apply filters, and click anywhere on the map to retrieve a time-series of Landsat surface temperature observations for that point. Areas where the maximum temp exceeded 35 degrees Celsius in your date-range are highlighted in red.)"
+    "text": "Wetzin’kwa Community Forest is a 33,000-hectare community forest tenure located on Wet’suwet’en territory near Smithers, British Columbia. The tenure was established in 2007 through a partnership between the Town of Smithers and the Village of Telkwa to support sustainable forest management in the region. Portions of the forest have been previously harvested, and many of these stands are now reaching a developmental stage where thinning or partial harvesting treatments may be appropriate.\n\n\n\nHow do required different thinning scenarios affect forest stand structure, and how can thinning trails be designed to support efficient and sustainable forest management?\n\n\n\n\nLiDAR data collected in 2023\nField cruise data\nAerial imagery\n\n\n\n\n1). Data extraction from LiDAR, field survey, and aerial imagery.\nLidR package\n\n# Read in Lidar data\ncat_lidar &lt;- readLAScatalog(\"file/path\")\n# Create DEM based on Lidar data\ndem &lt;- rasterize_terrain(cat_lidar, 2, tin())\n# Normalize Lidar data\nnorm &lt;- normalize_height(cat_lidar, dem)\n# Create CHM based on Normalize Lidar data, 0.5m resolution\nchm &lt;- rasterize_canopy(norm, 0.5, p2r(0.2, na.fill = tin())) \n# Dectect treetop based on CHM and window size (2m*2m here)\ntreetops &lt;- locate_trees(chm,lmf(ws = 2))\n# Define arguments used for the segmentation method.\nalgo_dalponte2016 &lt;- dalponte2016(\n  chm,\n  treetops,\n  th_tree = 2,\n  th_seed = 0.45,\n  th_cr = 0.55,\n  max_cr = 10,\n  ID = \"treeID\"\n)\n# Read in specific las tile\nlas &lt;- readLAS(\"file/path\")\n# Conduct segmentation to the las tile based on defined segmentation method\nseg &lt;- segment_trees(las,algo_dalponte2016)\n# Extract tree metrics from the sgmented data\ncrown_metrics(seg, func = .stdtreemetrics, geom = \"convex\")\n\n\n\n\nThis is a sample page where you can archive project deliverables. Every header you use will correspond to a tab in the legend - shown on the right-hand side of your screen (“On this page”).\nIf you’ve produced any GIS layers for your 599 project, this may be a good place to share them as interactive maps through leaflet. Alternatively, you can upload high-res figures showing correlations, box-plots, etc. from your report here, and provide a brief overview of key project results. If you have written some useful functions, you may also want to share those here to demonstrate proficiency in particular coding languages or synergies between notable coding packages.\n\n\n\nSample leaflet - for detailed leaflet instructions, visit the FCOR 599 workshop archive page here.\n\n\n\n\n\n\n\n\n\nSample code snippet. Notice that you can provide a toggle to switch between coding languages - this is referred to as a ‘tabset’ in quarto. It is good practice to try and convert your R code to python, and vice-versa to demonstrate coding proficiency. For example, let’s showcase a function for calculating NDVI in R and Python.\n\nRPython\n\n\ncalc_ndvi &lt;- function(nir, red){\n  ndvi &lt;- (nir-red)/(nir+red)\n  return(ndvi)\n}\n(Assuming nir and red are terra rast objects)\n\n\ndef calc_ndvi(nir, red): \n  ndvi = (nir - red)/(nir + red)\n  return(ndvi)\n(Assuming nir and red are numpy arrays)\n\n\n\n\n\n\nYou can also provide a frame linking to external websites. For example, here is a Google Earth Engine application I developed - which I embedded in this webpage using the code below:\n\n\n&lt;iframe width=\"900\" height=\"700\"\nsrc=\"https://ee-melserramon.projects.earthengine.app/view/thermal-analysis-tool\"&gt;\n&lt;/iframe&gt;\n\nThe full-screen GEE application is available here in case you’re interested.\n(To use the GEE tool, navigate to any city you’d like, hit apply filters, and click anywhere on the map to retrieve a time-series of Landsat surface temperature observations for that point. Areas where the maximum temp exceeded 35 degrees Celsius in your date-range are highlighted in red.)"
   },
   {
     "objectID": "content.html#leaflet",
@@ -75,5 +75,40 @@
     "title": "contact.qmd",
     "section": "Running Code",
     "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+  },
+  {
+    "objectID": "content.html#project-overview",
+    "href": "content.html#project-overview",
+    "title": "Content & Deliverables",
+    "section": "",
+    "text": "Wetzin’kwa Community Forest is a 33,000-hectare community forest tenure located on Wet’suwet’en territory near Smithers, British Columbia. The tenure was established in 2007 through a partnership between the Town of Smithers and the Village of Telkwa to support sustainable forest management in the region. Portions of the forest have been previously harvested, and many of these stands are now reaching a developmental stage where thinning or partial harvesting treatments may be appropriate."
+  },
+  {
+    "objectID": "content.html#research-question",
+    "href": "content.html#research-question",
+    "title": "Content & Deliverables",
+    "section": "",
+    "text": "How do required different thinning scenarios affect forest stand structure, and how can thinning trails be designed to support efficient and sustainable forest management?"
+  },
+  {
+    "objectID": "content.html#data-source",
+    "href": "content.html#data-source",
+    "title": "Content & Deliverables",
+    "section": "",
+    "text": "LiDAR data collected in 2023\nField cruise data\nAerial imagery"
+  },
+  {
+    "objectID": "content.html#methods",
+    "href": "content.html#methods",
+    "title": "Content & Deliverables",
+    "section": "",
+    "text": "1). Data extraction from LiDAR, field survey, and aerial imagery.\nLidR package\n\n# Read in Lidar data\ncat_lidar &lt;- readLAScatalog(\"file/path\")\n# Create DEM based on Lidar data\ndem &lt;- rasterize_terrain(cat_lidar, 2, tin())\n# Normalize Lidar data\nnorm &lt;- normalize_height(cat_lidar, dem)\n# Create CHM based on Normalize Lidar data, 0.5m resolution\nchm &lt;- rasterize_canopy(norm, 0.5, p2r(0.2, na.fill = tin())) \n# Dectect treetop based on CHM and window size (2m*2m here)\ntreetops &lt;- locate_trees(chm,lmf(ws = 2))\n# Define arguments used for the segmentation method.\nalgo_dalponte2016 &lt;- dalponte2016(\n  chm,\n  treetops,\n  th_tree = 2,\n  th_seed = 0.45,\n  th_cr = 0.55,\n  max_cr = 10,\n  ID = \"treeID\"\n)\n# Read in specific las tile\nlas &lt;- readLAS(\"file/path\")\n# Conduct segmentation to the las tile based on defined segmentation method\nseg &lt;- segment_trees(las,algo_dalponte2016)\n# Extract tree metrics from the sgmented data\ncrown_metrics(seg, func = .stdtreemetrics, geom = \"convex\")"
+  },
+  {
+    "objectID": "content.html#key-results",
+    "href": "content.html#key-results",
+    "title": "Content & Deliverables",
+    "section": "",
+    "text": "This is a sample page where you can archive project deliverables. Every header you use will correspond to a tab in the legend - shown on the right-hand side of your screen (“On this page”).\nIf you’ve produced any GIS layers for your 599 project, this may be a good place to share them as interactive maps through leaflet. Alternatively, you can upload high-res figures showing correlations, box-plots, etc. from your report here, and provide a brief overview of key project results. If you have written some useful functions, you may also want to share those here to demonstrate proficiency in particular coding languages or synergies between notable coding packages."
   }
 ]

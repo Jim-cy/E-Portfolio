@@ -4,7 +4,61 @@ format: html
 editor: visual
 ---
 
-# Project 1 - Capstone Deliverables
+# 1. Capstone Project Deliverables
+
+## Project Overview
+
+[Wetzin’kwa Community Forest]{.underline} is a 33,000-hectare community forest tenure located on [Wet’suwet’en]{.underline} territory near [Smithers, British Columbia]{.underline}. The tenure was established in 2007 through a partnership between the [Town of Smithers]{.underline} and the [Village of Telkwa]{.underline} to support sustainable forest management in the region. Portions of the forest have been previously harvested, and many of these stands are now reaching a developmental stage where thinning or partial harvesting treatments may be appropriate.
+
+## Research Question
+
+How do required different thinning scenarios affect forest stand structure, and how can thinning trails be designed to support efficient and sustainable forest management?
+
+## Data Source
+
+-   LiDAR data collected in 2023
+
+-   Field cruise data
+
+-   Aerial imagery
+
+## Methods
+
+**1). Data extraction from LiDAR, field survey, and aerial imagery.**
+
+LidR package
+
+```{r lidR package}
+#| eval: false
+# Read in Lidar data
+cat_lidar <- readLAScatalog("file/path")
+# Create DEM based on Lidar data
+dem <- rasterize_terrain(cat_lidar, 2, tin())
+# Normalize Lidar data
+norm <- normalize_height(cat_lidar, dem)
+# Create CHM based on Normalize Lidar data, 0.5m resolution
+chm <- rasterize_canopy(norm, 0.5, p2r(0.2, na.fill = tin())) 
+# Dectect treetop based on CHM and window size (2m*2m here)
+treetops <- locate_trees(chm,lmf(ws = 2))
+# Define arguments used for the segmentation method.
+algo_dalponte2016 <- dalponte2016(
+  chm,
+  treetops,
+  th_tree = 2,
+  th_seed = 0.45,
+  th_cr = 0.55,
+  max_cr = 10,
+  ID = "treeID"
+)
+# Read in specific las tile
+las <- readLAS("file/path")
+# Conduct segmentation to the las tile based on defined segmentation method
+seg <- segment_trees(las,algo_dalponte2016)
+# Extract tree metrics from the sgmented data
+crown_metrics(seg, func = .stdtreemetrics, geom = "convex")
+```
+
+## Key Results
 
 This is a sample page where you can archive project deliverables. Every header you use will correspond to a tab in the legend - shown on the right-hand side of your screen ("On this page").
 
