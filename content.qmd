@@ -16,7 +16,9 @@ How do required different thinning scenarios affect forest stand structure, and 
 
 ## Study Area & Data Source
 
-Study Area:
+Study Area
+
+The forest is dominated by Lodgepole pine. A surrounding buffer area is excluded from analysis. Three study plots were thinned: Plot 1 and Plot 3 received a 40% light thinning, while Plot 2 underwent variable cluster thinning to create structural diversity.
 
 ```{r leaflet_study_area, echo=FALSE, message=FALSE, warning=FALSE}
 library(dplyr)
@@ -107,6 +109,8 @@ m
 
 ```
 
+Data Source
+
 -   LiDAR data collected in 2023
 
 -   Field cruise data
@@ -154,7 +158,7 @@ las <- readLAS("file/path")
 seg <- segment_trees(las,algo_dalponte2016)
 
 # Extract tree metrics from the sgmented data
-crown_metrics(seg, func = .stdtreemetrics, geom = "convex")
+crown <- crown_metrics(seg, func = .stdtreemetrics, geom = "convex")
 ```
 
 Field Survey - Relationship between Diameter at Breast Height (DBH) and Tree Height
@@ -167,7 +171,7 @@ pairs(~DBH+Height+logDBH+sqDBH+sqrtDBH, data)
 # Fitting the model 
 lm(DBH ~ Height, data)
 
-# Testing assumption
+# Testing assumptions
 ```
 
 Aerial Imagery - Manually Select tree top on chosen plots and test the accuracy of treetop detection in lidR.
@@ -178,7 +182,145 @@ Least-cost path analysis was conducted using crown size and slope as cost factor
 
 **3). Thinning Treatment**
 
+Thinning for Plot 1 and Plot 3 was simulated directly in the growth and yield model using a 40% thinning intensity. In contrast, Plot 2 was treated with variable density thinning, implemented using a fixed-radius nearest neighbor search method to create clustered spatial patterns before being input into the simulator.
+
+```{r}
+#| eval: false
+# Define neighborhood radius
+radius <- 6
+
+# Find neighboring trees
+neighbors <- frNN(coords, eps = radius)
+
+# Count neighbors per tree
+crowns$local_n <- lengths(neighbors$id)
+
+# Examine density distribution
+quantile(crowns$local_n, probs = c(0.25, 0.5, 0.75))
+
+# Classify trees into density categories
+crowns <- crowns %>%
+  mutate(
+    VDT_class = case_when(
+      local_n <= 14 ~ "Gap",
+      local_n <= 16 ~ "Low",
+      local_n <= 17 ~ "Moderate",
+      TRUE         ~ "High"
+    )
+  )
+
+# Define thinning intensities
+thinning_rules <- tibble(
+  VDT_class = c("Gap","Low","Moderate","High"),
+  remove_pct = c(1.00, 0.20, 0.40, 0.05)
+)
+
+# Attach thinning rules to trees
+crowns <- left_join(crowns, thinning_rules, by = "VDT_class")
+
+# Set random seed
+set.seed(123)
+
+# Select trees to remove
+crowns <- crowns %>%
+  group_by(VDT_class) %>%
+  arrange(TreeHeight) %>%
+  mutate(
+    remove = row_number() <= floor(n() * unique(remove_pct))
+  ) %>%
+  ungroup()
+```
+
+**4). Yield and Growth Simulator**
+
+The crown data were used to establish the tree list. The generated tree list was formatted as input for the Forest Vegetation Simulator (FVS). This dataset represents the post-thinning stand structure and was used to simulate stand health and merchantable volume dynamics under the defined thinning scenarios.
+
 ## Key Results
+
+**1). Data Processing**
+
+```{r leaflet map2, include = FALSE}
+library(leaflet)
+library(raster)
+library(RColorBrewer)
+
+# Load rasters
+chm1 <- raster("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/chm_plot1.tif")
+chm2 <- raster("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/chm_plot2.tif")
+chm3 <- raster("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/chm_plot3.tif")
+dem1 <- raster("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/dem_plot1.tif")
+dem2 <- raster("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/dem_plot2.tif")
+dem3 <- raster("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/dem_plot3.tif")
+
+# Convert 0 or any placeholder NoData values to NA
+chm1[chm1 == 0] <- NA
+chm2[chm2 == 0] <- NA
+chm3[chm3 == 0] <- NA
+dem1[dem1 == 0] <- NA
+dem2[dem2 == 0] <- NA
+dem3[dem3 == 0] <- NA
+
+# Define color palettes (same for all CHM and all DEM)
+chm_pal <- colorNumeric("YlGn", c(values(chm1), values(chm2), values(chm3)), na.color = "transparent")
+dem_pal <- colorNumeric("Blues", c(values(dem1), values(dem2), values(dem3)), na.color = "transparent")
+
+bbox <- st_bbox(plots)
+bbox_num <- as.numeric(bbox)
+
+# Create Leaflet map
+m <- leaflet() %>%
+  addProviderTiles("Esri.WorldImagery") %>%
+  addScaleBar(position = "bottomleft") %>%
+  
+  # Add all CHM rasters as one group
+  addRasterImage(chm1, colors = chm_pal, opacity = 0.6, group = "CHM") %>%
+  addRasterImage(chm2, colors = chm_pal, opacity = 0.6, group = "CHM") %>%
+  addRasterImage(chm3, colors = chm_pal, opacity = 0.6, group = "CHM") %>%
+  addLegend(pal = chm_pal, values = c(values(chm1), values(chm2), values(chm3)),
+            title = "CHM", group = "CHM", position = "topright") %>%
+  
+  # Add all DEM rasters as one group
+  addRasterImage(dem1, colors = dem_pal, opacity = 0.6, group = "DEM") %>%
+  addRasterImage(dem2, colors = dem_pal, opacity = 0.6, group = "DEM") %>%
+  addRasterImage(dem3, colors = dem_pal, opacity = 0.6, group = "DEM") %>%
+  addLegend(pal = dem_pal, values = c(values(dem1), values(dem2), values(dem3)),
+            title = "DEM", group = "DEM", position = "topright") %>%
+  
+  # Layer control: one toggle for all CHM, one toggle for all DEM
+  addLayersControl(
+    baseGroups = c("CHM", "DEM"),
+    options = layersControlOptions(collapsed = FALSE)
+  )%>%
+  fitBounds(
+    lng1 = bbox_num[1], lat1 = bbox_num[2],
+    lng2 = bbox_num[3], lat2 = bbox_num[4]
+  )
+
+m  # Display the map
+```
+
+The best performance of our predictive model is shown below. The relationship between tree height and diameter at breast height (DBH) is captured by the following equation:
+
+\$\$\
+\\text{DBH} = 8.931 + 0.623 \\times \\text{Height}\
+\$\$
+
+![](images/linear_regression_diagnostics.png)
+
+```{r}
+
+```
+
+```{r leaflet map3, include = FALSE}
+library(dplyr); library(leaflet)
+
+m <- leaflet() %>%
+  addProviderTiles("Esri.WorldImagery") %>%
+  addScaleBar(position = c("bottomleft")) %>%
+  setView(-123.1207, 49.2827, zoom = 11)
+
+
+```
 
 This is a sample page where you can archive project deliverables. Every header you use will correspond to a tab in the legend - shown on the right-hand side of your screen ("On this page").
 
