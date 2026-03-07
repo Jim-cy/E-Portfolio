@@ -23,11 +23,11 @@ library(dplyr)
 library(leaflet)
 library(sf)
 
-# Read shapefiles (fixed parentheses)
-plot1 <- st_read("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/plot1.shp")
-plot2 <- st_read("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/plot2.shp")
-plot3 <- st_read("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/plot3.shp")
-buffer <- st_read("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/buffer.shp")
+# Read shapefiles quietly
+plot1 <- suppressMessages(st_read("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/plot1.shp", quiet = TRUE))
+plot2 <- suppressMessages(st_read("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/plot2.shp", quiet = TRUE))
+plot3 <- suppressMessages(st_read("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/plot3.shp", quiet = TRUE))
+buffer <- suppressMessages(st_read("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/buffer.shp", quiet = TRUE))
 
 # Merge plots
 plot1 <- plot1[!st_is_empty(plot1), ]
