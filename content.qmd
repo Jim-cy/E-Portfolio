@@ -8,38 +8,134 @@ editor: visual
 
 ## Project Overview
 
-[Wetzin’kwa Community Forest]{.underline} is a 33,000-hectare community forest tenure located on [Wet’suwet’en]{.underline} territory near [Smithers, British Columbia]{.underline}. The tenure was established in 2007 through a partnership between the [Town of Smithers]{.underline} and the [Village of Telkwa]{.underline} to support sustainable forest management in the region. Portions of the forest have been previously harvested, and many of these stands are now reaching a developmental stage where thinning or partial harvesting treatments may be appropriate.
+Wetzin’kwa Community Forest is a 33,000-hectare community forest tenure located on Wet’suwet’en territory near Smithers, British Columbia. The tenure was established in 2007 through a partnership between the Town of Smithers and the Village of Telkwa to support sustainable forest management in the region. Portions of the forest have been previously harvested, and many of these stands are now reaching a developmental stage where thinning or partial harvesting treatments may be appropriate.
 
 ## Research Question
 
 How do required different thinning scenarios affect forest stand structure, and how can thinning trails be designed to support efficient and sustainable forest management?
 
-## Data Source
+## Study Area & Data Source
+
+Study Area:
+
+```{r leaflet_study_area, echo=FALSE}
+library(dplyr)
+library(leaflet)
+library(sf)
+
+# Read shapefiles (fixed parentheses)
+plot1 <- st_read("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/plot1.shp")
+plot2 <- st_read("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/plot2.shp")
+plot3 <- st_read("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/plot3.shp")
+buffer <- st_read("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/buffer.shp")
+
+# Merge plots
+plot1 <- plot1[!st_is_empty(plot1), ]
+plot2 <- plot2[!st_is_empty(plot2), ]
+plot3 <- plot3[!st_is_empty(plot3), ]
+plots <- rbind(plot1,plot2,plot3)
+buffer <- buffer[!st_is_empty(buffer), ]
+
+# Add color columns
+plot1$color <- "green"
+plot2$color <- "green"
+plot3$color <- "green"
+buffer$color <- "orange"
+
+# Optional: keep only geometry + color
+plot1 <- plot1 %>% select(color, geometry)
+plot2 <- plot2 %>% select(color, geometry)
+plot3 <- plot3 %>% select(color, geometry)
+buffer <- buffer %>% select(color, geometry)
+
+# Remove Z dimension
+plot1_2d <- st_zm(plot1, drop = TRUE, what = "ZM")
+plot2_2d <- st_zm(plot2, drop = TRUE, what = "ZM")
+plot3_2d <- st_zm(plot3, drop = TRUE, what = "ZM")
+buffer_2d <- st_zm(buffer, drop = TRUE, what = "ZM")
+
+# Bounding box
+bbox <- st_bbox(plots)
+bbox_num <- as.numeric(bbox)
+
+# Create leaflet map
+m <- leaflet() %>%
+  addProviderTiles("Esri.WorldImagery") %>%
+  addPolygons(
+    data = plot1_2d,
+    fillColor = ~color,
+    color = "black",
+    weight = 2,
+    fillOpacity = 0.5,
+    group = "Plot1"
+  ) %>%
+  addPolygons(
+    data = plot2_2d,
+    fillColor = ~color,
+    color = "black",
+    weight = 2,
+    fillOpacity = 0.5,
+    group = "Plot2"
+  ) %>%
+  addPolygons(
+    data = plot3_2d,
+    fillColor = ~color,
+    color = "black",
+    weight = 2,
+    fillOpacity = 0.5,
+    group = "Plot3"
+  ) %>%
+  addPolygons(
+    data = buffer_2d,
+    fillColor = ~color,
+    color = "black",
+    weight = 2,
+    fillOpacity = 0.5,
+    group = "Buffer"
+  ) %>%
+  addLayersControl(
+    overlayGroups = c("Plot1", "Plot2","Plot3","Buffer"),
+    options = layersControlOptions(collapsed = FALSE)
+  ) %>%
+  addScaleBar(position = "bottomleft") %>%
+  fitBounds(
+    lng1 = bbox_num[1], lat1 = bbox_num[2],
+    lng2 = bbox_num[3], lat2 = bbox_num[4]
+  )
+
+invisible(m)
+
+```
 
 -   LiDAR data collected in 2023
 
 -   Field cruise data
 
--   Aerial imagery
+-   Aerial imagery shoot in 2023
 
 ## Methods
 
-**1). Data extraction from LiDAR, field survey, and aerial imagery.**
+**1). Data extraction from LiDAR, field survey, and aerial imagery**
 
-LidR package
+LiDAR - Tree Metrics using LidR Package
 
 ```{r lidR package}
 #| eval: false
 # Read in Lidar data
 cat_lidar <- readLAScatalog("file/path")
+
 # Create DEM based on Lidar data
 dem <- rasterize_terrain(cat_lidar, 2, tin())
+
 # Normalize Lidar data
 norm <- normalize_height(cat_lidar, dem)
+
 # Create CHM based on Normalize Lidar data, 0.5m resolution
 chm <- rasterize_canopy(norm, 0.5, p2r(0.2, na.fill = tin())) 
+
 # Dectect treetop based on CHM and window size (2m*2m here)
 treetops <- locate_trees(chm,lmf(ws = 2))
+
 # Define arguments used for the segmentation method.
 algo_dalponte2016 <- dalponte2016(
   chm,
@@ -50,13 +146,37 @@ algo_dalponte2016 <- dalponte2016(
   max_cr = 10,
   ID = "treeID"
 )
+
 # Read in specific las tile
 las <- readLAS("file/path")
+
 # Conduct segmentation to the las tile based on defined segmentation method
 seg <- segment_trees(las,algo_dalponte2016)
+
 # Extract tree metrics from the sgmented data
 crown_metrics(seg, func = .stdtreemetrics, geom = "convex")
 ```
+
+Field Survey - Relationship between Diameter at Breast Height (DBH) and Tree Height
+
+```{r}
+#| eval: false
+# Checking varibales' correlation
+pairs(~DBH+Height+logDBH+sqDBH+sqrtDBH, data)
+
+# Fitting the model 
+lm(DBH ~ Height, data)
+
+# Testing assumption
+```
+
+Aerial Imagery - Manually Select tree top on chosen plots and test the accuracy of treetop detection in lidR.
+
+**2). Spatial Design of Thinning Path**
+
+Least-cost path analysis was conducted using crown size and slope as cost factors. A threshold was then applied to the resulting cost surface to delineate areas with relatively low access cost.
+
+**3). Thinning Treatment**
 
 ## Key Results
 

@@ -185,7 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#project-overview" id="toc-project-overview" class="nav-link" data-scroll-target="#project-overview">Project Overview</a></li>
   <li><a href="#research-question" id="toc-research-question" class="nav-link" data-scroll-target="#research-question">Research Question</a></li>
-  <li><a href="#data-source" id="toc-data-source" class="nav-link" data-scroll-target="#data-source">Data Source</a></li>
+  <li><a href="#study-area-data-source" id="toc-study-area-data-source" class="nav-link" data-scroll-target="#study-area-data-source">Study Area &amp; Data Source</a></li>
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
   <li><a href="#key-results" id="toc-key-results" class="nav-link" data-scroll-target="#key-results">Key Results</a></li>
   <li><a href="#leaflet" id="toc-leaflet" class="nav-link" data-scroll-target="#leaflet">Leaflet</a></li>
@@ -221,52 +221,147 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>1. Capstone Project Deliverables</h1>
 <section id="project-overview" class="level2">
 <h2 class="anchored" data-anchor-id="project-overview">Project Overview</h2>
-<p><u>Wetzin’kwa Community Forest</u> is a 33,000-hectare community forest tenure located on <u>Wet’suwet’en</u> territory near <u>Smithers, British Columbia</u>. The tenure was established in 2007 through a partnership between the <u>Town of Smithers</u> and the <u>Village of Telkwa</u> to support sustainable forest management in the region. Portions of the forest have been previously harvested, and many of these stands are now reaching a developmental stage where thinning or partial harvesting treatments may be appropriate.</p>
+<p>Wetzin’kwa Community Forest is a 33,000-hectare community forest tenure located on Wet’suwet’en territory near Smithers, British Columbia. The tenure was established in 2007 through a partnership between the Town of Smithers and the Village of Telkwa to support sustainable forest management in the region. Portions of the forest have been previously harvested, and many of these stands are now reaching a developmental stage where thinning or partial harvesting treatments may be appropriate.</p>
 </section>
 <section id="research-question" class="level2">
 <h2 class="anchored" data-anchor-id="research-question">Research Question</h2>
 <p>How do required different thinning scenarios affect forest stand structure, and how can thinning trails be designed to support efficient and sustainable forest management?</p>
 </section>
-<section id="data-source" class="level2">
-<h2 class="anchored" data-anchor-id="data-source">Data Source</h2>
+<section id="study-area-data-source" class="level2">
+<h2 class="anchored" data-anchor-id="study-area-data-source">Study Area &amp; Data Source</h2>
+<p>Study Area:</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'dplyr' was built under R version 4.5.1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'leaflet' was built under R version 4.5.1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'sf' was built under R version 4.5.1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Linking to GEOS 3.13.1, GDAL 3.11.0, PROJ 9.6.0; sf_use_s2() is TRUE</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `plot1' from data source 
+  `C:\Users\cjin14.stu\OneDrive - UBC\MGEM\Term2\GEM599(2\E-portfolio\plot1.shp' 
+  using driver `ESRI Shapefile'
+Simple feature collection with 1 feature and 2 fields
+Geometry type: POLYGON
+Dimension:     XYZ
+Bounding box:  xmin: -127.4659 ymin: 54.76149 xmax: -127.461 ymax: 54.76363
+z_range:       zmin: 0 zmax: 0
+Geodetic CRS:  WGS 84</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `plot2' from data source 
+  `C:\Users\cjin14.stu\OneDrive - UBC\MGEM\Term2\GEM599(2\E-portfolio\plot2.shp' 
+  using driver `ESRI Shapefile'
+Simple feature collection with 1 feature and 2 fields
+Geometry type: POLYGON
+Dimension:     XYZ
+Bounding box:  xmin: -127.4643 ymin: 54.76387 xmax: -127.4575 ymax: 54.76541
+z_range:       zmin: 0 zmax: 0
+Geodetic CRS:  WGS 84</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `plot3' from data source 
+  `C:\Users\cjin14.stu\OneDrive - UBC\MGEM\Term2\GEM599(2\E-portfolio\plot3.shp' 
+  using driver `ESRI Shapefile'
+Simple feature collection with 1 feature and 2 fields
+Geometry type: POLYGON
+Dimension:     XYZ
+Bounding box:  xmin: -127.4606 ymin: 54.76219 xmax: -127.4576 ymax: 54.76394
+z_range:       zmin: 0 zmax: 0
+Geodetic CRS:  WGS 84</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `buffer' from data source 
+  `C:\Users\cjin14.stu\OneDrive - UBC\MGEM\Term2\GEM599(2\E-portfolio\buffer.shp' 
+  using driver `ESRI Shapefile'
+Simple feature collection with 7 features and 2 fields
+Geometry type: POLYGON
+Dimension:     XYZ
+Bounding box:  xmin: -127.4663 ymin: 54.76142 xmax: -127.4571 ymax: 54.76542
+z_range:       zmin: 0 zmax: 0
+Geodetic CRS:  WGS 84</code></pre>
+</div>
+</div>
 <ul>
 <li><p>LiDAR data collected in 2023</p></li>
 <li><p>Field cruise data</p></li>
-<li><p>Aerial imagery</p></li>
+<li><p>Aerial imagery shoot in 2023</p></li>
 </ul>
 </section>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
-<p><strong>1). Data extraction from LiDAR, field survey, and aerial imagery.</strong></p>
-<p>LidR package</p>
+<p><strong>1). Data extraction from LiDAR, field survey, and aerial imagery</strong></p>
+<p>LiDAR - Tree Metrics using LidR Package</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in Lidar data</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>cat_lidar <span class="ot">&lt;-</span> <span class="fu">readLAScatalog</span>(<span class="st">"file/path"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create DEM based on Lidar data</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>dem <span class="ot">&lt;-</span> <span class="fu">rasterize_terrain</span>(cat_lidar, <span class="dv">2</span>, <span class="fu">tin</span>())</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalize Lidar data</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>norm <span class="ot">&lt;-</span> <span class="fu">normalize_height</span>(cat_lidar, dem)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create CHM based on Normalize Lidar data, 0.5m resolution</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>chm <span class="ot">&lt;-</span> <span class="fu">rasterize_canopy</span>(norm, <span class="fl">0.5</span>, <span class="fu">p2r</span>(<span class="fl">0.2</span>, <span class="at">na.fill =</span> <span class="fu">tin</span>())) </span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Dectect treetop based on CHM and window size (2m*2m here)</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>treetops <span class="ot">&lt;-</span> <span class="fu">locate_trees</span>(chm,<span class="fu">lmf</span>(<span class="at">ws =</span> <span class="dv">2</span>))</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Define arguments used for the segmentation method.</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>algo_dalponte2016 <span class="ot">&lt;-</span> <span class="fu">dalponte2016</span>(</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  chm,</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  treetops,</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">th_tree =</span> <span class="dv">2</span>,</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">th_seed =</span> <span class="fl">0.45</span>,</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">th_cr =</span> <span class="fl">0.55</span>,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">max_cr =</span> <span class="dv">10</span>,</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">ID =</span> <span class="st">"treeID"</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in specific las tile</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="st">"file/path"</span>)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Conduct segmentation to the las tile based on defined segmentation method</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>seg <span class="ot">&lt;-</span> <span class="fu">segment_trees</span>(las,algo_dalponte2016)</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract tree metrics from the sgmented data</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">crown_metrics</span>(seg, <span class="at">func =</span> .stdtreemetrics, <span class="at">geom =</span> <span class="st">"convex"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in Lidar data</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>cat_lidar <span class="ot">&lt;-</span> <span class="fu">readLAScatalog</span>(<span class="st">"file/path"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create DEM based on Lidar data</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>dem <span class="ot">&lt;-</span> <span class="fu">rasterize_terrain</span>(cat_lidar, <span class="dv">2</span>, <span class="fu">tin</span>())</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalize Lidar data</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>norm <span class="ot">&lt;-</span> <span class="fu">normalize_height</span>(cat_lidar, dem)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create CHM based on Normalize Lidar data, 0.5m resolution</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>chm <span class="ot">&lt;-</span> <span class="fu">rasterize_canopy</span>(norm, <span class="fl">0.5</span>, <span class="fu">p2r</span>(<span class="fl">0.2</span>, <span class="at">na.fill =</span> <span class="fu">tin</span>())) </span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Dectect treetop based on CHM and window size (2m*2m here)</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>treetops <span class="ot">&lt;-</span> <span class="fu">locate_trees</span>(chm,<span class="fu">lmf</span>(<span class="at">ws =</span> <span class="dv">2</span>))</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Define arguments used for the segmentation method.</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>algo_dalponte2016 <span class="ot">&lt;-</span> <span class="fu">dalponte2016</span>(</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  chm,</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  treetops,</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">th_tree =</span> <span class="dv">2</span>,</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">th_seed =</span> <span class="fl">0.45</span>,</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">th_cr =</span> <span class="fl">0.55</span>,</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">max_cr =</span> <span class="dv">10</span>,</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">ID =</span> <span class="st">"treeID"</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in specific las tile</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="st">"file/path"</span>)</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Conduct segmentation to the las tile based on defined segmentation method</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>seg <span class="ot">&lt;-</span> <span class="fu">segment_trees</span>(las,algo_dalponte2016)</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract tree metrics from the sgmented data</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="fu">crown_metrics</span>(seg, <span class="at">func =</span> .stdtreemetrics, <span class="at">geom =</span> <span class="st">"convex"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p>Field Survey - Relationship between Diameter at Breast Height (DBH) and Tree Height</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking varibales' correlation</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(<span class="sc">~</span>DBH<span class="sc">+</span>Height<span class="sc">+</span>logDBH<span class="sc">+</span>sqDBH<span class="sc">+</span>sqrtDBH, data)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Fitting the model </span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(DBH <span class="sc">~</span> Height, data)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Testing assumption</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Aerial Imagery - Manually Select tree top on chosen plots and test the accuracy of treetop detection in lidR.</p>
+<p><strong>2). Spatial Design of Thinning Path</strong></p>
+<p>Least-cost path analysis was conducted using crown size and slope as cost factors. A threshold was then applied to the resulting cost surface to delineate areas with relatively low access cost.</p>
+<p><strong>3). Thinning Treatment</strong></p>
 </section>
 <section id="key-results" class="level2">
 <h2 class="anchored" data-anchor-id="key-results">Key Results</h2>
@@ -278,8 +373,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Sample leaflet - for detailed leaflet instructions, visit the FCOR 599 workshop archive page <a href="https://ubc-mgem-fcor599.github.io/FCOR-599-Workshops/Interactive_Maps/leaflet.html">here</a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-bd5b67545a57fc672e21" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-bd5b67545a57fc672e21">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["Esri.WorldImagery",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]}],"setView":[[49.2827,-123.1207],11,[]]},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-7f41e500a7d3579faadc" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-7f41e500a7d3579faadc">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["Esri.WorldImagery",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]}],"setView":[[49.2827,-123.1207],11,[]]},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
