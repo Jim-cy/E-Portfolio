@@ -588,6 +588,58 @@ m <- leaflet() %>%
 m
 ```
 
+**3). Thinning Treatment**
+
+In plot2, the forest was classified into four density groups: gap, low, medium, and high. Variable density thinning was applied at 100%, 20%, 40%, and 5%, respectively, reducing tree density proportionally and creating a more heterogeneous forest structure.
+
+```{r leaflet_thin, include = FALSE}
+VDT <- raster("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/VDT.tif")
+residualT <- st_read("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/residualTrees.shp")
+
+r_pal <- colorNumeric(
+  palette = "YlGn",
+  domain = values(VDT),
+  na.color = "transparent"
+)
+
+bbox <- st_bbox(plot2)
+bbox_num <- as.numeric(bbox)
+
+m <- leaflet() %>%
+  addProviderTiles("Esri.WorldImagery") %>%
+  
+  # Add raster
+  addRasterImage(VDT, colors = r_pal, opacity = 0.8, project = TRUE, group = "VDT") %>%
+  addLegend(pal = r_pal, values = values(VDT),
+            title = "VDT", position = "topright") %>%
+  
+  # Add filtered polygons
+  addPolygons(data = residualT,
+              color = "red", 
+              weight = 2, 
+              fill = FALSE,
+              group = "Residual Trees") %>%
+  
+  # Add layer control
+  addLayersControl(
+    overlayGroups = c("Residual Trees", "VDT"),
+    options = layersControlOptions(collapsed = FALSE)
+  )%>%
+  fitBounds(lng1 = bbox_num[1], lat1 = bbox_num[2],
+            lng2 = bbox_num[3], lat2 = bbox_num[4])
+
+m
+```
+
+**4). Yield and Growth Simulation**
+
+Comparing the 60 years of performance in the three plots, variable density thinning showed a better performance in both stand health and economic regeneration.
+
+![](images/HD_ratio_trend.png)
+
+![](images/mcuft_trend.png)
+# 2. MGEM Courses Deliverables
+
 ```{r leaflet map3, include = FALSE}
 library(dplyr); library(leaflet)
 
