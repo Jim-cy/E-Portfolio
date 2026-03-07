@@ -639,30 +639,26 @@ Comparing the 60 years of performance in the three plots, variable density thinn
 
 ![](images/mcuft_trend.png)
 
-# 2. MGEM Courses Deliverables
-
-## GEM500
+# 2.  GEM500 Deliverables
 
 This course introduced key concepts of spatial heterogeneity, scale, and landscape patterns, and their importance in ecological processes and environmental management. I learned how to quantify and analyze spatial patterns using landscape ecological tools, and to evaluate the strengths and limitations of different analytical approaches. The course also connected landscape ecology concepts to themes such as ecosystem resilience, carbon and biomass dynamics, and social-ecological systems in natural resource management.
 
-## FCOR511 & FCOR510
+# 3. FCOR511 & FCOR510 Deliverables
 
 Through these courses, I developed an understanding of how knowledge is shaped by social, historical, and ethical contexts and learned to appreciate diverse forms of knowledge and communication methods. I gained skills in knowledge co-production, data ethics, and professional ethical practice, including considerations of privacy, intellectual property, and data sovereignty. The courses also strengthened my ability to reflect on my own worldview, values, and biases, and to effectively communicate specialized topics, manage difficult conversations, and collaborate with diverse teams in environmental management settings.
 
-## GEM510 & GEM511
+# 4. GEM510 & GEM511 Deliverables
 
 These courses provided hands-on experience in the design, development, analysis, and visualization of geographic data. I gained skills in GIS database design, spatial data collection and management, and advanced spatial analysis, including terrain modeling, network analysis, geographically weighted regression, and machine learning applications for geospatial data. I also developed abilities to create effective maps and web visualizations, communicate analytical findings to diverse audiences, and document GIS projects with metadata, while understanding the conceptual and practical limitations of GIS tools in environmental management.
 
-## GEM520 & Gem521
+# 5. GEM520 & Gem521 Deliverables
 
 These courses provided hands-on and theoretical training in remote sensing for environmental and forest management applications. I developed skills in interpreting spectral properties, processing and analyzing imagery from airborne and satellite sensors, and applying LiDAR, RADAR, and hyperspectral technologies. I also gained experience in digital image processing, object-based image analysis, and using tools such as R, QGIS, ENVI, and Google Earth Engine to analyze, visualize, and communicate spatial data, as well as designing reproducible workflows for data-intensive projects.
 
-## GEM530
+# 6. GEM530 Deliverables
 
 This course provided hands-on training in Python programming and scripting for geospatial analysis. I learned to process, query, and manipulate geospatial data, moving from graphical interfaces to reproducible scripts, and extending Python with geo-focused modules. Through applied exercises using real-world datasets, I developed skills to analyze environmental management issues, including themes such as carbon and biomass, landscape patterns, and social-ecological perspectives, while building confidence in coding, workflow design, and data-driven problem solving.
 
-## GEM540
+# 7. GEM540 Deliverables
 
 This course provided hands-on training in linear regression and spatial statistics using R. I learned to fit, evaluate, and diagnose linear models, apply remedial measures, and perform model selection and evaluation. I also gained skills in analyzing spatial data, including understanding spatial autocorrelation, spatial interpolation, sampling in space, and fitting regression models for spatially correlated data, enabling me to apply statistical and geospatial methods to real-world environmental management problems.
-
-
