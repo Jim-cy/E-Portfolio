@@ -16,7 +16,7 @@ How do required different thinning scenarios affect forest stand structure, and 
 
 ## Study Area & Data Source
 
-Study Area
+**1). Study Area**
 
 The forest is dominated by Lodgepole pine. A surrounding buffer area is excluded from analysis. Three study plots were thinned: Plot 1 and Plot 3 received a 40% light thinning, while Plot 2 underwent variable cluster thinning to create structural diversity.
 
@@ -109,7 +109,7 @@ m
 
 ```
 
-Data Source
+**2). Data Source**
 
 -   LiDAR data collected in 2023
 
@@ -121,7 +121,7 @@ Data Source
 
 **1). Data extraction from LiDAR, field survey, and aerial imagery**
 
-LiDAR - Tree Metrics using LidR Package
+**LiDAR** - Tree Metrics using LidR Package
 
 ```{r lidR package}
 #| eval: false
@@ -161,7 +161,7 @@ seg <- segment_trees(las,algo_dalponte2016)
 crown <- crown_metrics(seg, func = .stdtreemetrics, geom = "convex")
 ```
 
-Field Survey - Relationship between Diameter at Breast Height (DBH) and Tree Height
+**Field Survey** - Relationship between Diameter at Breast Height (DBH) and Tree Height
 
 ```{r}
 #| eval: false
@@ -174,7 +174,7 @@ lm(DBH ~ Height, data)
 # Testing assumptions
 ```
 
-Aerial Imagery - Manually Select tree top on chosen plots and test the accuracy of treetop detection in lidR.
+**Aerial Imagery** - Manually Select tree top on chosen plots and test the accuracy of treetop detection in lidR.
 
 **2). Spatial Design of Thinning Path**
 
@@ -239,6 +239,8 @@ The crown data were used to establish the tree list. The generated tree list was
 
 **1). Data Processing**
 
+The DEM and CHM of the study area
+
 ```{r leaflet map2, include = FALSE}
 library(leaflet)
 library(raster)
@@ -299,15 +301,18 @@ m <- leaflet() %>%
 m  # Display the map
 ```
 
-The best performance of our predictive model is shown below. The relationship between tree height and diameter at breast height (DBH) is captured by the following equation:
+The best performance of the predictive model is shown below, with R\^2 of 0.2099 and RSME of 2.835. The relationship between tree height and diameter at breast height (DBH) is captured by the following equation:
 
-\$\$\
-\\text{DBH} = 8.931 + 0.623 \\times \\text{Height}\
-\$\$
+$$
+DBH = 8.931 + 0.623 * Height
+$$
 
 ![](images/linear_regression_diagnostics.png)
 
+Treetop detection accuracy
+
 ```{r}
+
 
 ```
 
