@@ -594,7 +594,7 @@ In plot2, the forest was classified into four density groups: gap, low, medium, 
 
 ```{r leaflet_thinningT, echo=FALSE, message=FALSE, warning=FALSE}
 VDT <- raster("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/VDT.tif")
-residualT <- st_read("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/residualTrees.shp")
+residualT <- suppressMessages(st_read("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/residualTrees.shp", quiet = TRUE))
 
 r_pal <- colorNumeric(
   palette = "YlGn",
@@ -638,6 +638,7 @@ Comparing the 60 years of performance in the three plots, variable density thinn
 ![](images/HD_ratio_trend.png)
 
 ![](images/mcuft_trend.png)
+
 # 2. MGEM Courses Deliverables
 
 ```{r leaflet map3, include = FALSE}
