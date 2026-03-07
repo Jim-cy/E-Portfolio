@@ -4,4 +4,11 @@ format: html
 editor: visual
 ---
 
-Mor na shael. Tal na shi, zhek nara keth, elin tal keth. Shael’na shi, drak no shi keth. Zu mor nara zora, zora elin mor. Ka mor na keth, shael no keth. Zhek na drak, zu mor drak. Tal zora shi, keth shae elin. Nara tal shael, mor’na zora.
+**Name:** Ciyuan Jin\
+**Email:** cjin14\@ubc.ca or ciyuanjim\@gmail.com\
+**Location:** Vancouver, BC, Canada
+
+**LinkedIn:** linkedin.com/in/ciyuan-jin-63a11b252\
+**GitHub:** <https://github.com/Jim-cy>
+
+**Preferred Contact Method:** Email

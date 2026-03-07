@@ -30,11 +30,8 @@ title: "Resume"
 
 # Publications
 
-*Peer-reviewed publications:*
+*Peer-reviewed publication:*
 
--   List any peer-reviewed publications here.
+-   Jin, C., Zhu, S., & Feng, H. (2025). Life Cycle Assessment of Engineered Wood Products in the Building Sector: A Review. Buildings, 15(22), 4193. https://doi.org/10.3390/buildings15224193
 
-# Awards & Honors
-
--   List any scholarships, bursaries, etc.
 

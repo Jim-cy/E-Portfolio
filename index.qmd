@@ -1,5 +1,5 @@
 ---
-title: "My E-Portfolio"
+title: "Ciyuan Jin"
 image: images/Ciyuan_2024.jpeg
 about:
   template: trestles
@@ -15,5 +15,5 @@ about:
 
 Hey there people,
 
-I am an international student from China, and I completed my undergraduate degree through a 3+2 joint program between Beijing Forestry University and the University of British Columbia (UBC), majoring in Wood Products Processing. I volunteered in the Sustainable Built Environment Lab and worked as a research assistant, focusing on environmental impact analysis of wood products. These experiences sparked my interest in environmental data and inspired me to develop stronger analytical skills. This interest led me to pursue the Master of Geomatics for Environmental Management (MGEM) program at UBC. I’m especially interested in using spatial analysis tools to support sustainable development and environmental decision-making. In my free time, I enjoy hiking, photography, and exploring nature. My goal is to pursue a career in environmental consulting or policy support, where I can apply geomatics tools to help address real-world environmental challenges.
+I am an international student from China, and I completed my undergraduate degree through a 3+2 joint program between Beijing Forestry University and the University of British Columbia (UBC), majoring in Wood Products Processing. I volunteered in the Sustainable Built Environment Lab and worked as a research assistant, focusing on environmental impact analysis of wood products. These experiences sparked my interest in environmental data and inspired me to develop stronger analytical skills. This interest led me to pursue the Master of Geomatics for Environmental Management (MGEM) program at UBC. I’m especially interested in using spatial analysis tools to support sustainable development and environmental decision-making.My goal is to pursue a career in environmental consulting or policy support, where I can apply geomatics tools to help address real-world environmental challenges.
 

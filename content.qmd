@@ -641,81 +641,28 @@ Comparing the 60 years of performance in the three plots, variable density thinn
 
 # 2. MGEM Courses Deliverables
 
-```{r leaflet map3, include = FALSE}
-library(dplyr); library(leaflet)
+## GEM500
 
-m <- leaflet() %>%
-  addProviderTiles("Esri.WorldImagery") %>%
-  addScaleBar(position = c("bottomleft")) %>%
-  setView(-123.1207, 49.2827, zoom = 11)
+This course introduced key concepts of spatial heterogeneity, scale, and landscape patterns, and their importance in ecological processes and environmental management. I learned how to quantify and analyze spatial patterns using landscape ecological tools, and to evaluate the strengths and limitations of different analytical approaches. The course also connected landscape ecology concepts to themes such as ecosystem resilience, carbon and biomass dynamics, and social-ecological systems in natural resource management.
+
+## FCOR511 & FCOR510
+
+Through these courses, I developed an understanding of how knowledge is shaped by social, historical, and ethical contexts and learned to appreciate diverse forms of knowledge and communication methods. I gained skills in knowledge co-production, data ethics, and professional ethical practice, including considerations of privacy, intellectual property, and data sovereignty. The courses also strengthened my ability to reflect on my own worldview, values, and biases, and to effectively communicate specialized topics, manage difficult conversations, and collaborate with diverse teams in environmental management settings.
+
+## GEM510 & GEM511
+
+These courses provided hands-on experience in the design, development, analysis, and visualization of geographic data. I gained skills in GIS database design, spatial data collection and management, and advanced spatial analysis, including terrain modeling, network analysis, geographically weighted regression, and machine learning applications for geospatial data. I also developed abilities to create effective maps and web visualizations, communicate analytical findings to diverse audiences, and document GIS projects with metadata, while understanding the conceptual and practical limitations of GIS tools in environmental management.
+
+## GEM520 & Gem521
+
+These courses provided hands-on and theoretical training in remote sensing for environmental and forest management applications. I developed skills in interpreting spectral properties, processing and analyzing imagery from airborne and satellite sensors, and applying LiDAR, RADAR, and hyperspectral technologies. I also gained experience in digital image processing, object-based image analysis, and using tools such as R, QGIS, ENVI, and Google Earth Engine to analyze, visualize, and communicate spatial data, as well as designing reproducible workflows for data-intensive projects.
+
+## GEM530
+
+This course provided hands-on training in Python programming and scripting for geospatial analysis. I learned to process, query, and manipulate geospatial data, moving from graphical interfaces to reproducible scripts, and extending Python with geo-focused modules. Through applied exercises using real-world datasets, I developed skills to analyze environmental management issues, including themes such as carbon and biomass, landscape patterns, and social-ecological perspectives, while building confidence in coding, workflow design, and data-driven problem solving.
+
+## GEM540
+
+This course provided hands-on training in linear regression and spatial statistics using R. I learned to fit, evaluate, and diagnose linear models, apply remedial measures, and perform model selection and evaluation. I also gained skills in analyzing spatial data, including understanding spatial autocorrelation, spatial interpolation, sampling in space, and fitting regression models for spatially correlated data, enabling me to apply statistical and geospatial methods to real-world environmental management problems.
 
 
-```
-
-This is a sample page where you can archive project deliverables. Every header you use will correspond to a tab in the legend - shown on the right-hand side of your screen ("On this page").
-
-If you've produced any GIS layers for your 599 project, this may be a good place to share them as interactive maps through leaflet. Alternatively, you can upload high-res figures showing correlations, box-plots, etc. from your report here, and provide a brief overview of key project results. If you have written some useful functions, you may also want to share those here to demonstrate proficiency in particular coding languages or synergies between notable coding packages.
-
-## Leaflet
-
-Sample leaflet - for detailed leaflet instructions, visit the FCOR 599 workshop archive page [here](https://ubc-mgem-fcor599.github.io/FCOR-599-Workshops/Interactive_Maps/leaflet.html).
-
-```{r leaflet, include = FALSE}
-library(dplyr); library(leaflet)
-
-m <- leaflet() %>%
-  addProviderTiles("Esri.WorldImagery") %>%
-  addScaleBar(position = c("bottomleft")) %>%
-  setView(-123.1207, 49.2827, zoom = 11)
-
-```
-
-```{r map, echo=FALSE}
-m
-```
-
-## Code Snippets
-
-Sample code snippet. Notice that you can provide a toggle to switch between coding languages - this is referred to as a 'tabset' in quarto. It is good practice to try and convert your R code to python, and vice-versa to demonstrate coding proficiency. For example, let's showcase a function for calculating NDVI in R and Python.
-
-::: {.panel-tabset group="language"}
-## R
-
-``` (.r)
-calc_ndvi <- function(nir, red){
-  ndvi <- (nir-red)/(nir+red)
-  return(ndvi)
-}
-```
-
-(Assuming *nir* and *red* are terra rast objects)
-
-## Python
-
-``` (.python)
-def calc_ndvi(nir, red): 
-  ndvi = (nir - red)/(nir + red)
-  return(ndvi)
-```
-
-(Assuming *nir* and *red* are numpy arrays)
-:::
-
-## External links
-
-You can also provide a frame linking to external websites. For example, here is a Google Earth Engine application I developed - which I embedded in this webpage using the code below:
-
-```{code}
-
-<iframe width="900" height="700"
-src="https://ee-melserramon.projects.earthengine.app/view/thermal-analysis-tool">
-</iframe>
-```
-
-The full-screen GEE application is available [here](https://ee-melserramon.projects.earthengine.app/view/thermal-analysis-tool) in case you're interested.
-
-(To use the GEE tool, navigate to any city you'd like, hit apply filters, and click anywhere on the map to retrieve a time-series of Landsat surface temperature observations for that point. Areas where the maximum temp exceeded 35 degrees Celsius in your date-range are highlighted in red.)
-
-```{=html}
-<iframe width="900" height="700" src="https://ee-melserramon.projects.earthengine.app/view/thermal-analysis-tool"></iframe>
-```

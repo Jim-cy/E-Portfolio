@@ -2,16 +2,16 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "My E-Portfolio",
+    "title": "Ciyuan Jin",
     "section": "",
-    "text": "Hey there people,\nI am an international student from China, and I completed my undergraduate degree through a 3+2 joint program between Beijing Forestry University and the University of British Columbia (UBC), majoring in Wood Products Processing. I volunteered in the Sustainable Built Environment Lab and worked as a research assistant, focusing on environmental impact analysis of wood products. These experiences sparked my interest in environmental data and inspired me to develop stronger analytical skills. This interest led me to pursue the Master of Geomatics for Environmental Management (MGEM) program at UBC. I’m especially interested in using spatial analysis tools to support sustainable development and environmental decision-making. In my free time, I enjoy hiking, photography, and exploring nature. My goal is to pursue a career in environmental consulting or policy support, where I can apply geomatics tools to help address real-world environmental challenges."
+    "text": "Hey there people,\nI am an international student from China, and I completed my undergraduate degree through a 3+2 joint program between Beijing Forestry University and the University of British Columbia (UBC), majoring in Wood Products Processing. I volunteered in the Sustainable Built Environment Lab and worked as a research assistant, focusing on environmental impact analysis of wood products. These experiences sparked my interest in environmental data and inspired me to develop stronger analytical skills. This interest led me to pursue the Master of Geomatics for Environmental Management (MGEM) program at UBC. I’m especially interested in using spatial analysis tools to support sustainable development and environmental decision-making.My goal is to pursue a career in environmental consulting or policy support, where I can apply geomatics tools to help address real-world environmental challenges."
   },
   {
     "objectID": "resume.html",
     "href": "resume.html",
     "title": "Resume",
     "section": "",
-    "text": "Education\n\n University of British Columbia, Vancouver, BC Master of Geomatics for Environmental Management  Sept. 2025 - May 2026\n\n\n University of British Columbia, Vancouver, BC Bachelor of Wood Products Processing, Minor in Commerce  Sept. 2022 - May 2025\n\n\n Beijing Forestry University, Beijing, China Bachelor of Wood Science and Engineering  Sept. 2019 - June 2022\n\n\n\nPublications\nPeer-reviewed publications:\n\nList any peer-reviewed publications here.\n\n\n\nAwards & Honors\n\nList any scholarships, bursaries, etc."
+    "text": "Education\n\n University of British Columbia, Vancouver, BC Master of Geomatics for Environmental Management  Sept. 2025 - May 2026\n\n\n University of British Columbia, Vancouver, BC Bachelor of Wood Products Processing, Minor in Commerce  Sept. 2022 - May 2025\n\n\n Beijing Forestry University, Beijing, China Bachelor of Wood Science and Engineering  Sept. 2019 - June 2022\n\n\n\nPublications\nPeer-reviewed publication:\n\nJin, C., Zhu, S., & Feng, H. (2025). Life Cycle Assessment of Engineered Wood Products in the Building Sector: A Review. Buildings, 15(22), 4193. https://doi.org/10.3390/buildings15224193"
   },
   {
     "objectID": "publications.html",
@@ -60,7 +60,7 @@
     "href": "contact.html",
     "title": "Contact Info",
     "section": "",
-    "text": "Mor na shael. Tal na shi, zhek nara keth, elin tal keth. Shael’na shi, drak no shi keth. Zu mor nara zora, zora elin mor. Ka mor na keth, shael no keth. Zhek na drak, zu mor drak. Tal zora shi, keth shae elin. Nara tal shael, mor’na zora."
+    "text": "Name: Ciyuan Jin\nEmail: cjin14@ubc.ca or ciyuanjim@gmail.com\nLocation: Vancouver, BC, Canada\nLinkedIn: linkedin.com/in/ciyuan-jin-63a11b252\nGitHub: https://github.com/Jim-cy\nPortfolio Website: ciyuanjin-portfolio.com (if separate from this e-portfolio)\nPreferred Contact Method: Email"
   },
   {
     "objectID": "contact.html#quarto",
@@ -117,5 +117,47 @@
     "title": "Content & Deliverables",
     "section": "",
     "text": "1). Study Area\nThe forest is dominated by Lodgepole pine. A surrounding buffer area is excluded from analysis. Three study plots were thinned: Plot 1 and Plot 3 received a 40% light thinning, while Plot 2 underwent variable cluster thinning to create structural diversity.\n\n\n\n\n\n\n2). Data Source\n\nLiDAR data collected in 2023\nField cruise data\nAerial imagery shoot in 2023"
+  },
+  {
+    "objectID": "content.html#gem500",
+    "href": "content.html#gem500",
+    "title": "Content & Deliverables",
+    "section": "GEM500",
+    "text": "GEM500\nThis course introduced key concepts of spatial heterogeneity, scale, and landscape patterns, and their importance in ecological processes and environmental management. I learned how to quantify and analyze spatial patterns using landscape ecological tools, and to evaluate the strengths and limitations of different analytical approaches. The course also connected landscape ecology concepts to themes such as ecosystem resilience, carbon and biomass dynamics, and social-ecological systems in natural resource management."
+  },
+  {
+    "objectID": "content.html#fcor511-fcor510",
+    "href": "content.html#fcor511-fcor510",
+    "title": "Content & Deliverables",
+    "section": "FCOR511 & FCOR510",
+    "text": "FCOR511 & FCOR510\nThrough these courses, I developed an understanding of how knowledge is shaped by social, historical, and ethical contexts and learned to appreciate diverse forms of knowledge and communication methods. I gained skills in knowledge co-production, data ethics, and professional ethical practice, including considerations of privacy, intellectual property, and data sovereignty. The courses also strengthened my ability to reflect on my own worldview, values, and biases, and to effectively communicate specialized topics, manage difficult conversations, and collaborate with diverse teams in environmental management settings."
+  },
+  {
+    "objectID": "content.html#gem510-gem511",
+    "href": "content.html#gem510-gem511",
+    "title": "Content & Deliverables",
+    "section": "GEM510 & GEM511",
+    "text": "GEM510 & GEM511\nThese courses provided hands-on experience in the design, development, analysis, and visualization of geographic data. I gained skills in GIS database design, spatial data collection and management, and advanced spatial analysis, including terrain modeling, network analysis, geographically weighted regression, and machine learning applications for geospatial data. I also developed abilities to create effective maps and web visualizations, communicate analytical findings to diverse audiences, and document GIS projects with metadata, while understanding the conceptual and practical limitations of GIS tools in environmental management."
+  },
+  {
+    "objectID": "content.html#gem520-gem521",
+    "href": "content.html#gem520-gem521",
+    "title": "Content & Deliverables",
+    "section": "GEM520 & Gem521",
+    "text": "GEM520 & Gem521\nThese courses provided hands-on and theoretical training in remote sensing for environmental and forest management applications. I developed skills in interpreting spectral properties, processing and analyzing imagery from airborne and satellite sensors, and applying LiDAR, RADAR, and hyperspectral technologies. I also gained experience in digital image processing, object-based image analysis, and using tools such as R, QGIS, ENVI, and Google Earth Engine to analyze, visualize, and communicate spatial data, as well as designing reproducible workflows for data-intensive projects."
+  },
+  {
+    "objectID": "content.html#gem530",
+    "href": "content.html#gem530",
+    "title": "Content & Deliverables",
+    "section": "GEM530",
+    "text": "GEM530\nThis course provided hands-on training in Python programming and scripting for geospatial analysis. I learned to process, query, and manipulate geospatial data, moving from graphical interfaces to reproducible scripts, and extending Python with geo-focused modules. Through applied exercises using real-world datasets, I developed skills to analyze environmental management issues, including themes such as carbon and biomass, landscape patterns, and social-ecological perspectives, while building confidence in coding, workflow design, and data-driven problem solving."
+  },
+  {
+    "objectID": "content.html#gem540",
+    "href": "content.html#gem540",
+    "title": "Content & Deliverables",
+    "section": "GEM540",
+    "text": "GEM540\nThis course provided hands-on training in linear regression and spatial statistics using R. I learned to fit, evaluate, and diagnose linear models, apply remedial measures, and perform model selection and evaluation. I also gained skills in analyzing spatial data, including understanding spatial autocorrelation, spatial interpolation, sampling in space, and fitting regression models for spatially correlated data, enabling me to apply statistical and geospatial methods to real-world environmental management problems."
   }
 ]
