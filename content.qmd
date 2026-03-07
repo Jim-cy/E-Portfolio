@@ -498,7 +498,7 @@ m
 
 ```
 
-```{r leaflet_cost3, include = FALSE}
+```{r leaflet_cost3, echo=FALSE, message=FALSE, warning=FALSE}
 crownCost3 <- raster("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/crownCost3.tif")
 slopeCost3 <- raster("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/slopeCost3.tif")
 totalCost3 <- raster("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/totalCost3.tif")
@@ -592,7 +592,7 @@ m
 
 In plot2, the forest was classified into four density groups: gap, low, medium, and high. Variable density thinning was applied at 100%, 20%, 40%, and 5%, respectively, reducing tree density proportionally and creating a more heterogeneous forest structure.
 
-```{r leaflet_thin, include = FALSE}
+```{r leaflet_thinningT, echo=FALSE, message=FALSE, warning=FALSE}
 VDT <- raster("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/VDT.tif")
 residualT <- st_read("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/residualTrees.shp")
 
