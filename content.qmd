@@ -241,7 +241,7 @@ The crown data were used to establish the tree list. The generated tree list was
 
 The DEM and CHM of the study area
 
-```{r leaflet map2, include = FALSE}
+```{r leaflet_chm_dem, echo=FALSE, message=FALSE, warning=FALSE}
 library(leaflet)
 library(raster)
 library(RColorBrewer)
