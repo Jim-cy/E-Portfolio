@@ -309,11 +309,285 @@ $$
 
 ![](images/linear_regression_diagnostics.png)
 
-Treetop detection accuracy
+Treetop detection accuracy was tested using different window sizes (1 m, 2 m, and 3 m). The results showed that a 2 m window size performed best, achieving high values in both precision and recall, and obtaining the highest F1 score among the tested settings.
 
-```{r}
+This indicates that a 2 m window provides a good balance for detecting treetops automatically while minimizing false detection.
+
+![](images/plot1_treetops.png) ![](images/accuracy_comparison.png)
+
+**2). Thinning Path Design**
+
+This interactive map presents the cost surfaces used to design potential thinning trails. Crown closure cost, slope cost, and the combined total cost are visualized as raster layers. A least-cost surface is also displayed to identify the most efficient routes for thinning access based on terrain difficulty and stand conditions. Users can switch between layers to explore how different factors influence trail planning within the study area.
+
+```{r leaflet_cost, echo=FALSE, message=FALSE, warning=FALSE}
+crownCost2 <- raster("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/crownCost2.tif")
+slopeCost2 <- raster("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/slopeCost2.tif")
+totalCost2 <- raster("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/totalCost2.tif")
+leastCost2 <- raster("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/leastCost2.tif")
+
+crownCost2 <- mask(crownCost2, plot2_2d)
+slopeCost2 <- mask(slopeCost2, plot2_2d)
+totalCost2 <- mask(totalCost2, plot2_2d)
+leastCost2[leastCost2 == 0] <- NA
+
+bbox <- st_bbox(plots)
+bbox_num <- as.numeric(bbox)
+
+# CrownCost
+crown_vals <- c(values(crownCost2))
+crown_pal <- colorNumeric(palette = "YlGn", domain = crown_vals, na.color = "transparent")
+
+# SlopeCost
+slope_vals <- c(values(slopeCost2))
+slope_pal <- colorNumeric(palette = "YlOrBr", domain = slope_vals, na.color = "transparent")
+
+# TotalCost
+total_vals <- c(values(totalCost2))
+total_pal <- colorNumeric(palette = "Blues", domain = total_vals, na.color = "transparent")
+
+# LeastCost
+least_vals <- c(values(leastCost2))
+least_pal <- colorNumeric(palette = "inferno", domain = least_vals, na.color = "transparent")
+
+# Create Leaflet map
+# Create the map
+library(leaflet)
+library(htmlwidgets)
+
+# Your raster layers and palettes assumed loaded
+m <- leaflet() %>%
+  addProviderTiles("Esri.WorldImagery") %>%
+  addRasterImage(crownCost2, colors = crown_pal, opacity = 1, group="CrownCost") %>%
+  addRasterImage(slopeCost2, colors = slope_pal, opacity = 1, group="SlopeCost") %>%
+  addRasterImage(totalCost2, colors = total_pal, opacity = 1, group="TotalCost") %>%
+  addRasterImage(leastCost2, colors = least_pal, opacity = 1, group="LeastCost") %>%
+  
+  addLayersControl(
+    baseGroups = c("CrownCost", "SlopeCost", "TotalCost", "LeastCost"),
+    options = layersControlOptions(collapsed = FALSE),
+    position = "bottomleft"
+  ) %>%
+  fitBounds(lng1 = bbox_num[1], lat1 = bbox_num[2],
+            lng2 = bbox_num[3], lat2 = bbox_num[4]) %>%
+  
+  # Single HTML container for all legends in topright
+  htmlwidgets::onRender("
+  function(el, x) {
+    var map = this;
+    var container = L.DomUtil.create('div', 'custom-legend-container');
+    container.style.background = 'white';
+    container.style.padding = '5px';
+    container.style.borderRadius = '5px';
+    container.style.boxShadow = '0 0 5px rgba(0,0,0,0.4)';
+    container.style.display = 'grid';
+    container.style.gridTemplateColumns = 'auto auto';
+    container.style.gridGap = '5px';
+    
+    function createLegend(title, colorLow, colorHigh) {
+      var div = document.createElement('div');
+      div.style.fontSize = '12px';
+      div.innerHTML = '<b style=\"color:black\">' + title + '</b><br>' +
+                      '<i style=\"background:' + colorLow + ';width:20px;height:20px;display:inline-block;margin-right:5px;border:1px solid black\"></i> ' +
+                      '<span style=\"color:black\">Low</span><br>' +
+                      '<i style=\"background:' + colorHigh + ';width:20px;height:20px;display:inline-block;margin-right:5px;border:1px solid black\"></i> ' +
+                      '<span style=\"color:black\">High</span>';
+      return div;
+    }
+
+    container.appendChild(createLegend('CrownCost','#ffffcc','#006837'));
+    container.appendChild(createLegend('SlopeCost','#fff5eb','#7f2704'));
+    container.appendChild(createLegend('TotalCost','#deebf7','#08519c'));
+    container.appendChild(createLegend('LeastCost','#f0f0f0','#252525'));
+    
+    L.DomUtil.addClass(container, 'leaflet-control');
+    L.DomUtil.addClass(container, 'leaflet-control-custom');
+    map.getContainer().appendChild(container);
+    L.DomUtil.setPosition(container, {x: map.getSize().x - container.offsetWidth - 10, y: 10});
+  }
+")
+m
+```
 
 
+```{r leaflet_cost2, echo=FALSE, message=FALSE, warning=FALSE}
+crownCost1 <- raster("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/crownCost1.tif")
+slopeCost1 <- raster("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/slopeCost1.tif")
+totalCost1 <- raster("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/totalCost1.tif")
+leastCost1 <- raster("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/leastCost1.tif")
+
+crownCost1 <- mask(crownCost1, plot1_2d)
+slopeCost1 <- mask(slopeCost1, plot1_2d)
+totalCost1 <- mask(totalCost1, plot1_2d)
+leastCost1[leastCost1 == 0] <- NA
+
+bbox <- st_bbox(plots)
+bbox_num <- as.numeric(bbox)
+
+# CrownCost
+crown_vals <- c(values(crownCost1))
+crown_pal <- colorNumeric(palette = "YlGn", domain = crown_vals, na.color = "transparent")
+
+# SlopeCost
+slope_vals <- c(values(slopeCost1))
+slope_pal <- colorNumeric(palette = "YlOrBr", domain = slope_vals, na.color = "transparent")
+
+# TotalCost
+total_vals <- c(values(totalCost1))
+total_pal <- colorNumeric(palette = "Blues", domain = total_vals, na.color = "transparent")
+
+# LeastCost
+least_vals <- c(values(leastCost1))
+least_pal <- colorNumeric(palette = "inferno", domain = least_vals, na.color = "transparent")
+
+# Create Leaflet map
+# Create the map
+library(leaflet)
+library(htmlwidgets)
+
+# Your raster layers and palettes assumed loaded
+m <- leaflet() %>%
+  addProviderTiles("Esri.WorldImagery") %>%
+  addRasterImage(crownCost1, colors = crown_pal, opacity = 1, group="CrownCost") %>%
+  addRasterImage(slopeCost1, colors = slope_pal, opacity = 1, group="SlopeCost") %>%
+  addRasterImage(totalCost1, colors = total_pal, opacity = 1, group="TotalCost") %>%
+  addRasterImage(leastCost1, colors = least_pal, opacity = 1, group="LeastCost") %>%
+  
+  addLayersControl(
+    baseGroups = c("CrownCost", "SlopeCost", "TotalCost", "LeastCost"),
+    options = layersControlOptions(collapsed = FALSE),
+    position = "bottomleft"
+  ) %>%
+  fitBounds(lng1 = bbox_num[1], lat1 = bbox_num[2],
+            lng2 = bbox_num[3], lat2 = bbox_num[4]) %>%
+  
+  # Single HTML container for all legends in topright
+  htmlwidgets::onRender("
+  function(el, x) {
+    var map = this;
+    var container = L.DomUtil.create('div', 'custom-legend-container');
+    container.style.background = 'white';
+    container.style.padding = '5px';
+    container.style.borderRadius = '5px';
+    container.style.boxShadow = '0 0 5px rgba(0,0,0,0.4)';
+    container.style.display = 'grid';
+    container.style.gridTemplateColumns = 'auto auto';
+    container.style.gridGap = '5px';
+    
+    function createLegend(title, colorLow, colorHigh) {
+      var div = document.createElement('div');
+      div.style.fontSize = '12px';
+      div.innerHTML = '<b style=\"color:black\">' + title + '</b><br>' +
+                      '<i style=\"background:' + colorLow + ';width:20px;height:20px;display:inline-block;margin-right:5px;border:1px solid black\"></i> ' +
+                      '<span style=\"color:black\">Low</span><br>' +
+                      '<i style=\"background:' + colorHigh + ';width:20px;height:20px;display:inline-block;margin-right:5px;border:1px solid black\"></i> ' +
+                      '<span style=\"color:black\">High</span>';
+      return div;
+    }
+
+    container.appendChild(createLegend('CrownCost','#ffffcc','#006837'));
+    container.appendChild(createLegend('SlopeCost','#fff5eb','#7f2704'));
+    container.appendChild(createLegend('TotalCost','#deebf7','#08519c'));
+    container.appendChild(createLegend('LeastCost','#f0f0f0','#252525'));
+    
+    L.DomUtil.addClass(container, 'leaflet-control');
+    L.DomUtil.addClass(container, 'leaflet-control-custom');
+    map.getContainer().appendChild(container);
+    L.DomUtil.setPosition(container, {x: map.getSize().x - container.offsetWidth - 10, y: 10});
+  }
+")
+m
+
+```
+
+```{r leaflet_cost3, include = FALSE}
+crownCost3 <- raster("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/crownCost3.tif")
+slopeCost3 <- raster("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/slopeCost3.tif")
+totalCost3 <- raster("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/totalCost3.tif")
+leastCost3 <- raster("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/leastCost3.tif")
+
+library(raster)
+
+crownCost3 <- mask(crownCost3, plot3_2d)
+slopeCost3 <- mask(slopeCost3, plot3_2d)
+totalCost3 <- mask(totalCost3, plot3_2d)
+leastCost3[leastCost3 == 0] <- NA
+
+bbox <- st_bbox(plots)
+bbox_num <- as.numeric(bbox)
+
+# CrownCost
+crown_vals <- values(crownCost3)
+crown_pal <- colorNumeric("YlGn", domain = crown_vals[is.finite(crown_vals)], na.color = "transparent")
+
+# SlopeCost
+slope_vals <- values(slopeCost3)
+slope_pal <- colorNumeric("YlOrBr", domain = slope_vals[is.finite(slope_vals)], na.color = "transparent")
+
+# TotalCost
+total_vals <- values(totalCost3)
+total_pal <- colorNumeric("Blues", domain = total_vals[is.finite(total_vals)], na.color = "transparent")
+
+# LeastCost
+least_vals <- values(leastCost3)
+least_pal <- colorNumeric("inferno", domain = least_vals[is.finite(least_vals)], na.color = "transparent")
+
+# Create Leaflet map
+# Create the map
+library(leaflet)
+library(htmlwidgets)
+
+# Your raster layers and palettes assumed loaded
+m <- leaflet() %>%
+  addProviderTiles("Esri.WorldImagery") %>%
+  addRasterImage(crownCost3, colors = crown_pal, opacity = 1, group="CrownCost") %>%
+  addRasterImage(slopeCost3, colors = slope_pal, opacity = 1, group="SlopeCost") %>%
+  addRasterImage(totalCost3, colors = total_pal, opacity = 1, group="TotalCost") %>%
+  addRasterImage(leastCost3, colors = least_pal, opacity = 1, group="LeastCost") %>%
+  
+  addLayersControl(
+    baseGroups = c("CrownCost", "SlopeCost", "TotalCost", "LeastCost"),
+    options = layersControlOptions(collapsed = FALSE),
+    position = "bottomleft"
+  ) %>%
+  fitBounds(lng1 = bbox_num[1], lat1 = bbox_num[2],
+            lng2 = bbox_num[3], lat2 = bbox_num[4]) %>%
+  
+  # Single HTML container for all legends in topright
+  htmlwidgets::onRender("
+  function(el, x) {
+    var map = this;
+    var container = L.DomUtil.create('div', 'custom-legend-container');
+    container.style.background = 'white';
+    container.style.padding = '5px';
+    container.style.borderRadius = '5px';
+    container.style.boxShadow = '0 0 5px rgba(0,0,0,0.4)';
+    container.style.display = 'grid';
+    container.style.gridTemplateColumns = 'auto auto';
+    container.style.gridGap = '5px';
+    
+    function createLegend(title, colorLow, colorHigh) {
+      var div = document.createElement('div');
+      div.style.fontSize = '12px';
+      div.innerHTML = '<b style=\"color:black\">' + title + '</b><br>' +
+                      '<i style=\"background:' + colorLow + ';width:20px;height:20px;display:inline-block;margin-right:5px;border:1px solid black\"></i> ' +
+                      '<span style=\"color:black\">Low</span><br>' +
+                      '<i style=\"background:' + colorHigh + ';width:20px;height:20px;display:inline-block;margin-right:5px;border:1px solid black\"></i> ' +
+                      '<span style=\"color:black\">High</span>';
+      return div;
+    }
+
+    container.appendChild(createLegend('CrownCost','#ffffcc','#006837'));
+    container.appendChild(createLegend('SlopeCost','#fff5eb','#7f2704'));
+    container.appendChild(createLegend('TotalCost','#deebf7','#08519c'));
+    container.appendChild(createLegend('LeastCost','#f0f0f0','#252525'));
+    
+    L.DomUtil.addClass(container, 'leaflet-control');
+    L.DomUtil.addClass(container, 'leaflet-control-custom');
+    map.getContainer().appendChild(container);
+    L.DomUtil.setPosition(container, {x: map.getSize().x - container.offsetWidth - 10, y: 10});
+  }
+")
+m
 ```
 
 ```{r leaflet map3, include = FALSE}
