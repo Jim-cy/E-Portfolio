@@ -408,7 +408,6 @@ m <- leaflet() %>%
 m
 ```
 
-
 ```{r leaflet_cost2, echo=FALSE, message=FALSE, warning=FALSE}
 crownCost1 <- raster("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/crownCost1.tif")
 slopeCost1 <- raster("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/slopeCost1.tif")
@@ -517,19 +516,19 @@ bbox_num <- as.numeric(bbox)
 
 # CrownCost
 crown_vals <- values(crownCost3)
-crown_pal <- colorNumeric("YlGn", domain = crown_vals[is.finite(crown_vals)], na.color = "transparent")
+crown_pal <- colorNumeric("YlGn", domain = NULL, na.color = "transparent")
 
 # SlopeCost
 slope_vals <- values(slopeCost3)
-slope_pal <- colorNumeric("YlOrBr", domain = slope_vals[is.finite(slope_vals)], na.color = "transparent")
+slope_pal <- colorNumeric("YlOrBr", domain = NULL, na.color = "transparent")
 
 # TotalCost
 total_vals <- values(totalCost3)
-total_pal <- colorNumeric("Blues", domain = total_vals[is.finite(total_vals)], na.color = "transparent")
+total_pal <- colorNumeric("Blues", domain = NULL, na.color = "transparent")
 
 # LeastCost
 least_vals <- values(leastCost3)
-least_pal <- colorNumeric("inferno", domain = least_vals[is.finite(least_vals)], na.color = "transparent")
+least_pal <- colorNumeric("inferno", domain = NULL, na.color = "transparent")
 
 # Create Leaflet map
 # Create the map
@@ -539,18 +538,17 @@ library(htmlwidgets)
 # Your raster layers and palettes assumed loaded
 m <- leaflet() %>%
   addProviderTiles("Esri.WorldImagery") %>%
-  addRasterImage(crownCost3, colors = crown_pal, opacity = 1, group="CrownCost") %>%
-  addRasterImage(slopeCost3, colors = slope_pal, opacity = 1, group="SlopeCost") %>%
-  addRasterImage(totalCost3, colors = total_pal, opacity = 1, group="TotalCost") %>%
-  addRasterImage(leastCost3, colors = least_pal, opacity = 1, group="LeastCost") %>%
-  
+  addRasterImage(crownCost3, colors = crown_pal, opacity = 1, group="CrownCost", project = TRUE) %>%
+  addRasterImage(slopeCost3, colors = slope_pal, opacity = 1, group="SlopeCost", project = TRUE) %>%
+  addRasterImage(totalCost3, colors = total_pal, opacity = 1, group="TotalCost", project = TRUE) %>%
+  addRasterImage(leastCost3, colors = least_pal, opacity = 1, group="LeastCost", project = TRUE) %>%
   addLayersControl(
     baseGroups = c("CrownCost", "SlopeCost", "TotalCost", "LeastCost"),
     options = layersControlOptions(collapsed = FALSE),
     position = "bottomleft"
   ) %>%
   fitBounds(lng1 = bbox_num[1], lat1 = bbox_num[2],
-            lng2 = bbox_num[3], lat2 = bbox_num[4]) %>%
+            lng2 = bbox_num[3], lat2 = bbox_num[4]) %>% 
   
   # Single HTML container for all legends in topright
   htmlwidgets::onRender("
