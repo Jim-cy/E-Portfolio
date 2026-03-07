@@ -18,7 +18,7 @@ How do required different thinning scenarios affect forest stand structure, and 
 
 Study Area:
 
-```{r leaflet_study_area, echo=FALSE}
+```{r leaflet_study_area, echo=FALSE, message=FALSE, warning=FALSE}
 library(dplyr)
 library(leaflet)
 library(sf)
@@ -103,7 +103,7 @@ m <- leaflet() %>%
     lng2 = bbox_num[3], lat2 = bbox_num[4]
   )
 
-invisible(m)
+m
 
 ```
 
