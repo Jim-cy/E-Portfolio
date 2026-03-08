@@ -651,6 +651,18 @@ Through these courses, I developed an understanding of how knowledge is shaped b
 
 These courses provided hands-on experience in the design, development, analysis, and visualization of geographic data. I gained skills in GIS database design, spatial data collection and management, and advanced spatial analysis, including terrain modeling, network analysis, geographically weighted regression, and machine learning applications for geospatial data. I also developed abilities to create effective maps and web visualizations, communicate analytical findings to diverse audiences, and document GIS projects with metadata, while understanding the conceptual and practical limitations of GIS tools in environmental management.
 
+**SQL statement**
+
+```         
+# Format: SELECT ... INTO ... FROM ...;
+SELECT ST_Buffer(wkb_geometry, 15) INTO ubcv_fsc_buffer FROM ubcv_fsc;
+# For example, this code uses the buffer function ST_Buffer with a geometry field wkb_geometry and a buffer distance 15 , on the FSC polygon FROM ubcv_fsc, and then write the resulting buffer to a new table INTO ubcv_fsc_buffer
+
+# Format: SELECT*INTO ... FROM ... WHERE ...;
+SELECT * INTO ubcv_fsc_trees FROM ubcv_campus_trees, ubcv_fsc_buffer WHERE ST_Intersects(wkb_geometry, st_buffer);
+# For example, the ST_Intersects takes two geometry fields wkb_geometry (ubcv_campus_trees) and st_buffer (ubcv_fsc_buffer), computes the intersection, and returns the features from the first geometry argument (ubcv_campus_trees) to a new table INTO ubcv_fsc_trees
+```
+
 # 5. GEM520 & Gem521 Deliverables
 
 These courses provided hands-on and theoretical training in remote sensing for environmental and forest management applications. I developed skills in interpreting spectral properties, processing and analyzing imagery from airborne and satellite sensors, and applying LiDAR, RADAR, and hyperspectral technologies. I also gained experience in digital image processing, object-based image analysis, and using tools such as R, QGIS, ENVI, and Google Earth Engine to analyze, visualize, and communicate spatial data, as well as designing reproducible workflows for data-intensive projects.
