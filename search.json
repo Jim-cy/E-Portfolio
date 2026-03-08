@@ -11,7 +11,7 @@
     "href": "resume.html",
     "title": "Resume",
     "section": "",
-    "text": "Education\n\nUniversity of British Columbia, Vancouver, BC Master of Geomatics for Environmental Management Sept. 2025 - May 2026\n\n\nUniversity of British Columbia, Vancouver, BC Bachelor of Wood Products Processing, Minor in Commerce Sept. 2022 - May 2025\n\n\nBeijing Forestry University, Beijing, China Bachelor of Wood Science and Engineering Sept. 2019 - June 2022\n\n\n\nPublications\nPeer-reviewed publication:\n\nJin, C., Zhu, S., & Feng, H. (2025). Life Cycle Assessment of Engineered Wood Products in the Building Sector: A Review. Buildings, 15(22), 4193. https://doi.org/10.3390/buildings15224193"
+    "text": "Education\n\nUniversity of British Columbia, Vancouver, BC Master of Geomatics for Environmental Management Sept. 2025 - May 2026\n\n\nUniversity of British Columbia, Vancouver, BC Bachelor of Wood Products Processing, Minor in Commerce Sept. 2022 - May 2025\n\n\nBeijing Forestry University, Beijing, China Bachelor of Wood Science and Engineering Sept. 2019 - June 2022\n\n\n\nPublications\nPeer-reviewed publication:\n\nJin, C., Zhu, S., & Feng, H. (2025). Life Cycle Assessment of Engineered Wood Products in the Building Sector: A Review. Buildings, 15(22), 4193. https://doi.org/10.3390/buildings15224193\n\n\n\nVolunteer/Work Experience\n\nVolunteer Research Assistant\nUniversity of British Columbia, Vancouver, BC, Canada\nJan 2024 – Sept 2024\n- Collected, sorted, and recorded large datasets with accuracy and efficiency.\n- Maintained organized records to support data analysis and reporting.\n- Collaborated closely with team members to ensure project goals were met on time.\n\n\nLaboratory Quality Inspector\nTucson Wood, Shengzhou, Zhejiang, China\nJune 2022 – July 2022\n- Evaluated the quality of panels and boards, including scratch resistance, hot/cold resistance, and formaldehyde content, ensuring product reliability and customer satisfaction.\n- Recorded experimental data, summarized results, and provided feedback to the R&D workshops.\n- Assisted with laboratory visits, collaborating with team members and hosting over 50 clients."
   },
   {
     "objectID": "publications.html",
@@ -159,5 +159,12 @@
     "title": "Content & Deliverables",
     "section": "GEM540",
     "text": "GEM540\nThis course provided hands-on training in linear regression and spatial statistics using R. I learned to fit, evaluate, and diagnose linear models, apply remedial measures, and perform model selection and evaluation. I also gained skills in analyzing spatial data, including understanding spatial autocorrelation, spatial interpolation, sampling in space, and fitting regression models for spatially correlated data, enabling me to apply statistical and geospatial methods to real-world environmental management problems."
+  },
+  {
+    "objectID": "resume.html#volunteerwork-experience",
+    "href": "resume.html#volunteerwork-experience",
+    "title": "Resume",
+    "section": "Volunteer/Work Experience",
+    "text": "Volunteer/Work Experience\n\nVolunteer Research Assistant\nUniversity of British Columbia, Vancouver, BC, Canada\nJan 2024 – Sept 2024\n- Collected, sorted, and recorded large datasets with accuracy and efficiency.\n- Maintained organized records to support data analysis and reporting.\n- Collaborated closely with team members to ensure project goals were met on time.\n\n\nLaboratory Quality Inspector\nTucson Wood, Shengzhou, Zhejiang, China\nJune 2022 – July 2022\n- Evaluated the quality of panels and boards, including scratch resistance, hot/cold resistance, and formaldehyde content, ensuring product reliability and customer satisfaction.\n- Recorded experimental data, summarized results, and provided feedback to the R&D workshops.\n- Assisted with laboratory visits, collaborating with team members and hosting over 50 clients."
   }
 ]
