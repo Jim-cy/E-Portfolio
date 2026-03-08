@@ -651,7 +651,7 @@ Through these courses, I developed an understanding of how knowledge is shaped b
 
 These courses provided hands-on experience in the design, development, analysis, and visualization of geographic data. I gained skills in GIS database design, spatial data collection and management, and advanced spatial analysis, including terrain modeling, network analysis, geographically weighted regression, and machine learning applications for geospatial data. I also developed abilities to create effective maps and web visualizations, communicate analytical findings to diverse audiences, and document GIS projects with metadata, while understanding the conceptual and practical limitations of GIS tools in environmental management.
 
-**SQL statement**
+**1). SQL statement**
 
 The following example SQL query creates a 15-meter buffer around FSC polygons, calculates the total buffered area per forest type, and sorts the results by area.
 
@@ -666,7 +666,7 @@ GROUP BY forest_type
 ORDER BY total_buffer_area DESC;
 ```
 
-**Open Map**
+**2). Open Map**
 
 This map visualizes the spatial distribution of OpenStreetMap (OSM) nodes within the UBC Campus area. Each polygon represents a Voronoi cell generated from OSM points. Polygons are colored by area, with darker colors representing larger polygons. The map highlights areas of higher and lower node density on campus.
 
@@ -703,25 +703,26 @@ leaflet(voronoi) %>%
     position = "bottomright"
   )
 ```
-**Least Cost Path**
+
+**3). Least Cost Path**
 
 This map shows the least-cost paths for Grizzly Bears moving across the landscape. Using the accumulated cost-distance raster and the direction raster, the least-cost paths identify the most efficient routes that bears are likely to follow, reflecting how slope and land cover influence their movement patterns.
 
 ![](images/510Least_cost.jpg)
 
-**Version Control, Digitizing and Editing**
+**4). Version Control, Digitizing and Editing**
 
 This map visualizes the results of a geospatial digitization exercise comparing user-created features to official reference data. Using QGIS and ArcGIS Pro, features were digitized and edited, and changes were tracked with Git and Kart. The map highlights areas where digitized features are slightly offset from official datasets, demonstrating the effect of manual digitization on spatial accuracy. All edits were committed, pushed, and version-controlled, and merge conflicts were managed to ensure consistency across working copies, illustrating practical use of distributed version control for geospatial data management.
 
 ![](images/digit_edit.jpg)
 
-**DEMs from a LiDAR Point Cloud**
+**5). DEMs from a LiDAR Point Cloud**
 
 This map compares Digital Elevation Models (DEMs) generated using Natural Neighbor, Spline, and IDW interpolation methods. The results were evaluated against a binned reference method. Natural Neighbor is recommended for use in the research forest, as it demonstrates low error metrics, strong consistency, and stability across low, medium, and high elevation and slope zones. This visualization highlights differences between interpolation methods and supports informed selection of the most reliable approach for forest terrain analysis.
 
 ![](images/dem_methods.png)
 
-**Network Analysis**
+**6). Network Analysis**
 
 This map panel visualizes the stream network and salmon spawning habitat for one conservation unit on Vancouver Island. Stream routes are symbolized according to their reachability from the ocean, highlighting which segments are accessible to Pacific salmon. Dams are shown as barriers, and stream segments are classified as accessible or inaccessible for spawning based on proximity, slope, and other habitat criteria. A zoomed-in view of Lake Cowichan illustrates local habitat and stream connectivity in detail. The map includes basic cartographic elements such as a title, legend, and scale bar to support interpretation. This visualization demonstrates how GIS can be used to identify and manage critical salmon habitat while accounting for natural and human-made barriers.
 
@@ -731,9 +732,169 @@ This map panel visualizes the stream network and salmon spawning habitat for one
 
 These courses provided hands-on and theoretical training in remote sensing for environmental and forest management applications. I developed skills in interpreting spectral properties, processing and analyzing imagery from airborne and satellite sensors, and applying LiDAR, RADAR, and hyperspectral technologies. I also gained experience in digital image processing, object-based image analysis, and using tools such as R, QGIS, ENVI, and Google Earth Engine to analyze, visualize, and communicate spatial data, as well as designing reproducible workflows for data-intensive projects.
 
+**1). Data Cleaning**
+
+Learned three basic rule for a tidy dataset: - Each variable must have its own column - Each observation must have its own row - Each value must have its own cell
+
+```{r eval=FALSE}
+# Two ways to convert to tidy data
+# 1. To use when columns are not variables but values of a variable.
+pivot_longer(data = datasets,
+             cols = 'a':'e',
+             names_to = "newName",
+             values_to = "count")
+# 2. To use when an observation is scattered across multiple rows.
+pivot_wider(data = datasets,
+            names_from = "a",
+            values_from = "b")
+```
+
+**2). Band Composition**
+
+These maps show the band composition of the satellite imagery, illustrating how different spectral bands are combined to highlight various land features. Each band captures specific wavelengths of light. By creating a composite image, we can visualize and interpret patterns in land cover, vegetation health, water bodies, and other environmental features.
+
+![](images/bandcomp1.png) ![](images/bandcomp2.png) ![](images/bandcomp3.png)
+
+**3). Image Classification**
+
+This lab involved supervised classification of a Landsat scene into seven land cover classes (from 1 to 7): Broadleaf Forest, Coniferous Forest, Exposed Soil and Rocks, High-Density Developed, Low-Density Developed, Non-Forest Vegetation, and Water. The classification process in R produced a thematic map, and an accuracy assessment was conducted using a confusion matrix to calculate user’s, producer’s, and overall accuracy.
+
+![](images/classify.png) ![](images/matrix.png)
+
+**4). Time-series Analysis**
+
+This set of maps and figures presents a long-term analysis of forest cover using MODIS-derived NDVI products and Virtual Land Cover Engine datasets. The analysis tracks changes in forest area over time, highlighting forest gain and loss dynamics across the study region.
+
+![](images/compare_map.png) ![](images/forest_area_change.png) ![](images/loss_gain.png)
+
+**5).Fire Burn Severity and Post-fire Vegetation Recovery**
+
+These maps visualize post-fire impacts and vegetation recovery using a Landsat 8 OLI time-series of images and NDVI analysis. The first map shows the distribution of post-burn severity, identifying areas most affected by fire. The second map illustrates vegetation recovery from 2008 to 2021, revealing temporal trends in forest regrowth and resilience. This analysis helps me understand fire effects on forest ecosystems and provides critical insights into long-term post-fire recovery patterns for land management and ecological monitoring.
+
+![](images/postburn.png) ![](images/ndvi.png)
+
+**6). Tree Detection using Lidar**
+
+This figure shows 3D segmentation of individual trees derived from LiDAR point clouds. Each tree is distinctly segmented in three dimensions, highlighting canopy structure, height, and crown boundaries. This visualization demonstrates advanced remote sensing techniques for forest structural analysis, enabling precise tree-level measurements and supporting applications in forest inventory, ecological modeling, and resource management.
+
+![](images/plot_2_tree_segmentation.png)
+
+**7). Tree Metrics Relationship Analysis**
+
+Form this anaylsis, I learned forward variable selection, a stepwise approach used to build predictive models by iteratively adding explanatory variables that improve model performance. At each step, variables are evaluated based on criteria such as AIC or R², and only those that significantly enhance the model are included. This method helps identify the most influential predictors, reduces model complexity, and ensures a parsimonious and interpretable model for spatial, ecological, or environmental analysis.
+
+```{r eval=FALSE}
+# Start with no variables in our model
+model_AGB = lm(Total_AGB ~ 1, data = data_table)
+
+#Now, we add each selected variable to our model one by one, 
+#to see which variable is the most  predictor of volume
+add1(model_AGB, ~ zmax + zsd + ikurt + zpcum3 + ipcumzq50 + 
+       zq60 + zkurt + zpcum9 + zq65 + zpcum8 + zq5, test = 'F')
+
+# zmax was the most significant (lowest Pr(>F)), so we add it to our model
+model_AGB = lm(Total_AGB ~ zmax, data = data_table)
+
+#Now, We add each remaining variable to the new model one by one, to see
+#if any variable is a significant addition
+add1(model_AGB, ~ zmax + zsd + ikurt + zpcum3 + ipcumzq50 + 
+       zq60 + zkurt + zpcum9 + zq65 + zpcum8 + zq5, test = 'F')
+
+# zsd was the most significant (lowest Pr(>F)), so we add it to our model
+model_AGB = lm(Total_AGB ~ zmax + zsd, data = data_table)
+
+#Again, we test all the remaining variables one by one
+add1(model_AGB, ~ zmax + zsd + ikurt + zpcum3 + ipcumzq50 + 
+       zq60 + zkurt + zpcum9 + zq65 + zpcum8 + zq5, test = 'F')
+
+# ikurt was the most significant (lowest Pr(>F)), so we add it to our model
+model_AGB = lm(Total_AGB ~ zmax + zsd + ikurt, data = data_table)
+
+#Again, we test all the remaining variables one by one
+add1(model_AGB, ~ zmax + zsd + ikurt + zpcum3 + ipcumzq50 + 
+       zq60 + zkurt + zpcum9 + zq65 + zpcum8 + zq5, test = 'F')
+
+#No additional variables were significant, so we can stop building our model
+summary(model_AGB)
+```
+
 # 6. GEM530 Deliverables
 
 This course provided hands-on training in Python programming and scripting for geospatial analysis. I learned to process, query, and manipulate geospatial data, moving from graphical interfaces to reproducible scripts, and extending Python with geo-focused modules. Through applied exercises using real-world datasets, I developed skills to analyze environmental management issues, including themes such as carbon and biomass, landscape patterns, and social-ecological perspectives, while building confidence in coding, workflow design, and data-driven problem solving.
+
+**1). Working Enviornment Setting**
+```{python eval=FALSE, python.reticulate = FALSE}
+# Step 1.  Import ArcPy
+import arcpy
+
+# Step 2: Checking Spatial Extension: Get the License
+arcpy.CheckOutExtension("Spatial")
+
+# Step 3: Set the workspace to the scratch database and grab the 'spatial' licence
+
+# Step 4: path to the data
+scratch = r"path/to/file"
+
+# Step 5: Setting the environment to use
+arcpy.env.workspace = scratch
+
+# For avoiding errors to create same files or over writing
+arcpy.env.overwriteOutput = True
+
+# Final step: Checking Spatial Extension: return the License
+arcpy.CheckInExtension("Spatial")
+```
+
+**2). Load and Plot Raster**
+
+::: {.panel-tabset group="language"}
+## R
+``` (.r eval=FALSE)
+library(raster)
+r <- raster("data/my_raster.tif")
+plot(r, col = terrain.colors(10))
+}
+```
+## Python
+``` (.python eval=FALSE)
+import rasterio
+import matplotlib.pyplot as plt
+r = rasterio.open("data/my_raster.tif")
+plt.imshow(r.read(1), cmap='terrain')
+```
+:::
+
+**3). Powerful Libraries and Packages in Python**
+```{python eval=FALSE, python.reticulate = FALSE}
+import pandas as pd 
+import geopandas as gpd
+import rasterio
+import matplotlib
+import math
+import numpy
+import contextily
+import seaborn
+```
+
+**4). Useful function in Arcpy**
+```{python eval=FALSE, python.reticulate = FALSE}
+# Intersection analysis
+arcpy.Intersect_analysis(in_features, out_feature_class, {join_attributes}, {cluster_tolerance}, {output_type})
+# Merge analysis
+arcpy.Merge_management(input_features, output_feature)
+# Setting Coordinate Reference System
+arcpy.SpatialReference(4326)
+# Raster to Polygon
+arcpy.conversion.RasterToPolygon(
+    in_raster,
+    out_polygon_features,
+    simplify="NO_SIMPLIFY",
+    raster_field="VALUE",
+    create_multipart_features="SINGLE_OUTER_PART"
+)
+# Iterate through rows in a table or feature class and update or delete them.
+arcpy.da.UpdateCursor(in_table, field_names, {where_clause}, {spatial_reference}, {explode_to_points}, {sql_clause})
+```
 
 # 7. GEM540 Deliverables
 
