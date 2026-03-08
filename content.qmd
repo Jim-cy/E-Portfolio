@@ -639,11 +639,11 @@ Comparing the 60 years of performance in the three plots, variable density thinn
 
 ![](images/mcuft_trend.png)
 
-# 2.  GEM500 Deliverables
+# 2. GEM500 Deliverables
 
 This course introduced key concepts of spatial heterogeneity, scale, and landscape patterns, and their importance in ecological processes and environmental management. I learned how to quantify and analyze spatial patterns using landscape ecological tools, and to evaluate the strengths and limitations of different analytical approaches. The course also connected landscape ecology concepts to themes such as ecosystem resilience, carbon and biomass dynamics, and social-ecological systems in natural resource management.
 
-# 3. FCOR511 & FCOR510 Deliverables
+# 3. FCOR510 & FCOR511 Deliverables
 
 Through these courses, I developed an understanding of how knowledge is shaped by social, historical, and ethical contexts and learned to appreciate diverse forms of knowledge and communication methods. I gained skills in knowledge co-production, data ethics, and professional ethical practice, including considerations of privacy, intellectual property, and data sovereignty. The courses also strengthened my ability to reflect on my own worldview, values, and biases, and to effectively communicate specialized topics, manage difficult conversations, and collaborate with diverse teams in environmental management settings.
 
@@ -653,15 +653,79 @@ These courses provided hands-on experience in the design, development, analysis,
 
 **SQL statement**
 
-```         
-# Format: SELECT ... INTO ... FROM ...;
-SELECT ST_Buffer(wkb_geometry, 15) INTO ubcv_fsc_buffer FROM ubcv_fsc;
-# For example, this code uses the buffer function ST_Buffer with a geometry field wkb_geometry and a buffer distance 15 , on the FSC polygon FROM ubcv_fsc, and then write the resulting buffer to a new table INTO ubcv_fsc_buffer
+The following example SQL query creates a 15-meter buffer around FSC polygons, calculates the total buffered area per forest type, and sorts the results by area.
 
-# Format: SELECT*INTO ... FROM ... WHERE ...;
-SELECT * INTO ubcv_fsc_trees FROM ubcv_campus_trees, ubcv_fsc_buffer WHERE ST_Intersects(wkb_geometry, st_buffer);
-# For example, the ST_Intersects takes two geometry fields wkb_geometry (ubcv_campus_trees) and st_buffer (ubcv_fsc_buffer), computes the intersection, and returns the features from the first geometry argument (ubcv_campus_trees) to a new table INTO ubcv_fsc_trees
+```{sql eval=FALSE}
+SELECT 
+    forest_type AS stand_type,
+    COUNT(*) AS polygon_count,
+    SUM(ST_Area(ST_Buffer(wkb_geometry, 15))) AS total_buffer_area
+FROM ubcv_fsc
+WHERE forest_type IS NOT NULL
+GROUP BY forest_type
+ORDER BY total_buffer_area DESC;
 ```
+
+**Open Map**
+
+This map visualizes the spatial distribution of OpenStreetMap (OSM) nodes within the UBC Campus area. Each polygon represents a Voronoi cell generated from OSM points. Polygons are colored by area, with darker colors representing larger polygons. The map highlights areas of higher and lower node density on campus.
+
+```{r leaflet_openmap, echo=FALSE, message=FALSE, warning=FALSE}
+library(sf)
+library(leaflet)
+
+voronoi <- suppressMessages(st_read("C:/Users/cjin14.stu/OneDrive - UBC/MGEM/Term2/GEM599(2/E-portfolio/GEM510/osm_campus_voronoi_clip.gpkg", quiet = TRUE))
+
+voronoi$area <- st_area(voronoi)
+voronoi$area <- as.numeric(st_area(voronoi))
+
+breaks <- c(12,100,186,295,421,609,848,1219,1879,3451,156235)
+
+pal <- colorBin(
+  palette = "YlGnBu",
+  domain = voronoi$area_m2,
+  bins = breaks
+)
+
+leaflet(voronoi) %>%
+  addProviderTiles("OpenStreetMap") %>%
+  addPolygons(
+    fillColor = ~pal(area),
+    color = "black",
+    weight = 1,
+    fillOpacity = 0.5,
+    label = ~paste("Area:", round(area,0))
+  ) %>%
+  addLegend(
+    pal = pal,
+    values = ~area,
+    title = "Polygon Area (m²)",
+    position = "bottomright"
+  )
+```
+**Least Cost Path**
+
+This map shows the least-cost paths for Grizzly Bears moving across the landscape. Using the accumulated cost-distance raster and the direction raster, the least-cost paths identify the most efficient routes that bears are likely to follow, reflecting how slope and land cover influence their movement patterns.
+
+![](images/510Least_cost.jpg)
+
+**Version Control, Digitizing and Editing**
+
+This map visualizes the results of a geospatial digitization exercise comparing user-created features to official reference data. Using QGIS and ArcGIS Pro, features were digitized and edited, and changes were tracked with Git and Kart. The map highlights areas where digitized features are slightly offset from official datasets, demonstrating the effect of manual digitization on spatial accuracy. All edits were committed, pushed, and version-controlled, and merge conflicts were managed to ensure consistency across working copies, illustrating practical use of distributed version control for geospatial data management.
+
+![](images/digit_edit.jpg)
+
+**DEMs from a LiDAR Point Cloud**
+
+This map compares Digital Elevation Models (DEMs) generated using Natural Neighbor, Spline, and IDW interpolation methods. The results were evaluated against a binned reference method. Natural Neighbor is recommended for use in the research forest, as it demonstrates low error metrics, strong consistency, and stability across low, medium, and high elevation and slope zones. This visualization highlights differences between interpolation methods and supports informed selection of the most reliable approach for forest terrain analysis.
+
+![](images/dem_methods.png)
+
+**Network Analysis**
+
+This map panel visualizes the stream network and salmon spawning habitat for one conservation unit on Vancouver Island. Stream routes are symbolized according to their reachability from the ocean, highlighting which segments are accessible to Pacific salmon. Dams are shown as barriers, and stream segments are classified as accessible or inaccessible for spawning based on proximity, slope, and other habitat criteria. A zoomed-in view of Lake Cowichan illustrates local habitat and stream connectivity in detail. The map includes basic cartographic elements such as a title, legend, and scale bar to support interpretation. This visualization demonstrates how GIS can be used to identify and manage critical salmon habitat while accounting for natural and human-made barriers.
+
+![](images/network.png)
 
 # 5. GEM520 & Gem521 Deliverables
 
