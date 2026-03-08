@@ -7,26 +7,17 @@ editor:
 
 # Education
 
-<p style="display: flex; justify-content: space-between;">
+**University of British Columbia, Vancouver, BC**  
+*Master of Geomatics for Environmental Management*  
+_Sept 2025 – May 2026_  
 
-University of British Columbia, Vancouver, BC<br> Master of Geomatics
-for Environmental Management Sept. 2025 - May 2026
+**University of British Columbia, Vancouver, BC**  
+*Bachelor of Wood Products Processing, Minor in Commerce*  
+_Sept 2022 – May 2025_  
 
-</p>
-
-<p style="display: flex; justify-content: space-between;">
-
-University of British Columbia, Vancouver, BC<br> Bachelor of Wood
-Products Processing, Minor in Commerce Sept. 2022 - May 2025
-
-</p>
-
-<p style="display: flex; justify-content: space-between;">
-
-Beijing Forestry University, Beijing, China<br> Bachelor of Wood Science
-and Engineering Sept. 2019 - June 2022
-
-</p>
+**Beijing Forestry University, Beijing, China**  
+*Bachelor of Wood Science and Engineering*  
+_Sept 2019 – June 2022_
 
 # Publications
 

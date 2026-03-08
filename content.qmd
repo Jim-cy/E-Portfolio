@@ -848,20 +848,25 @@ arcpy.CheckInExtension("Spatial")
 **2). Load and Plot Raster**
 
 ::: {.panel-tabset group="language"}
+
 ## R
-``` (.r eval=FALSE)
+
+```{r eval=FALSE}
 library(raster)
 r <- raster("data/my_raster.tif")
 plot(r, col = terrain.colors(10))
-}
 ```
+
 ## Python
-``` (.python eval=FALSE)
+
+```{python eval=FALSE, python.reticulate = FALSE}
 import rasterio
 import matplotlib.pyplot as plt
 r = rasterio.open("data/my_raster.tif")
 plt.imshow(r.read(1), cmap='terrain')
+plt.show()
 ```
+
 :::
 
 **3). Powerful Libraries and Packages in Python**
