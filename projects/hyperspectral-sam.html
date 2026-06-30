@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>高光谱遥感 SAM 分类 · Jim Jin</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#0d1117;color:#e6edf3;line-height:1.7}
+a{color:inherit;text-decoration:none}
+:root{--primary:#2dd4bf;--border:#30363d;--text-muted:#8b949e;--radius:12px}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,17,23,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;height:60px;display:flex;align-items:center;gap:1rem}
+.back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--primary);font-size:.875rem;border:1px solid rgba(45,212,191,0.3);border-radius:20px;padding:4px 14px;transition:background .2s}
+.back-btn:hover{background:rgba(45,212,191,0.1)}
+.nav-title{font-size:.95rem;color:#c9d1d9;font-weight:600}
+.hero{padding:100px 2rem 60px;max-width:900px;margin:0 auto}
+.course-tag{display:inline-block;background:rgba(45,212,191,0.1);border:1px solid rgba(45,212,191,0.3);color:var(--primary);border-radius:20px;padding:3px 14px;font-size:.78rem;margin-bottom:1rem}
+h1{font-size:2rem;font-weight:800;margin-bottom:.5rem}
+.meta{color:var(--text-muted);font-size:.88rem;margin-bottom:2rem}
+.section{max-width:900px;margin:0 auto;padding:0 2rem 4rem}
+h2{font-size:1.2rem;font-weight:700;color:var(--primary);margin-bottom:1.25rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.img-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-bottom:2rem}
+.img-grid img{width:100%;border-radius:var(--radius);border:1px solid var(--border)}
+.img-single img{width:100%;border-radius:var(--radius);border:1px solid var(--border)}
+.img-caption{text-align:center;font-size:.78rem;color:var(--text-muted);margin-top:.4rem;margin-bottom:1.5rem}
+ul{padding-left:1.4rem;color:#c9d1d9}
+ul li{margin-bottom:.6rem;font-size:.92rem}
+ul li strong{color:#e6edf3}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+.tag{font-size:.78rem;padding:3px 12px;background:rgba(45,212,191,0.08);border:1px solid rgba(45,212,191,0.2);color:var(--primary);border-radius:20px}
+</style>
+</head>
+<body>
+<nav>
+  <a class="back-btn" href="../index.html">← 返回 Portfolio</a>
+  <span class="nav-title">课程项目详情</span>
+</nav>
+
+<div class="hero">
+  <div class="course-tag">GEM521 · 高光谱遥感</div>
+  <h1>高光谱遥感光谱库构建与光谱角填图（SAM）分类</h1>
+  <p class="meta">不列颠哥伦比亚大学 · 2026.01 – 2026.04 · BC省 Gulf Islands</p>
+</div>
+
+<div class="section">
+  <h2>波段组合与光谱分析</h2>
+  <div class="img-grid">
+    <div>
+      <img src="../images/bandcomp1.png" alt="波段组合1"/>
+      <p class="img-caption">真彩色合成影像</p>
+    </div>
+    <div>
+      <img src="../images/bandcomp2.png" alt="波段组合2"/>
+      <p class="img-caption">假彩色合成（植被增强）</p>
+    </div>
+    <div>
+      <img src="../images/bandcomp3.png" alt="波段组合3"/>
+      <p class="img-caption">短波红外波段组合</p>
+    </div>
+  </div>
+
+  <h2>高光谱分类结果</h2>
+  <div class="img-single">
+    <img src="../images/spectral_class.png" alt="SAM光谱角填图分类结果"/>
+    <p class="img-caption">基于 SAM 光谱角填图算法的地物分类结果（ENVI）</p>
+  </div>
+
+  <h2>项目描述</h2>
+  <ul>
+    <li>使用 <strong>ASD FieldSpec Pro 地物光谱仪</strong>现场采集 5 类典型地物（健康阔叶/针叶植被、枯死植被、土壤、岩石）反射光谱，通过 ViewSpecPro 完成暗/白校准与多次重复测量平均</li>
+    <li>计算植被光谱指数 <strong>PRI、SIPI、ND705</strong>，比较健康与枯死植被在可见光/近红外/短波红外波段的光谱差异</li>
+    <li>处理 BC 省 Gulf Islands 地区 AISA 机载高光谱数据（<strong>411 波段，430–2400nm</strong>）</li>
+    <li>在 <strong>ENVI</strong> 中基于 14 类 ASD 实测光谱构建自定义光谱库，提取并比较影像像元光谱曲线与野外实测光谱库数据</li>
+    <li>应用<strong>光谱角填图（Spectral Angle Mapper, SAM）</strong>分类算法完成地物分类，理解其 N 维空间向量夹角几何原理及对光照不敏感的特性</li>
+    <li>基于线性光谱混合模型（Linear Spectral Mixture）模拟混合像元光谱曲线，模拟 Landsat ETM+ 多光谱波段响应，计算 NDVI、NDWI 指数</li>
+    <li>另使用 <strong>eCognition Developer 10.x</strong> 完成面向对象影像分析（OBIA）：融合 RGB 影像与 CHM 栅格，应用多尺度分割算法，使用 <strong>SVM 分类器</strong>完成水体、采伐迹地、幼龄林、成熟林四类地物的监督分类</li>
+  </ul>
+
+  <div class="tags">
+    <span class="tag">ENVI</span>
+    <span class="tag">SAM 光谱角填图</span>
+    <span class="tag">高光谱 411 波段</span>
+    <span class="tag">ASD FieldSpec Pro</span>
+    <span class="tag">eCognition</span>
+    <span class="tag">OBIA</span>
+    <span class="tag">SVM 分类器</span>
+    <span class="tag">PRI · SIPI · ND705</span>
+    <span class="tag">线性光谱混合模型</span>
+  </div>
+</div>
+</body>
+</html>

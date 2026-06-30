@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>地理加权回归城市绿色空间公平性分析 · Jim Jin</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#0d1117;color:#e6edf3;line-height:1.7}
+a{color:inherit;text-decoration:none}
+:root{--primary:#2dd4bf;--border:#30363d;--text-muted:#8b949e;--radius:12px}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,17,23,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;height:60px;display:flex;align-items:center;gap:1rem}
+.back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--primary);font-size:.875rem;border:1px solid rgba(45,212,191,0.3);border-radius:20px;padding:4px 14px;transition:background .2s}
+.back-btn:hover{background:rgba(45,212,191,0.1)}
+.nav-title{font-size:.95rem;color:#c9d1d9;font-weight:600}
+.hero{padding:100px 2rem 60px;max-width:900px;margin:0 auto}
+.course-tag{display:inline-block;background:rgba(45,212,191,0.1);border:1px solid rgba(45,212,191,0.3);color:var(--primary);border-radius:20px;padding:3px 14px;font-size:.78rem;margin-bottom:1rem}
+h1{font-size:2rem;font-weight:800;margin-bottom:.5rem}
+.meta{color:var(--text-muted);font-size:.88rem;margin-bottom:2rem}
+.section{max-width:900px;margin:0 auto;padding:0 2rem 4rem}
+h2{font-size:1.2rem;font-weight:700;color:var(--primary);margin-bottom:1.25rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.highlight-box{background:#1c2333;border:1px solid var(--border);border-left:3px solid var(--primary);border-radius:var(--radius);padding:1.25rem 1.5rem;margin-bottom:2rem}
+.highlight-box p{color:#c9d1d9;font-size:.92rem}
+ul{padding-left:1.4rem;color:#c9d1d9}
+ul li{margin-bottom:.6rem;font-size:.92rem}
+ul li strong{color:#e6edf3}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+.tag{font-size:.78rem;padding:3px 12px;background:rgba(45,212,191,0.08);border:1px solid rgba(45,212,191,0.2);color:var(--primary);border-radius:20px}
+</style>
+</head>
+<body>
+<nav>
+  <a class="back-btn" href="../index.html">← 返回 Portfolio</a>
+  <span class="nav-title">课程项目详情</span>
+</nav>
+
+<div class="hero">
+  <div class="course-tag">GEM511 · 空间统计建模</div>
+  <h1>基于地理加权回归的城市绿色空间公平性分析</h1>
+  <p class="meta">不列颠哥伦比亚大学 · 2026.01 – 2026.04 · 温哥华市</p>
+</div>
+
+<div class="section">
+  <div class="highlight-box">
+    <p>本项目聚焦城市绿色空间分布不均问题，通过空间统计建模揭示温哥华市社会经济因素与绿地可达性之间的局部空间关系，为城市规划政策提供数据支撑。</p>
+  </div>
+
+  <h2>项目描述</h2>
+  <ul>
+    <li>编写高级 <strong>SQL/PostGIS 查询</strong>（CTE、ST_Within 空间筛选、长格式转宽格式聚合），从国家级人口普查数据库（<strong>57,936 个</strong>最小普查单元、2,631 维特征）中提取温哥华 <strong>1,016 个普查街区</strong>的人口统计特征</li>
+    <li>使用 Landsat 影像计算 <strong>NDVI 植被指数</strong>，并按普查分区（Dissemination Area）统计绿地覆盖度汇总指标</li>
+    <li>在 ArcGIS Pro 中分别构建<strong>普通最小二乘回归（OLS）</strong>与<strong>地理加权回归（GWR）</strong>模型，比较全局与局部空间关系</li>
+    <li>评估社会经济变量（收入水平、人口密度、少数族裔比例等）对城市绿地分布公平性的影响</li>
+    <li>制作标准化残差图、局部 R² 及系数空间分布图，可视化绿地公平性的空间异质性</li>
+    <li>撰写政策建议报告，探讨弱势社区绿地可达性不均问题，提出空间干预优先区域</li>
+  </ul>
+
+  <div class="tags">
+    <span class="tag">PostGIS · SQL</span>
+    <span class="tag">GWR 地理加权回归</span>
+    <span class="tag">OLS</span>
+    <span class="tag">ArcGIS Pro</span>
+    <span class="tag">Landsat NDVI</span>
+    <span class="tag">空间统计</span>
+    <span class="tag">城市分析</span>
+    <span class="tag">政策报告</span>
+  </div>
+</div>
+</body>
+</html>

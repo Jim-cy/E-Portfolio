@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>企业级 PostGIS 空间数据库管理 · Jim Jin</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#0d1117;color:#e6edf3;line-height:1.7}
+a{color:inherit;text-decoration:none}
+:root{--primary:#2dd4bf;--border:#30363d;--text-muted:#8b949e;--radius:12px}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,17,23,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;height:60px;display:flex;align-items:center;gap:1rem}
+.back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--primary);font-size:.875rem;border:1px solid rgba(45,212,191,0.3);border-radius:20px;padding:4px 14px;transition:background .2s}
+.back-btn:hover{background:rgba(45,212,191,0.1)}
+.nav-title{font-size:.95rem;color:#c9d1d9;font-weight:600}
+.hero{padding:100px 2rem 60px;max-width:900px;margin:0 auto}
+.course-tag{display:inline-block;background:rgba(45,212,191,0.1);border:1px solid rgba(45,212,191,0.3);color:var(--primary);border-radius:20px;padding:3px 14px;font-size:.78rem;margin-bottom:1rem}
+h1{font-size:2rem;font-weight:800;margin-bottom:.5rem}
+.meta{color:var(--text-muted);font-size:.88rem;margin-bottom:2rem}
+.section{max-width:900px;margin:0 auto;padding:0 2rem 4rem}
+h2{font-size:1.2rem;font-weight:700;color:var(--primary);margin-bottom:1.25rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.img-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-bottom:2rem}
+.img-grid img{width:100%;border-radius:var(--radius);border:1px solid var(--border)}
+.img-caption{text-align:center;font-size:.78rem;color:var(--text-muted);margin-top:.4rem;margin-bottom:1rem}
+pre{background:#1c2333;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;overflow-x:auto;font-size:.82rem;color:#a5f3fc;margin-bottom:2rem;line-height:1.6}
+ul{padding-left:1.4rem;color:#c9d1d9}
+ul li{margin-bottom:.6rem;font-size:.92rem}
+ul li strong{color:#e6edf3}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+.tag{font-size:.78rem;padding:3px 12px;background:rgba(45,212,191,0.08);border:1px solid rgba(45,212,191,0.2);color:var(--primary);border-radius:20px}
+</style>
+</head>
+<body>
+<nav>
+  <a class="back-btn" href="../index.html">← 返回 Portfolio</a>
+  <span class="nav-title">课程项目详情</span>
+</nav>
+
+<div class="hero">
+  <div class="course-tag">GEM510 · 空间数据库</div>
+  <h1>企业级 PostGIS 空间数据库管理与 GIS 高级分析</h1>
+  <p class="meta">不列颠哥伦比亚大学 · 2025.09 – 2025.12</p>
+</div>
+
+<div class="section">
+  <h2>空间分析成果</h2>
+  <div class="img-grid">
+    <div>
+      <img src="../images/510Least_cost.jpg" alt="最小成本路径分析"/>
+      <p class="img-caption">灰熊栖息地连通性最小成本路径分析（加拿大艾伯塔省西部）</p>
+    </div>
+    <div>
+      <img src="../images/network.png" alt="水文网络拓扑分析"/>
+      <p class="img-caption">鲑鱼栖息地可达性水文网络拓扑分析</p>
+    </div>
+    <div>
+      <img src="../images/digit_edit.jpg" alt="地理空间数据版本控制"/>
+      <p class="img-caption">基于 Git + Kart 的地理空间数据版本控制编辑工作流</p>
+    </div>
+  </div>
+
+  <h2>SQL 查询示例</h2>
+  <pre>-- 计算各林型 FSC 多边形15米缓冲区总面积
+SELECT forest_type,
+       SUM(ST_Area(ST_Buffer(geom, 15))) AS buffered_area_m2
+FROM fsc_polygons
+GROUP BY forest_type
+ORDER BY buffered_area_m2 DESC;</pre>
+
+  <h2>项目描述</h2>
+  <ul>
+    <li>通过 <strong>pgAdmin、QGIS、ArcGIS Pro 及 psql</strong> 命令行四种方式连接并查询多用户企业级 PostGIS 数据库</li>
+    <li>编写 SQL 查询语句，直接从远程 PostgreSQL 服务器筛选和提取空间图层数据，制作 5 个以上关系型数据图层的专业符号化地图版面</li>
+    <li>搭建本地 PostgreSQL 服务器，使用 <strong>GDAL 命令行工具</strong>（ogr2ogr、ogrinfo）在本地与远程数据库间导入/导出并重投影矢量数据（Shapefile ↔ PostgreSQL）</li>
+    <li>配置 <strong>Git + Kart</strong>，将分布式版本控制引入矢量空间数据管理；实践 branch/merge 及冲突解决等协作式空间数据编辑工作流</li>
+    <li>使用 GDAL 命令行工具及 QGIS 定义栅格研究区范围，结合土地覆盖、道路等多因子构建并重分类<strong>成本表面（cost surface）</strong>，模拟灰熊（Ursus arctos horribilis）移动阻力；在 ArcGIS Pro 中开展<strong>最小成本路径</strong>分析，识别最优野生动物迁徙廊道</li>
+    <li>使用 ArcGIS Pro 水文分析工具（Flow Direction、Flow Accumulation、Stream Link）从 DEM 提取河流网络，应用<strong>网络拓扑（Network Topology）</strong>将水坝建模为阻断点，执行网络追踪分析，计算鲑鱼可达/不可达上游栖息地比例</li>
+    <li>完成地址地理编码：基于大温哥华地区参考数据构建自定义 Address Locator，批量将地址表转换为 Shapefile 点要素</li>
+  </ul>
+
+  <div class="tags">
+    <span class="tag">PostGIS</span>
+    <span class="tag">PostgreSQL</span>
+    <span class="tag">GDAL · ogr2ogr</span>
+    <span class="tag">Git · Kart</span>
+    <span class="tag">最小成本路径</span>
+    <span class="tag">水文网络拓扑</span>
+    <span class="tag">ArcGIS Pro</span>
+    <span class="tag">QGIS</span>
+    <span class="tag">地址地理编码</span>
+  </div>
+</div>
+</body>
+</html>

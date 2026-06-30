@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>随机森林林火后燃料类型预测建模 · Jim Jin</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#0d1117;color:#e6edf3;line-height:1.7}
+a{color:inherit;text-decoration:none}
+:root{--primary:#2dd4bf;--border:#30363d;--text-muted:#8b949e;--radius:12px}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,17,23,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;height:60px;display:flex;align-items:center;gap:1rem}
+.back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--primary);font-size:.875rem;border:1px solid rgba(45,212,191,0.3);border-radius:20px;padding:4px 14px;transition:background .2s}
+.back-btn:hover{background:rgba(45,212,191,0.1)}
+.nav-title{font-size:.95rem;color:#c9d1d9;font-weight:600}
+.hero{padding:100px 2rem 60px;max-width:900px;margin:0 auto}
+.course-tag{display:inline-block;background:rgba(45,212,191,0.1);border:1px solid rgba(45,212,191,0.3);color:var(--primary);border-radius:20px;padding:3px 14px;font-size:.78rem;margin-bottom:1rem}
+h1{font-size:2rem;font-weight:800;margin-bottom:.5rem}
+.meta{color:var(--text-muted);font-size:.88rem;margin-bottom:2rem}
+.section{max-width:900px;margin:0 auto;padding:0 2rem 4rem}
+h2{font-size:1.2rem;font-weight:700;color:var(--primary);margin-bottom:1.25rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.img-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-bottom:2rem}
+.img-grid img{width:100%;border-radius:var(--radius);border:1px solid var(--border)}
+.img-caption{text-align:center;font-size:.78rem;color:var(--text-muted);margin-top:.4rem;margin-bottom:1rem}
+ul{padding-left:1.4rem;color:#c9d1d9}
+ul li{margin-bottom:.6rem;font-size:.92rem}
+ul li strong{color:#e6edf3}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+.tag{font-size:.78rem;padding:3px 12px;background:rgba(45,212,191,0.08);border:1px solid rgba(45,212,191,0.2);color:var(--primary);border-radius:20px}
+</style>
+</head>
+<body>
+<nav>
+  <a class="back-btn" href="../index.html">← 返回 Portfolio</a>
+  <span class="nav-title">课程项目详情</span>
+</nav>
+
+<div class="hero">
+  <div class="course-tag">GEM511 · 高级空间分析</div>
+  <h1>基于随机森林的林火后燃料类型与冠层郁闭度预测建模</h1>
+  <p class="meta">不列颠哥伦比亚大学 · 2026.01 – 2026.04 · BC省林区</p>
+</div>
+
+<div class="section">
+  <h2>成果图像</h2>
+  <div class="img-grid">
+    <div>
+      <img src="../images/postburn.png" alt="林火后过火强度图"/>
+      <p class="img-caption">基于 dNBR 的过火强度分级专题图（未过火/轻度/中度/重度）</p>
+    </div>
+    <div>
+      <img src="../images/ndvi.png" alt="NDVI 植被恢复趋势"/>
+      <p class="img-caption">NDVI 植被恢复趋势折线图（2013–2021年，呈现火后逐年恢复过程）</p>
+    </div>
+  </div>
+
+  <h2>项目描述</h2>
+  <ul>
+    <li>整合多源预测变量：<strong>Landsat 衍生指数</strong>（NDVI、NBR、Tasseled Cap）、ASTER 地形数据（高程/坡度/坡向）、ClimateNA 气候栅格及 BC 林业资源清查（VRI）数据</li>
+    <li>通过 <strong>PostgreSQL 数据库</strong>构建多源预测变量数据集，完成多表连接与空间属性匹配</li>
+    <li>使用 ArcGIS Pro <strong>Moran's I 空间自相关分析</strong>与探索性回归（Exploratory Regression）工具，基于 R²、AIC、VIF 指标完成多变量共线性诊断与特征筛选</li>
+    <li>设计<strong>随机抽样、分层抽样、固定间隔抽样</strong>三种采样方案，使用 Random Forest（Forest-based Classification and Regression）分别构建燃料类型（分类）与冠层郁闭度（回归）预测模型</li>
+    <li>通过混淆矩阵、交叉验证及超参数调优（树深度、变量采样数、验证次数）系统评估不同采样策略与模型参数对预测精度的影响</li>
+    <li>计算归一化植被指数（NDVI）与归一化燃烧比（NBR），构建逐年 7–8 月合成影像，绘制 2013–2021 年植被恢复趋势折线图</li>
+    <li>基于火前(2015)/火后(2018) NBR 差值（dNBR）、参照 USGS 标准阈值完成过火强度分级，生成火场过火强度专题图</li>
+    <li>使用 ggplot2 分面箱线图比较不同过火强度下的植被恢复速率差异，定量验证"高强度过火区恢复更慢"的生态学规律</li>
+  </ul>
+
+  <div class="tags">
+    <span class="tag">随机森林</span>
+    <span class="tag">ArcGIS Pro</span>
+    <span class="tag">PostgreSQL</span>
+    <span class="tag">Moran's I</span>
+    <span class="tag">NBR · dNBR</span>
+    <span class="tag">NDVI</span>
+    <span class="tag">分层抽样</span>
+    <span class="tag">多源数据融合</span>
+    <span class="tag">ggplot2</span>
+  </div>
+</div>
+</body>
+</html>

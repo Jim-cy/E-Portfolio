@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>GEE 云端城市热岛效应制图 · Jim Jin</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#0d1117;color:#e6edf3;line-height:1.7}
+a{color:inherit;text-decoration:none}
+:root{--primary:#2dd4bf;--border:#30363d;--text-muted:#8b949e;--radius:12px}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,17,23,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;height:60px;display:flex;align-items:center;gap:1rem}
+.back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--primary);font-size:.875rem;border:1px solid rgba(45,212,191,0.3);border-radius:20px;padding:4px 14px;transition:background .2s}
+.back-btn:hover{background:rgba(45,212,191,0.1)}
+.nav-title{font-size:.95rem;color:#c9d1d9;font-weight:600}
+.hero{padding:100px 2rem 60px;max-width:900px;margin:0 auto}
+.course-tag{display:inline-block;background:rgba(45,212,191,0.1);border:1px solid rgba(45,212,191,0.3);color:var(--primary);border-radius:20px;padding:3px 14px;font-size:.78rem;margin-bottom:1rem}
+h1{font-size:2rem;font-weight:800;margin-bottom:.5rem}
+.meta{color:var(--text-muted);font-size:.88rem;margin-bottom:2rem}
+.section{max-width:900px;margin:0 auto;padding:0 2rem 4rem}
+h2{font-size:1.2rem;font-weight:700;color:var(--primary);margin-bottom:1.25rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.highlight-box{background:#1c2333;border:1px solid var(--border);border-left:3px solid var(--primary);border-radius:var(--radius);padding:1.25rem 1.5rem;margin-bottom:2rem}
+.highlight-box p{color:#c9d1d9;font-size:.92rem}
+ul{padding-left:1.4rem;color:#c9d1d9}
+ul li{margin-bottom:.6rem;font-size:.92rem}
+ul li strong{color:#e6edf3}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+.tag{font-size:.78rem;padding:3px 12px;background:rgba(45,212,191,0.08);border:1px solid rgba(45,212,191,0.2);color:var(--primary);border-radius:20px}
+</style>
+</head>
+<body>
+<nav>
+  <a class="back-btn" href="../index.html">← 返回 Portfolio</a>
+  <span class="nav-title">课程项目详情</span>
+</nav>
+
+<div class="hero">
+  <div class="course-tag">GEM521 · 云计算遥感</div>
+  <h1>基于 Google Earth Engine 的城市热岛效应制图（温哥华案例）</h1>
+  <p class="meta">不列颠哥伦比亚大学 · 2026.01 – 2026.04 · 温哥华市</p>
+</div>
+
+<div class="section">
+  <div class="highlight-box">
+    <p>本项目利用 Google Earth Engine 云端平台处理 Landsat 8 地表反射率影像，计算地表温度（LST）并量化城市热岛效应与植被覆盖之间的负相关关系，无需本地存储大量遥感数据。</p>
+  </div>
+
+  <h2>项目描述</h2>
+  <ul>
+    <li>使用 <strong>Google Earth Engine（GEE）JavaScript API</strong> 完成大尺度遥感数据云端处理，筛选温哥华 Landsat 8 地表反射率影像并获取无云场景</li>
+    <li>应用 <strong>Scale/Offset 校正</strong>及地表比辐射率（emissivity）数据计算<strong>地表温度（LST）</strong>（开尔文转摄氏度）</li>
+    <li>计算 <strong>NDVI</strong> 指数并对比水体、植被、城市建成区的光谱响应差异</li>
+    <li>通过<strong>随机像元采样（1,000 点）</strong>构建 NDVI-LST 散点图，量化植被覆盖与地表温度的负相关关系，揭示城市热岛驱动机制</li>
+    <li>使用 GEE 内置图表工具（ui.Chart）完成数据可视化，全程在浏览器中完成，无需本地算力</li>
+    <li>另完成基于 GEE 的 Landsat 土地覆盖<strong>监督分类</strong>全流程（调用数据集、构建训练样本、精度验证）</li>
+  </ul>
+
+  <div class="tags">
+    <span class="tag">Google Earth Engine</span>
+    <span class="tag">JavaScript API</span>
+    <span class="tag">Landsat 8</span>
+    <span class="tag">地表温度 LST</span>
+    <span class="tag">NDVI</span>
+    <span class="tag">城市热岛</span>
+    <span class="tag">云端遥感处理</span>
+    <span class="tag">监督分类</span>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>MODIS/Landsat 长时序植被动态监测 · Jim Jin</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#0d1117;color:#e6edf3;line-height:1.7}
+a{color:inherit;text-decoration:none}
+:root{--primary:#2dd4bf;--surface:#161b22;--surface2:#1c2333;--border:#30363d;--text-muted:#8b949e;--radius:12px}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,17,23,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;height:60px;display:flex;align-items:center;gap:1rem}
+.back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--primary);font-size:.875rem;border:1px solid rgba(45,212,191,0.3);border-radius:20px;padding:4px 14px;transition:background .2s}
+.back-btn:hover{background:rgba(45,212,191,0.1)}
+.nav-title{font-size:.95rem;color:#c9d1d9;font-weight:600}
+.hero{padding:100px 2rem 60px;max-width:900px;margin:0 auto}
+.course-tag{display:inline-block;background:rgba(45,212,191,0.1);border:1px solid rgba(45,212,191,0.3);color:var(--primary);border-radius:20px;padding:3px 14px;font-size:.78rem;margin-bottom:1rem}
+h1{font-size:2rem;font-weight:800;margin-bottom:.5rem}
+.meta{color:var(--text-muted);font-size:.88rem;margin-bottom:2rem}
+.section{max-width:900px;margin:0 auto;padding:0 2rem 4rem}
+h2{font-size:1.2rem;font-weight:700;color:var(--primary);margin-bottom:1.25rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.img-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-bottom:2rem}
+.img-grid img{width:100%;border-radius:var(--radius);border:1px solid var(--border)}
+.img-single img{width:100%;border-radius:var(--radius);border:1px solid var(--border);margin-bottom:.5rem}
+.img-caption{text-align:center;font-size:.78rem;color:var(--text-muted);margin-top:.4rem;margin-bottom:1.5rem}
+ul{padding-left:1.4rem;color:#c9d1d9}
+ul li{margin-bottom:.6rem;font-size:.92rem}
+ul li strong{color:#e6edf3}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+.tag{font-size:.78rem;padding:3px 12px;background:rgba(45,212,191,0.08);border:1px solid rgba(45,212,191,0.2);color:var(--primary);border-radius:20px}
+</style>
+</head>
+<body>
+<nav>
+  <a class="back-btn" href="../index.html">← 返回 Portfolio</a>
+  <span class="nav-title">课程项目详情</span>
+</nav>
+
+<div class="hero">
+  <div class="course-tag">GEM520 · 时间序列遥感</div>
+  <h1>MODIS/Landsat 长时序植被动态监测与森林变化检测</h1>
+  <p class="meta">不列颠哥伦比亚大学 · 2025.09 – 2025.12 · BC省 Williams Lake 地区</p>
+</div>
+
+<div class="section">
+  <h2>成果图像</h2>
+  <div class="img-grid">
+    <div>
+      <img src="../images/compare_map.png" alt="土地覆盖对比图"/>
+      <p class="img-caption">土地覆盖变化对比图</p>
+    </div>
+    <div>
+      <img src="../images/forest_area_change.png" alt="森林面积变化"/>
+      <p class="img-caption">BC省 Williams Lake 地区年度森林净变化折线图</p>
+    </div>
+    <div>
+      <img src="../images/loss_gain.png" alt="森林增益/损失"/>
+      <p class="img-caption">森林增益/损失堆叠柱状图（1984–2016年）</p>
+    </div>
+  </div>
+
+  <h2>项目描述</h2>
+  <ul>
+    <li>使用 R（<strong>terra、bfast、tidyverse</strong>）处理 2001–2020 年 MODIS MOD13Q1 NDVI 时序数据，共 <strong>460 景影像</strong>（16天/250m分辨率）</li>
+    <li>完成批量数据读取、文件名解析提取日期、波段重命名与中值合成栅格计算</li>
+    <li>提取两个兴趣区（ROI）的逐期 NDVI 均值，进行长格式数据整理与月度/年度时序统计分析，识别植被生长季峰值规律</li>
+    <li>应用 <strong>BFAST（Breaks For Additive Season and Trend）</strong>算法对 NDVI 时间序列进行结构突变检测，识别两处样点分别在 2011 年与 2008 年发生的植被异常下降事件</li>
+    <li>结合 NDVI 变化模式推断扰动成因（野火干扰 vs. 森林采伐/疏伐恢复）</li>
+    <li>处理 <strong>33 年（1984–2016）</strong>Virtual Land Cover Engine（VLCE）Landsat 土地覆盖分类时序栅格数据</li>
+    <li>基于自定义重分类表将 12 类地表覆盖类型二值化为森林/非森林，使用栅格波段差分逐年计算森林面积增长与损失量（单位：公顷）</li>
+    <li>使用 ggplot2 完成多种时序可视化，量化分析因主动森林经营导致的森林覆盖动态平衡</li>
+  </ul>
+
+  <div class="tags">
+    <span class="tag">R · bfast</span>
+    <span class="tag">terra · tidyverse</span>
+    <span class="tag">MODIS MOD13Q1</span>
+    <span class="tag">NDVI 时序分析</span>
+    <span class="tag">BFAST 突变检测</span>
+    <span class="tag">VLCE Landsat</span>
+    <span class="tag">ggplot2</span>
+    <span class="tag">森林变化检测</span>
+  </div>
+</div>
+</body>
+</html>

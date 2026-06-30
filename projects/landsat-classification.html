@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Landsat 9 监督式土地覆盖分类 · Jim Jin</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#0d1117;color:#e6edf3;line-height:1.7}
+a{color:inherit;text-decoration:none}
+:root{--primary:#2dd4bf;--surface:#161b22;--surface2:#1c2333;--border:#30363d;--text-muted:#8b949e;--radius:12px}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,17,23,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;height:60px;display:flex;align-items:center;gap:1rem}
+.back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--primary);font-size:.875rem;border:1px solid rgba(45,212,191,0.3);border-radius:20px;padding:4px 14px;transition:background .2s}
+.back-btn:hover{background:rgba(45,212,191,0.1)}
+.nav-title{font-size:.95rem;color:#c9d1d9;font-weight:600}
+.hero{padding:100px 2rem 60px;max-width:900px;margin:0 auto}
+.course-tag{display:inline-block;background:rgba(45,212,191,0.1);border:1px solid rgba(45,212,191,0.3);color:var(--primary);border-radius:20px;padding:3px 14px;font-size:.78rem;margin-bottom:1rem}
+h1{font-size:2rem;font-weight:800;margin-bottom:.5rem}
+.meta{color:var(--text-muted);font-size:.88rem;margin-bottom:2rem}
+.section{max-width:900px;margin:0 auto;padding:0 2rem 4rem}
+h2{font-size:1.2rem;font-weight:700;color:var(--primary);margin-bottom:1.25rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.img-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-bottom:2rem}
+.img-grid img{width:100%;border-radius:var(--radius);border:1px solid var(--border)}
+.img-single img{width:100%;border-radius:var(--radius);border:1px solid var(--border);margin-bottom:2rem}
+.img-caption{text-align:center;font-size:.78rem;color:var(--text-muted);margin-top:.4rem;margin-bottom:1rem}
+ul{padding-left:1.4rem;color:#c9d1d9}
+ul li{margin-bottom:.6rem;font-size:.92rem}
+ul li strong{color:#e6edf3}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+.tag{font-size:.78rem;padding:3px 12px;background:rgba(45,212,191,0.08);border:1px solid rgba(45,212,191,0.2);color:var(--primary);border-radius:20px}
+</style>
+</head>
+<body>
+<nav>
+  <a class="back-btn" href="../index.html">← 返回 Portfolio</a>
+  <span class="nav-title">课程项目详情</span>
+</nav>
+
+<div class="hero">
+  <div class="course-tag">GEM520 · 遥感影像处理</div>
+  <h1>Landsat 9 监督式土地覆盖分类</h1>
+  <p class="meta">不列颠哥伦比亚大学 · 2025.09 – 2025.12 · BC省海湾群岛（Gulf Islands）</p>
+</div>
+
+<div class="section">
+  <h2>成果图像</h2>
+  <div class="img-grid">
+    <div>
+      <img src="../images/classify.png" alt="土地覆盖分类结果图"/>
+      <p class="img-caption">Landsat 9 最大似然分类（MLC）土地覆盖专题图（30m 分辨率）</p>
+    </div>
+    <div>
+      <img src="../images/matrix.png" alt="混淆矩阵"/>
+      <p class="img-caption">混淆矩阵 — 总体精度 94.6%，超75%达标线</p>
+    </div>
+  </div>
+
+  <h2>项目描述</h2>
+  <ul>
+    <li>使用 R（<strong>RStoolbox、terra、sf、caret</strong>）对 Landsat 9 多光谱影像（6 波段地表反射率）进行监督分类</li>
+    <li>自主目视解译并手绘 <strong>79 个训练多边形</strong>，涵盖 7 类地表覆盖类型：阔叶林、针叶林、裸土/岩石、高/低密度建成区、非林木植被、水体</li>
+    <li>设计<strong>分层随机抽样方案</strong>，按 70/30 比例拆分训练集与验证集，按类别平衡像元数量以避免大类别偏差</li>
+    <li>提取 <strong>24,000+ 像元</strong>多波段反射率数据，绘制各地物类型光谱特征曲线（均值及 5%-95% 置信区间），验证训练样本质量</li>
+    <li>应用<strong>最大似然分类算法（MLC）</strong>完成全图像素级分类，生成 30m 分辨率土地覆盖专题图并导出为 GeoTIFF</li>
+    <li>基于混淆矩阵手动计算总体精度（Overall Accuracy）、制图精度与用户精度，最终总体分类精度达 <strong>94.6%</strong></li>
+    <li>诊断出裸土/岩石与阔叶林为误分类主要来源；在 QGIS 中结合 Google 卫星影像进行目视质量核查</li>
+  </ul>
+
+  <div class="tags">
+    <span class="tag">R · RStoolbox</span>
+    <span class="tag">terra · sf · caret</span>
+    <span class="tag">最大似然分类（MLC）</span>
+    <span class="tag">监督分类</span>
+    <span class="tag">混淆矩阵</span>
+    <span class="tag">精度 94.6%</span>
+    <span class="tag">Landsat 9</span>
+    <span class="tag">QGIS</span>
+  </div>
+</div>
+</body>
+</html>
