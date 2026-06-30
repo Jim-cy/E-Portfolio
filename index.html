@@ -53,12 +53,26 @@
       color: var(--primary);
       letter-spacing: 0.5px;
     }
-    .nav-links { display: flex; gap: 2rem; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
     .nav-links a {
       font-size: 0.875rem; color: var(--text-muted);
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--primary); }
+
+    /* ===== LANG BUTTON ===== */
+    .lang-btn {
+      background: none;
+      border: 1px solid rgba(45,212,191,0.4);
+      color: var(--primary);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-family: inherit;
+    }
+    .lang-btn:hover { background: rgba(45,212,191,0.1); }
 
     /* ===== HERO ===== */
     #hero {
@@ -368,18 +382,19 @@
     }
   </style>
 </head>
-<body>
+<body class="lang-zh">
 
 <!-- NAV -->
 <nav>
   <div class="nav-logo">Jim Jin · 金慈渊</div>
   <div class="nav-links">
-    <a href="#skills">技能</a>
-    <a href="#projects">项目</a>
-    <a href="#coursework">课程项目</a>
-    <a href="#publications">论文</a>
-    <a href="#education">教育</a>
-    <a href="#contact">联系</a>
+    <a href="#skills" data-key="nav.skills">技能</a>
+    <a href="#projects" data-key="nav.projects">项目</a>
+    <a href="#coursework" data-key="nav.coursework">课程项目</a>
+    <a href="#publications" data-key="nav.pub">论文</a>
+    <a href="#education" data-key="nav.edu">教育</a>
+    <a href="#contact" data-key="nav.contact">联系</a>
+    <button class="lang-btn" onclick="toggleLang()" id="lang-toggle">EN</button>
   </div>
 </nav>
 
@@ -387,28 +402,27 @@
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <div class="hero-tag">GIS &amp; 遥感工程师 · 2026 届硕士应届生</div>
-    <h1 class="hero-name">金慈渊 · Ciyuan Jin</h1>
-    <p class="hero-subtitle">
-      不列颠哥伦比亚大学 <span>Geomatics 硕士</span> · 2026.04 毕业
+    <div class="hero-tag" data-key="hero.tag">GIS &amp; 遥感工程师 · 2026 届硕士应届生</div>
+    <h1 class="hero-name" data-key="hero.name">金慈渊 · Ciyuan Jin</h1>
+    <p class="hero-subtitle" data-key="hero.sub">
+      不列颠哥伦比亚大学 <span style="color:var(--primary);font-weight:700">Geomatics 硕士</span> · 2026.04 毕业
     </p>
-    <p class="hero-desc">
+    <p class="hero-desc" data-key="hero.desc">
       专注于机载 LiDAR 点云处理与遥感影像分析，熟练掌握 ArcGIS Pro、QGIS、R、Python 等空间数据工具。
       拥有 33,000 公顷尺度的完整遥感项目经验，具备学术论文发表背景，可立即赴岗。
     </p>
     <div class="hero-chips">
-      <span class="chip">ArcGIS Pro</span>
-      <span class="chip">QGIS</span>
-      <span class="chip">R · lidR</span>
-      <span class="chip">Python</span>
-      <span class="chip">LiDAR 点云</span>
-      <span class="chip">遥感影像</span>
-      <span class="chip">空间分析</span>
-      <span class="chip">机器学习</span>
+      <span class="chip" data-key="hero.chip.1">ArcGIS Pro</span>
+      <span class="chip" data-key="hero.chip.2">QGIS</span>
+      <span class="chip" data-key="hero.chip.3">R · lidR</span>
+      <span class="chip" data-key="hero.chip.4">Python</span>
+      <span class="chip" data-key="hero.chip.5">LiDAR 点云</span>
+      <span class="chip" data-key="hero.chip.6">遥感影像</span>
+      <span class="chip" data-key="hero.chip.7">机器学习</span>
     </div>
     <div class="hero-cta">
-      <a href="#projects" class="btn btn-primary">查看项目经历 →</a>
-      <a href="mailto:ciyuanjim@gmail.com" class="btn btn-outline">📧 发送邮件</a>
+      <a href="#projects" class="btn btn-primary" data-key="hero.btn1">查看项目经历 →</a>
+      <a href="mailto:ciyuanjim@gmail.com" class="btn btn-outline" data-key="hero.btn2">📧 发送邮件</a>
     </div>
   </div>
 </section>
@@ -416,14 +430,14 @@
 <!-- SKILLS -->
 <section id="skills">
   <div class="section-inner">
-    <p class="label">核心能力</p>
-    <h2 class="section-title">技术技能</h2>
-    <p class="section-sub">覆盖 GIS、遥感、编程分析与 CAD 设计全链路</p>
+    <p class="label" data-key="skills.label">核心能力</p>
+    <h2 class="section-title" data-key="skills.title">技术技能</h2>
+    <p class="section-sub" data-key="skills.sub">覆盖 GIS、遥感、编程分析与 CAD 设计全链路</p>
     <div class="skills-grid">
       <div class="skill-card">
         <div class="skill-card-icon" style="background:rgba(45,212,191,0.1)">🗺️</div>
-        <h3>GIS 与空间分析</h3>
-        <div class="skill-tags">
+        <h3 data-key="skills.card1.title">GIS 与空间分析</h3>
+        <div class="skill-tags" data-key="skills.card1.tags">
           <span class="skill-tag">ArcGIS Pro</span>
           <span class="skill-tag">QGIS</span>
           <span class="skill-tag">最小费用路径分析</span>
@@ -433,8 +447,8 @@
       </div>
       <div class="skill-card">
         <div class="skill-card-icon" style="background:rgba(56,189,248,0.1)">🛰️</div>
-        <h3>遥感与 LiDAR 处理</h3>
-        <div class="skill-tags">
+        <h3 data-key="skills.card2.title">遥感与 LiDAR 处理</h3>
+        <div class="skill-tags" data-key="skills.card2.tags">
           <span class="skill-tag">LiDAR 点云处理（lidR）</span>
           <span class="skill-tag">Dalponte2016 单木分割</span>
           <span class="skill-tag">冠层高度模型 CHM（0.5m）</span>
@@ -450,8 +464,8 @@
       </div>
       <div class="skill-card">
         <div class="skill-card-icon" style="background:rgba(63,185,80,0.1)">💻</div>
-        <h3>编程与数据分析</h3>
-        <div class="skill-tags">
+        <h3 data-key="skills.card3.title">编程与数据分析</h3>
+        <div class="skill-tags" data-key="skills.card3.tags">
           <span class="skill-tag">R（lidR · sf · terra · bfast · tidyverse）</span>
           <span class="skill-tag">Python（rasterio · geopandas · NumPy · Pandas）</span>
           <span class="skill-tag">机器学习（随机森林 / 回归 / GWR）</span>
@@ -462,8 +476,8 @@
       </div>
       <div class="skill-card">
         <div class="skill-card-icon" style="background:rgba(210,153,34,0.1)">✏️</div>
-        <h3>设计与文档</h3>
-        <div class="skill-tags">
+        <h3 data-key="skills.card4.title">设计与文档</h3>
+        <div class="skill-tags" data-key="skills.card4.tags">
           <span class="skill-tag">AutoCAD</span>
           <span class="skill-tag">Autodesk Fusion 360</span>
           <span class="skill-tag">SolidWorks</span>
@@ -480,9 +494,9 @@
 <!-- PROJECTS -->
 <section id="projects">
   <div class="section-inner">
-    <p class="label">项目经历</p>
-    <h2 class="section-title">代表项目</h2>
-    <p class="section-sub">涵盖遥感数据处理、空间分析、工程设计与生命周期评估</p>
+    <p class="label" data-key="projects.label">项目经历</p>
+    <h2 class="section-title" data-key="projects.title">代表项目</h2>
+    <p class="section-sub" data-key="projects.sub">涵盖遥感数据处理、空间分析、工程设计与生命周期评估</p>
     <div class="projects-grid">
 
       <!-- Project 1: LiDAR Capstone -->
@@ -491,21 +505,21 @@
           <div class="project-icon" style="background:rgba(45,212,191,0.1)">🌲</div>
           <span class="project-badge badge-green">硕士毕业论文</span>
         </div>
-        <div class="project-title">LiDAR 遥感数据分析与林地抚育规划</div>
-        <div class="project-org">Wetzin'kwa 社区森林 · 不列颠哥伦比亚大学 · 2025.09 – 2026.04</div>
-        <div class="project-desc">
+        <div class="project-title" data-key="proj1.title">LiDAR 遥感数据分析与林地抚育规划</div>
+        <div class="project-org" data-key="proj1.org">Wetzin'kwa 社区森林 · 不列颠哥伦比亚大学 · 2025.09 – 2026.04</div>
+        <div class="project-desc" data-key="proj1.desc">
           对 33,000 公顷林区机载 LiDAR 点云进行完整处理流程，生成高分辨率冠层高度模型，
           利用机器学习算法实现单木精准检测，并通过最小费用路径分析规划林地作业路线；
           结合 FVS 模型预测百年森林生长趋势，为林业管理提供数据决策支撑。
         </div>
         <div class="project-metrics">
-          <div class="metric"><strong>F1 = 0.91</strong> 单木检测精度</div>
-          <div class="metric"><strong>R² = 0.21</strong> 胸径估算模型</div>
-          <div class="metric"><strong>0.5m</strong> CHM 分辨率</div>
-          <div class="metric"><strong>33,000 ha</strong> 研究区面积</div>
-          <div class="metric"><strong>100 年</strong> FVS 生长模拟</div>
+          <div class="metric" data-key="proj1.m1"><strong>F1 = 0.91</strong> 单木检测精度</div>
+          <div class="metric" data-key="proj1.m2"><strong>R² = 0.21</strong> 胸径估算模型</div>
+          <div class="metric" data-key="proj1.m3"><strong>0.5m</strong> CHM 分辨率</div>
+          <div class="metric" data-key="proj1.m4"><strong>33,000 ha</strong> 研究区面积</div>
+          <div class="metric" data-key="proj1.m5"><strong>100 年</strong> FVS 生长模拟</div>
         </div>
-        <div class="project-tags">
+        <div class="project-tags" data-key="proj1.tags">
           <span class="project-tag">R · lidR</span>
           <span class="project-tag">Dalponte2016</span>
           <span class="project-tag">ArcGIS Pro</span>
@@ -522,9 +536,9 @@
           <div class="project-icon" style="background:rgba(56,189,248,0.1)">📊</div>
           <span class="project-badge badge-blue">学术研究 · 已发表</span>
         </div>
-        <div class="project-title">工程木产品生命周期评估（LCA）研究</div>
-        <div class="project-org">可持续建筑环境实验室 · 不列颠哥伦比亚大学 · 2024.01 – 2024.12</div>
-        <div class="project-desc">
+        <div class="project-title" data-key="proj2.title">工程木产品生命周期评估（LCA）研究</div>
+        <div class="project-org" data-key="proj2.org">可持续建筑环境实验室 · 不列颠哥伦比亚大学 · 2024.01 – 2024.12</div>
+        <div class="project-desc" data-key="proj2.desc">
           基于 PRISMA 规范，从 Web of Science 初检 465 篇文献中筛选 89 篇高质量 SCI 研究，
           系统综述 CLT、GLT（胶合木）、PW（胶合板）、LVL、PB（刨花板）、MDF/FB（纤维板）、
           WPC、OSB 共 8 类工程木产品的生命周期气候变化影响；识别 CLT/GLT 影响最低且稳定、
@@ -532,11 +546,11 @@
           成果以共同作者身份发表同行评审论文。
         </div>
         <div class="project-metrics">
-          <div class="metric"><strong>89 篇</strong> 精选 SCI 文献（初筛 465 篇）</div>
-          <div class="metric"><strong>8 类</strong> EWP（CLT · GLT · PW · LVL · PB · MDF · WPC · OSB）</div>
-          <div class="metric"><strong>1 篇</strong> 同行评审论文</div>
+          <div class="metric" data-key="proj2.m1"><strong>89 篇</strong> 精选 SCI 文献（初筛 465 篇）</div>
+          <div class="metric" data-key="proj2.m2"><strong>8 类</strong> EWP（CLT · GLT · PW · LVL · PB · MDF · WPC · OSB）</div>
+          <div class="metric" data-key="proj2.m3"><strong>1 篇</strong> 同行评审论文</div>
         </div>
-        <div class="project-tags">
+        <div class="project-tags" data-key="proj2.tags">
           <span class="project-tag">LCA 方法论</span>
           <span class="project-tag">碳排放评估</span>
           <span class="project-tag">系统综述</span>
@@ -551,9 +565,9 @@
           <div class="project-icon" style="background:rgba(210,153,34,0.1)">🪑</div>
           <span class="project-badge badge-yellow">本科毕业设计</span>
         </div>
-        <div class="project-title">适老化卧室家具设计与工厂规划（GoldenEase Living）</div>
-        <div class="project-org">不列颠哥伦比亚大学 WOOD 499 本科毕业设计 · 2025.01 – 2025.04</div>
-        <div class="project-desc">
+        <div class="project-title" data-key="proj3.title">适老化卧室家具设计与工厂规划（GoldenEase Living）</div>
+        <div class="project-org" data-key="proj3.org">不列颠哥伦比亚大学 WOOD 499 本科毕业设计 · 2025.01 – 2025.04</div>
+        <div class="project-desc" data-key="proj3.desc">
           6 人团队设计面向加拿大老年群体的卧室三件套（床头柜 / 床架 / 衣柜），
           采用本地枫木实木 + 边拼板、无甲醛胶粘剂与水性 PU / UV 漆；
           完成产品三维建模与正投影工程图、BOM 清单；
@@ -562,12 +576,12 @@
           （CNC 加工中心瓶颈利用率 81%）；完成材料成本核算、NPV / 盈亏平衡 / 投资回收期分析。
         </div>
         <div class="project-metrics">
-          <div class="metric"><strong>3</strong> 件套产品（床头柜/床架/衣柜）</div>
-          <div class="metric"><strong>8</strong> 个工序部门</div>
-          <div class="metric"><strong>81%</strong> CNC 瓶颈利用率</div>
-          <div class="metric">NPV · 盈亏平衡分析</div>
+          <div class="metric" data-key="proj3.m1"><strong>3</strong> 件套产品（床头柜/床架/衣柜）</div>
+          <div class="metric" data-key="proj3.m2"><strong>8</strong> 个工序部门</div>
+          <div class="metric" data-key="proj3.m3"><strong>81%</strong> CNC 瓶颈利用率</div>
+          <div class="metric" data-key="proj3.m4">NPV · 盈亏平衡分析</div>
         </div>
-        <div class="project-tags">
+        <div class="project-tags" data-key="proj3.tags">
           <span class="project-tag">Autodesk Fusion 360</span>
           <span class="project-tag">AutoCAD</span>
           <span class="project-tag">工厂布局规划</span>
@@ -584,18 +598,18 @@
           <div class="project-icon" style="background:rgba(63,185,80,0.1)">🔬</div>
           <span class="project-badge badge-green">实习经历</span>
         </div>
-        <div class="project-title">木材质量检验实习</div>
-        <div class="project-org">图森木业，浙江绍兴 · 2022.06 – 2022.08</div>
-        <div class="project-desc">
+        <div class="project-title" data-key="proj4.title">木材质量检验实习</div>
+        <div class="project-org" data-key="proj4.org">图森木业，浙江绍兴 · 2022.06 – 2022.08</div>
+        <div class="project-desc" data-key="proj4.desc">
           执行木质板材全套质检测试（耐刮擦、冷热循环、甲醛含量），出具检验报告并向研发团队反馈；
           协助接待 50+ 位客户，跨部门沟通协调，提升实验室运营效率。
         </div>
         <div class="project-metrics">
-          <div class="metric"><strong>50+</strong> 客户接待</div>
-          <div class="metric">甲醛检测</div>
-          <div class="metric">耐刮擦 / 耐温测试</div>
+          <div class="metric" data-key="proj4.m1"><strong>50+</strong> 客户接待</div>
+          <div class="metric" data-key="proj4.m2">甲醛检测</div>
+          <div class="metric" data-key="proj4.m3">耐刮擦 / 耐温测试</div>
         </div>
-        <div class="project-tags">
+        <div class="project-tags" data-key="proj4.tags">
           <span class="project-tag">质量检验</span>
           <span class="project-tag">实验数据记录</span>
           <span class="project-tag">客户沟通</span>
@@ -612,9 +626,9 @@
 <!-- COURSEWORK -->
 <section id="coursework">
   <div class="section-inner">
-    <p class="label">学术训练</p>
-    <h2 class="section-title">课程项目</h2>
-    <p class="section-sub">UBC Geomatics 硕士课程 GEM510 / GEM520 / GEM511 / GEM521 · 2025.09 – 2026.04</p>
+    <p class="label" data-key="cw.label">学术训练</p>
+    <h2 class="section-title" data-key="cw.title">课程项目</h2>
+    <p class="section-sub" data-key="cw.sub">UBC Geomatics 硕士课程 GEM510 / GEM520 / GEM511 / GEM521 · 2025.09 – 2026.04</p>
     <div class="cw-grid">
 
       <!-- CW1: Landsat Classification -->
@@ -623,12 +637,12 @@
         <div class="cw-card-top">
           <div class="cw-icon">🛰️</div>
           <div>
-            <div class="cw-title">Landsat 9 监督式土地覆盖分类</div>
-            <div class="cw-course">GEM520 · 遥感影像处理</div>
+            <div class="cw-title" data-key="cw1.title">Landsat 9 监督式土地覆盖分类</div>
+            <div class="cw-course" data-key="cw1.course">GEM520 · 遥感影像处理</div>
           </div>
         </div>
-        <p class="cw-desc">使用 R（RStoolbox、terra、caret）对 Landsat 9 多光谱影像进行监督分类；自主解译 79 个训练多边形，涵盖 7 类地物；应用最大似然分类算法（MLC）完成像素级分类，总体精度达 <strong>94.6%</strong>（超75%达标线）；基于混淆矩阵计算制图精度与用户精度，在 QGIS 中结合 Google 卫星影像进行目视质检。</p>
-        <div class="cw-tags">
+        <p class="cw-desc" data-key="cw1.desc">使用 R（RStoolbox、terra、caret）对 Landsat 9 多光谱影像进行监督分类；自主解译 79 个训练多边形，涵盖 7 类地物；应用最大似然分类算法（MLC）完成像素级分类，总体精度达 <strong>94.6%</strong>（超75%达标线）；基于混淆矩阵计算制图精度与用户精度，在 QGIS 中结合 Google 卫星影像进行目视质检。</p>
+        <div class="cw-tags" data-key="cw1.tags">
           <span class="cw-tag">R · RStoolbox</span><span class="cw-tag">MLC 分类</span><span class="cw-tag">混淆矩阵</span><span class="cw-tag">精度94.6%</span>
         </div>
       </a>
@@ -639,12 +653,12 @@
         <div class="cw-card-top">
           <div class="cw-icon">📈</div>
           <div>
-            <div class="cw-title">MODIS/Landsat 长时序植被动态监测</div>
-            <div class="cw-course">GEM520 · 时间序列遥感</div>
+            <div class="cw-title" data-key="cw2.title">MODIS/Landsat 长时序植被动态监测</div>
+            <div class="cw-course" data-key="cw2.course">GEM520 · 时间序列遥感</div>
           </div>
         </div>
-        <p class="cw-desc">处理 2001–2020 年 MODIS MOD13Q1 NDVI 时序数据（460 景，16天/250m分辨率）；应用 <strong>BFAST</strong> 算法检测植被结构突变事件，识别野火与采伐扰动成因；处理 33 年 VLCE Landsat 土地覆盖数据，逐年量化 BC 省 Williams Lake 地区森林增损动态。</p>
-        <div class="cw-tags">
+        <p class="cw-desc" data-key="cw2.desc">处理 2001–2020 年 MODIS MOD13Q1 NDVI 时序数据（460 景，16天/250m分辨率）；应用 <strong>BFAST</strong> 算法检测植被结构突变事件，识别野火与采伐扰动成因；处理 33 年 VLCE Landsat 土地覆盖数据，逐年量化 BC 省 Williams Lake 地区森林增损动态。</p>
+        <div class="cw-tags" data-key="cw2.tags">
           <span class="cw-tag">R · bfast</span><span class="cw-tag">MODIS NDVI</span><span class="cw-tag">突变检测</span><span class="cw-tag">森林变化检测</span>
         </div>
       </a>
@@ -655,12 +669,12 @@
         <div class="cw-card-top">
           <div class="cw-icon">🔥</div>
           <div>
-            <div class="cw-title">随机森林林火后燃料类型预测建模</div>
-            <div class="cw-course">GEM511 · 高级空间分析</div>
+            <div class="cw-title" data-key="cw3.title">随机森林林火后燃料类型预测建模</div>
+            <div class="cw-course" data-key="cw3.course">GEM511 · 高级空间分析</div>
           </div>
         </div>
-        <p class="cw-desc">整合 Landsat 衍生指数（NDVI/NBR/Tasseled Cap）、ASTER 地形、ClimateNA 气候栅格及 VRI 林业数据，通过 PostgreSQL 构建多源预测变量数据集；使用 ArcGIS Pro Moran's I 与探索性回归进行共线性诊断；设计三种抽样方案对比 Random Forest 分类/回归模型精度。</p>
-        <div class="cw-tags">
+        <p class="cw-desc" data-key="cw3.desc">整合 Landsat 衍生指数（NDVI/NBR/Tasseled Cap）、ASTER 地形、ClimateNA 气候栅格及 VRI 林业数据，通过 PostgreSQL 构建多源预测变量数据集；使用 ArcGIS Pro Moran's I 与探索性回归进行共线性诊断；设计三种抽样方案对比 Random Forest 分类/回归模型精度。</p>
+        <div class="cw-tags" data-key="cw3.tags">
           <span class="cw-tag">随机森林</span><span class="cw-tag">PostgreSQL</span><span class="cw-tag">ArcGIS Pro</span><span class="cw-tag">多源数据融合</span>
         </div>
       </a>
@@ -671,12 +685,12 @@
         <div class="cw-card-top">
           <div class="cw-icon">🌳</div>
           <div>
-            <div class="cw-title">地理加权回归城市绿色空间公平性分析</div>
-            <div class="cw-course">GEM511 · 空间统计建模</div>
+            <div class="cw-title" data-key="cw4.title">地理加权回归城市绿色空间公平性分析</div>
+            <div class="cw-course" data-key="cw4.course">GEM511 · 空间统计建模</div>
           </div>
         </div>
-        <p class="cw-desc">编写高级 SQL/PostGIS 查询（CTE、ST_Within），从 57,936 个普查单元（2,631 维特征）提取温哥华 1,016 个街区人口统计数据；计算 Landsat NDVI 绿地覆盖度；在 ArcGIS Pro 中构建 OLS 与 <strong>GWR</strong> 模型，对比全局与局部空间关系，撰写弱势社区绿地可达性政策建议报告。</p>
-        <div class="cw-tags">
+        <p class="cw-desc" data-key="cw4.desc">编写高级 SQL/PostGIS 查询（CTE、ST_Within），从 57,936 个普查单元（2,631 维特征）提取温哥华 1,016 个街区人口统计数据；计算 Landsat NDVI 绿地覆盖度；在 ArcGIS Pro 中构建 OLS 与 <strong>GWR</strong> 模型，对比全局与局部空间关系，撰写弱势社区绿地可达性政策建议报告。</p>
+        <div class="cw-tags" data-key="cw4.tags">
           <span class="cw-tag">PostGIS</span><span class="cw-tag">GWR</span><span class="cw-tag">OLS</span><span class="cw-tag">ArcGIS Pro</span>
         </div>
       </a>
@@ -687,12 +701,12 @@
         <div class="cw-card-top">
           <div class="cw-icon">⛰️</div>
           <div>
-            <div class="cw-title">LiDAR 点云地形插值与三维可视化</div>
-            <div class="cw-course">GEM511 · LiDAR 高级处理</div>
+            <div class="cw-title" data-key="cw5.title">LiDAR 点云地形插值与三维可视化</div>
+            <div class="cw-course" data-key="cw5.course">GEM511 · LiDAR 高级处理</div>
           </div>
         </div>
-        <p class="cw-desc">使用 <strong>PDAL</strong> 命令行工具处理超 <strong>16 亿点</strong> 大规模 LiDAR 数据，编写 JSON 处理管道完成地面点分类与裁切，数据量压缩 600%+；通过 QGIS 读取 COPC 格式进行远程流式可视化；在 ArcGIS Pro 中对比 Natural Neighbor/IDW/Spline 三种插值算法，制作三维地形可视化场景。</p>
-        <div class="cw-tags">
+        <p class="cw-desc" data-key="cw5.desc">使用 <strong>PDAL</strong> 命令行工具处理超 <strong>16 亿点</strong> 大规模 LiDAR 数据，编写 JSON 处理管道完成地面点分类与裁切，数据量压缩 600%+；通过 QGIS 读取 COPC 格式进行远程流式可视化；在 ArcGIS Pro 中对比 Natural Neighbor/IDW/Spline 三种插值算法，制作三维地形可视化场景。</p>
+        <div class="cw-tags" data-key="cw5.tags">
           <span class="cw-tag">PDAL</span><span class="cw-tag">COPC</span><span class="cw-tag">空间插值</span><span class="cw-tag">3D 可视化</span>
         </div>
       </a>
@@ -703,12 +717,12 @@
         <div class="cw-card-top">
           <div class="cw-icon">🌡️</div>
           <div>
-            <div class="cw-title">GEE 云端城市热岛效应制图</div>
-            <div class="cw-course">GEM521 · 云计算遥感</div>
+            <div class="cw-title" data-key="cw6.title">GEE 云端城市热岛效应制图</div>
+            <div class="cw-course" data-key="cw6.course">GEM521 · 云计算遥感</div>
           </div>
         </div>
-        <p class="cw-desc">使用 <strong>Google Earth Engine</strong>（JavaScript API）筛选温哥华 Landsat 8 无云影像；应用 Scale/Offset 校正及地表比辐射率数据计算地表温度（LST）；通过 1,000 点随机采样构建 NDVI-LST 散点图，量化植被覆盖与热岛效应的负相关关系；另完成 GEE 土地覆盖监督分类全流程。</p>
-        <div class="cw-tags">
+        <p class="cw-desc" data-key="cw6.desc">使用 <strong>Google Earth Engine</strong>（JavaScript API）筛选温哥华 Landsat 8 无云影像；应用 Scale/Offset 校正及地表比辐射率数据计算地表温度（LST）；通过 1,000 点随机采样构建 NDVI-LST 散点图，量化植被覆盖与热岛效应的负相关关系；另完成 GEE 土地覆盖监督分类全流程。</p>
+        <div class="cw-tags" data-key="cw6.tags">
           <span class="cw-tag">Google Earth Engine</span><span class="cw-tag">LST 地表温度</span><span class="cw-tag">云端处理</span><span class="cw-tag">热岛分析</span>
         </div>
       </a>
@@ -719,12 +733,12 @@
         <div class="cw-card-top">
           <div class="cw-icon">🌈</div>
           <div>
-            <div class="cw-title">高光谱遥感光谱库构建与 SAM 分类</div>
-            <div class="cw-course">GEM521 · 高光谱遥感</div>
+            <div class="cw-title" data-key="cw7.title">高光谱遥感光谱库构建与 SAM 分类</div>
+            <div class="cw-course" data-key="cw7.course">GEM521 · 高光谱遥感</div>
           </div>
         </div>
-        <p class="cw-desc">使用 <strong>ASD FieldSpec Pro</strong> 野外采集 5 类地物反射光谱，计算 PRI/SIPI/ND705 植被指数；处理 BC 省 Gulf Islands AISA 机载高光谱数据（<strong>411 波段</strong>，430–2400nm）；在 ENVI 中构建自定义光谱库，应用光谱角填图（SAM）分类算法完成地物分类；另使用 eCognition 完成 OBIA 森林地类 SVM 监督分类。</p>
-        <div class="cw-tags">
+        <p class="cw-desc" data-key="cw7.desc">使用 <strong>ASD FieldSpec Pro</strong> 野外采集 5 类地物反射光谱，计算 PRI/SIPI/ND705 植被指数；处理 BC 省 Gulf Islands AISA 机载高光谱数据（<strong>411 波段</strong>，430–2400nm）；在 ENVI 中构建自定义光谱库，应用光谱角填图（SAM）分类算法完成地物分类；另使用 eCognition 完成 OBIA 森林地类 SVM 监督分类。</p>
+        <div class="cw-tags" data-key="cw7.tags">
           <span class="cw-tag">ENVI</span><span class="cw-tag">SAM 光谱角填图</span><span class="cw-tag">高光谱 411 波段</span><span class="cw-tag">eCognition · OBIA</span>
         </div>
       </a>
@@ -735,12 +749,12 @@
         <div class="cw-card-top">
           <div class="cw-icon">🗄️</div>
           <div>
-            <div class="cw-title">企业级 PostGIS 空间数据库管理</div>
-            <div class="cw-course">GEM510 · 空间数据库</div>
+            <div class="cw-title" data-key="cw8.title">企业级 PostGIS 空间数据库管理</div>
+            <div class="cw-course" data-key="cw8.course">GEM510 · 空间数据库</div>
           </div>
         </div>
-        <p class="cw-desc">通过 pgAdmin、QGIS、ArcGIS Pro 及 psql 四种方式连接多用户企业级 <strong>PostGIS</strong> 数据库；编写 SQL 查询从远程 PostgreSQL 服务器提取空间图层；使用 GDAL 工具（ogr2ogr、ogrinfo）完成 Shapefile ↔ PostgreSQL 格式转换与重投影；应用 Git + <strong>Kart</strong> 版本控制管理矢量空间数据协作工作流。</p>
-        <div class="cw-tags">
+        <p class="cw-desc" data-key="cw8.desc">通过 pgAdmin、QGIS、ArcGIS Pro 及 psql 四种方式连接多用户企业级 <strong>PostGIS</strong> 数据库；编写 SQL 查询从远程 PostgreSQL 服务器提取空间图层；使用 GDAL 工具（ogr2ogr、ogrinfo）完成 Shapefile ↔ PostgreSQL 格式转换与重投影；应用 Git + <strong>Kart</strong> 版本控制管理矢量空间数据协作工作流。</p>
+        <div class="cw-tags" data-key="cw8.tags">
           <span class="cw-tag">PostGIS</span><span class="cw-tag">PostgreSQL</span><span class="cw-tag">GDAL · ogr2ogr</span><span class="cw-tag">Kart 版本控制</span>
         </div>
       </a>
@@ -754,15 +768,15 @@
 <!-- PUBLICATIONS -->
 <section id="publications">
   <div class="section-inner">
-    <p class="label">学术成果</p>
-    <h2 class="section-title">发表论文</h2>
-    <p class="section-sub">同行评审学术论文</p>
+    <p class="label" data-key="pub.label">学术成果</p>
+    <h2 class="section-title" data-key="pub.title">发表论文</h2>
+    <p class="section-sub" data-key="pub.sub">同行评审学术论文</p>
     <div class="pub-card">
       <div class="pub-icon">📄</div>
       <div>
         <div class="pub-title">Life Cycle Assessment of Engineered Wood Products in the Building Sector: A Review</div>
         <div class="pub-authors">Jin, C., Zhu, &amp; Feng (2025). <em>Buildings</em>, 15(22), 4193.</div>
-        <div class="pub-meta">同行评审期刊论文 · 共同作者 · <a href="https://doi.org/10.3390/buildings15224193" target="_blank" style="color:var(--primary)">DOI: 10.3390/buildings15224193</a></div>
+        <div class="pub-meta" data-key="pub.meta">同行评审期刊论文 · 共同作者 · <a href="https://doi.org/10.3390/buildings15224193" target="_blank" style="color:var(--primary)">DOI: 10.3390/buildings15224193</a></div>
       </div>
     </div>
   </div>
@@ -773,30 +787,30 @@
 <!-- EDUCATION -->
 <section id="education">
   <div class="section-inner">
-    <p class="label">教育背景</p>
-    <h2 class="section-title">学历</h2>
-    <p class="section-sub">跨学科背景：地理信息 × 木材科学 × 商科</p>
+    <p class="label" data-key="edu.label">教育背景</p>
+    <h2 class="section-title" data-key="edu.title">学历</h2>
+    <p class="section-sub" data-key="edu.sub">跨学科背景：地理信息 × 木材科学 × 商科</p>
     <div class="edu-timeline">
 
       <div class="edu-item">
         <div class="edu-dates">2025.08 – 2026.04</div>
-        <div class="edu-degree">工学硕士 · Geomatics 地理信息与遥感</div>
+        <div class="edu-degree" data-key="edu1.degree">工学硕士 · Geomatics 地理信息与遥感</div>
         <div class="edu-school">不列颠哥伦比亚大学（UBC）</div>
-        <div class="edu-detail">GIS、遥感、LiDAR 数据处理方向 · 毕业设计：Wetzin'kwa 社区森林 LiDAR 分析</div>
+        <div class="edu-detail" data-key="edu1.detail">GIS、遥感、LiDAR 数据处理方向 · 毕业设计：Wetzin'kwa 社区森林 LiDAR 分析</div>
       </div>
 
       <div class="edu-item">
         <div class="edu-dates">2022.09 – 2025.05</div>
-        <div class="edu-degree">工学学士 · 木材产品加工（辅修：商科）</div>
+        <div class="edu-degree" data-key="edu2.degree">工学学士 · 木材产品加工（辅修：商科）</div>
         <div class="edu-school">不列颠哥伦比亚大学（UBC）</div>
-        <div class="edu-detail">北京林业大学 3+2 联合项目 · 商科辅修</div>
+        <div class="edu-detail" data-key="edu2.detail">北京林业大学 3+2 联合项目 · 商科辅修</div>
       </div>
 
       <div class="edu-item">
         <div class="edu-dates">2019.09 – 2022.06</div>
-        <div class="edu-degree">工学学士 · 木材科学与工程</div>
+        <div class="edu-degree" data-key="edu3.degree">工学学士 · 木材科学与工程</div>
         <div class="edu-school">北京林业大学</div>
-        <div class="edu-detail">3+2 联合培养项目 · 赴 UBC 交换</div>
+        <div class="edu-detail" data-key="edu3.detail">3+2 联合培养项目 · 赴 UBC 交换</div>
       </div>
 
     </div>
@@ -808,9 +822,9 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-inner">
-    <p class="label">联系方式</p>
-    <h2 class="section-title" style="justify-content:center; text-align:center">期待与你合作</h2>
-    <p style="color:var(--text-muted); font-size:0.9rem; margin-top:0.75rem">
+    <p class="label" data-key="contact.label">联系方式</p>
+    <h2 class="section-title" style="justify-content:center; text-align:center" data-key="contact.title">期待与你合作</h2>
+    <p style="color:var(--text-muted); font-size:0.9rem; margin-top:0.75rem" data-key="contact.sub">
       目前正在寻找 GIS / 遥感工程师岗位（2026 年 4 月毕业可赴岗）
     </p>
     <div class="contact-links">
@@ -828,7 +842,7 @@
       </a>
       <div class="contact-card" style="cursor:default">
         <span class="icon">💬</span>
-        微信 · CiyuanID
+        <span data-key="contact.wechat">微信 · CiyuanID</span>
       </div>
     </div>
   </div>
@@ -836,7 +850,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2025 金慈渊（Ciyuan Jin）· Built with HTML/CSS · Hosted on GitHub Pages</p>
+  <p data-key="footer.text">© 2025 金慈渊（Ciyuan Jin）· Built with HTML/CSS · Hosted on GitHub Pages</p>
 </footer>
 
 <script>
@@ -870,6 +884,267 @@
     el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     fadeObs.observe(el);
   });
+
+  // ===== BILINGUAL TOGGLE =====
+  const i18n = {
+    zh: {
+      'nav.skills': '技能',
+      'nav.projects': '项目',
+      'nav.coursework': '课程项目',
+      'nav.pub': '论文',
+      'nav.edu': '教育',
+      'nav.contact': '联系',
+      'hero.tag': 'GIS &amp; 遥感工程师 · 2026 届硕士应届生',
+      'hero.name': '金慈渊 · Ciyuan Jin',
+      'hero.sub': '不列颠哥伦比亚大学 <span style="color:var(--primary);font-weight:700">Geomatics 硕士</span> · 2026.04 毕业',
+      'hero.desc': '专注于机载 LiDAR 点云处理与遥感影像分析，熟练掌握 ArcGIS Pro、QGIS、R、Python 等空间数据工具。拥有 33,000 公顷尺度的完整遥感项目经验，具备学术论文发表背景，可立即赴岗。',
+      'hero.chip.1': 'ArcGIS Pro',
+      'hero.chip.2': 'QGIS',
+      'hero.chip.3': 'R · lidR',
+      'hero.chip.4': 'Python',
+      'hero.chip.5': 'LiDAR 点云',
+      'hero.chip.6': '遥感影像',
+      'hero.chip.7': '机器学习',
+      'hero.btn1': '查看项目经历 →',
+      'hero.btn2': '📧 发送邮件',
+      'skills.label': '核心能力',
+      'skills.title': '技术技能',
+      'skills.sub': '覆盖 GIS、遥感、编程分析与 CAD 设计全链路',
+      'skills.card1.title': 'GIS 与空间分析',
+      'skills.card1.tags': '<span class="skill-tag">ArcGIS Pro</span><span class="skill-tag">QGIS</span><span class="skill-tag">最小费用路径分析</span><span class="skill-tag">空间数据处理</span><span class="skill-tag">坐标系与投影转换</span>',
+      'skills.card2.title': '遥感与 LiDAR 处理',
+      'skills.card2.tags': '<span class="skill-tag">LiDAR 点云处理（lidR）</span><span class="skill-tag">Dalponte2016 单木分割</span><span class="skill-tag">冠层高度模型 CHM（0.5m）</span><span class="skill-tag">遥感影像特征提取</span><span class="skill-tag">GDAL · PDAL</span><span class="skill-tag">ENVI 多光谱分析</span><span class="skill-tag">Google Earth Engine (GEE)</span><span class="skill-tag">eCognition · OBIA</span><span class="skill-tag">PostGIS / PostgreSQL</span><span class="skill-tag">MODIS / Landsat 时序分析</span><span class="skill-tag">高光谱 SAM 分类</span>',
+      'skills.card3.title': '编程与数据分析',
+      'skills.card3.tags': '<span class="skill-tag">R（lidR · sf · terra · bfast · tidyverse）</span><span class="skill-tag">Python（rasterio · geopandas · NumPy · Pandas）</span><span class="skill-tag">机器学习（随机森林 / 回归 / GWR）</span><span class="skill-tag">SQL / PostGIS 空间查询</span><span class="skill-tag">ggplot2 数据可视化</span><span class="skill-tag">Forest Vegetation Simulator</span>',
+      'skills.card4.title': '设计与文档',
+      'skills.card4.tags': '<span class="skill-tag">AutoCAD</span><span class="skill-tag">Autodesk Fusion 360</span><span class="skill-tag">SolidWorks</span><span class="skill-tag">英文技术文档撰写</span><span class="skill-tag">SCI 文献调研（89 篇精选 · 初筛 465 篇）</span>',
+      'projects.label': '项目经历',
+      'projects.title': '代表项目',
+      'projects.sub': '涵盖遥感数据处理、空间分析、工程设计与生命周期评估',
+      'proj1.title': 'LiDAR 遥感数据分析与林地抚育规划',
+      'proj1.org': 'Wetzin\'kwa 社区森林 · 不列颠哥伦比亚大学 · 2025.09 – 2026.04',
+      'proj1.desc': '对 33,000 公顷林区机载 LiDAR 点云进行完整处理流程，生成高分辨率冠层高度模型，利用机器学习算法实现单木精准检测，并通过最小费用路径分析规划林地作业路线；结合 FVS 模型预测百年森林生长趋势，为林业管理提供数据决策支撑。',
+      'proj1.m1': '<strong>F1 = 0.91</strong> 单木检测精度',
+      'proj1.m2': '<strong>R² = 0.21</strong> 胸径估算模型',
+      'proj1.m3': '<strong>0.5m</strong> CHM 分辨率',
+      'proj1.m4': '<strong>33,000 ha</strong> 研究区面积',
+      'proj1.m5': '<strong>100 年</strong> FVS 生长模拟',
+      'proj1.tags': '<span class="project-tag">R · lidR</span><span class="project-tag">Dalponte2016</span><span class="project-tag">ArcGIS Pro</span><span class="project-tag">QGIS</span><span class="project-tag">Python</span><span class="project-tag">FVS</span><span class="project-tag">Least-Cost Path</span>',
+      'proj2.title': '工程木产品生命周期评估（LCA）研究',
+      'proj2.org': '可持续建筑环境实验室 · 不列颠哥伦比亚大学 · 2024.01 – 2024.12',
+      'proj2.desc': '基于 PRISMA 规范，从 Web of Science 初检 465 篇文献中筛选 89 篇高质量 SCI 研究，系统综述 CLT、GLT（胶合木）、PW（胶合板）、LVL、PB（刨花板）、MDF/FB（纤维板）、WPC、OSB 共 8 类工程木产品的生命周期气候变化影响；识别 CLT/GLT 影响最低且稳定、纤维板最高且变异大（归因于胶粘剂与高能耗制造），并提出 LCA 方法标准化建议。成果以共同作者身份发表同行评审论文。',
+      'proj2.m1': '<strong>89 篇</strong> 精选 SCI 文献（初筛 465 篇）',
+      'proj2.m2': '<strong>8 类</strong> EWP（CLT · GLT · PW · LVL · PB · MDF · WPC · OSB）',
+      'proj2.m3': '<strong>1 篇</strong> 同行评审论文',
+      'proj2.tags': '<span class="project-tag">LCA 方法论</span><span class="project-tag">碳排放评估</span><span class="project-tag">系统综述</span><span class="project-tag">数据标准化</span><span class="project-tag">学术写作</span>',
+      'proj3.title': '适老化卧室家具设计与工厂规划（GoldenEase Living）',
+      'proj3.org': '不列颠哥伦比亚大学 WOOD 499 本科毕业设计 · 2025.01 – 2025.04',
+      'proj3.desc': '6 人团队设计面向加拿大老年群体的卧室三件套（床头柜 / 床架 / 衣柜），采用本地枫木实木 + 边拼板、无甲醛胶粘剂与水性 PU / UV 漆；完成产品三维建模与正投影工程图、BOM 清单；规划含 8 个工序部门的完整工厂布局（收料 → 实木剖料 → 板材剖料 → 拼板 → 贴面 → 铣型与钻孔 → 涂装 → QC / 装配 / 包装），完成机器选型与产能计算（CNC 加工中心瓶颈利用率 81%）；完成材料成本核算、NPV / 盈亏平衡 / 投资回收期分析。',
+      'proj3.m1': '<strong>3</strong> 件套产品（床头柜/床架/衣柜）',
+      'proj3.m2': '<strong>8</strong> 个工序部门',
+      'proj3.m3': '<strong>81%</strong> CNC 瓶颈利用率',
+      'proj3.m4': 'NPV · 盈亏平衡分析',
+      'proj3.tags': '<span class="project-tag">Autodesk Fusion 360</span><span class="project-tag">AutoCAD</span><span class="project-tag">工厂布局规划</span><span class="project-tag">机器选型</span><span class="project-tag">产能计算</span><span class="project-tag">可行性分析</span><span class="project-tag">枫木实木家具</span>',
+      'proj4.title': '木材质量检验实习',
+      'proj4.org': '图森木业，浙江绍兴 · 2022.06 – 2022.08',
+      'proj4.desc': '执行木质板材全套质检测试（耐刮擦、冷热循环、甲醛含量），出具检验报告并向研发团队反馈；协助接待 50+ 位客户，跨部门沟通协调，提升实验室运营效率。',
+      'proj4.m1': '<strong>50+</strong> 客户接待',
+      'proj4.m2': '甲醛检测',
+      'proj4.m3': '耐刮擦 / 耐温测试',
+      'proj4.tags': '<span class="project-tag">质量检验</span><span class="project-tag">实验数据记录</span><span class="project-tag">客户沟通</span><span class="project-tag">研发反馈</span>',
+      'cw.label': '学术训练',
+      'cw.title': '课程项目',
+      'cw.sub': 'UBC Geomatics 硕士课程 GEM510 / GEM520 / GEM511 / GEM521 · 2025.09 – 2026.04',
+      'cw1.title': 'Landsat 9 监督式土地覆盖分类',
+      'cw1.course': 'GEM520 · 遥感影像处理',
+      'cw1.desc': '使用 R（RStoolbox、terra、caret）对 Landsat 9 多光谱影像进行监督分类；自主解译 79 个训练多边形，涵盖 7 类地物；应用最大似然分类算法（MLC）完成像素级分类，总体精度达 <strong>94.6%</strong>（超75%达标线）；基于混淆矩阵计算制图精度与用户精度，在 QGIS 中结合 Google 卫星影像进行目视质检。',
+      'cw1.tags': '<span class="cw-tag">R · RStoolbox</span><span class="cw-tag">MLC 分类</span><span class="cw-tag">混淆矩阵</span><span class="cw-tag">精度94.6%</span>',
+      'cw2.title': 'MODIS/Landsat 长时序植被动态监测',
+      'cw2.course': 'GEM520 · 时间序列遥感',
+      'cw2.desc': '处理 2001–2020 年 MODIS MOD13Q1 NDVI 时序数据（460 景，16天/250m分辨率）；应用 <strong>BFAST</strong> 算法检测植被结构突变事件，识别野火与采伐扰动成因；处理 33 年 VLCE Landsat 土地覆盖数据，逐年量化 BC 省 Williams Lake 地区森林增损动态。',
+      'cw2.tags': '<span class="cw-tag">R · bfast</span><span class="cw-tag">MODIS NDVI</span><span class="cw-tag">突变检测</span><span class="cw-tag">森林变化检测</span>',
+      'cw3.title': '随机森林林火后燃料类型预测建模',
+      'cw3.course': 'GEM511 · 高级空间分析',
+      'cw3.desc': '整合 Landsat 衍生指数（NDVI/NBR/Tasseled Cap）、ASTER 地形、ClimateNA 气候栅格及 VRI 林业数据，通过 PostgreSQL 构建多源预测变量数据集；使用 ArcGIS Pro Moran\'s I 与探索性回归进行共线性诊断；设计三种抽样方案对比 Random Forest 分类/回归模型精度。',
+      'cw3.tags': '<span class="cw-tag">随机森林</span><span class="cw-tag">PostgreSQL</span><span class="cw-tag">ArcGIS Pro</span><span class="cw-tag">多源数据融合</span>',
+      'cw4.title': '地理加权回归城市绿色空间公平性分析',
+      'cw4.course': 'GEM511 · 空间统计建模',
+      'cw4.desc': '编写高级 SQL/PostGIS 查询（CTE、ST_Within），从 57,936 个普查单元（2,631 维特征）提取温哥华 1,016 个街区人口统计数据；计算 Landsat NDVI 绿地覆盖度；在 ArcGIS Pro 中构建 OLS 与 <strong>GWR</strong> 模型，对比全局与局部空间关系，撰写弱势社区绿地可达性政策建议报告。',
+      'cw4.tags': '<span class="cw-tag">PostGIS</span><span class="cw-tag">GWR</span><span class="cw-tag">OLS</span><span class="cw-tag">ArcGIS Pro</span>',
+      'cw5.title': 'LiDAR 点云地形插值与三维可视化',
+      'cw5.course': 'GEM511 · LiDAR 高级处理',
+      'cw5.desc': '使用 <strong>PDAL</strong> 命令行工具处理超 <strong>16 亿点</strong> 大规模 LiDAR 数据，编写 JSON 处理管道完成地面点分类与裁切，数据量压缩 600%+；通过 QGIS 读取 COPC 格式进行远程流式可视化；在 ArcGIS Pro 中对比 Natural Neighbor/IDW/Spline 三种插值算法，制作三维地形可视化场景。',
+      'cw5.tags': '<span class="cw-tag">PDAL</span><span class="cw-tag">COPC</span><span class="cw-tag">空间插值</span><span class="cw-tag">3D 可视化</span>',
+      'cw6.title': 'GEE 云端城市热岛效应制图',
+      'cw6.course': 'GEM521 · 云计算遥感',
+      'cw6.desc': '使用 <strong>Google Earth Engine</strong>（JavaScript API）筛选温哥华 Landsat 8 无云影像；应用 Scale/Offset 校正及地表比辐射率数据计算地表温度（LST）；通过 1,000 点随机采样构建 NDVI-LST 散点图，量化植被覆盖与热岛效应的负相关关系；另完成 GEE 土地覆盖监督分类全流程。',
+      'cw6.tags': '<span class="cw-tag">Google Earth Engine</span><span class="cw-tag">LST 地表温度</span><span class="cw-tag">云端处理</span><span class="cw-tag">热岛分析</span>',
+      'cw7.title': '高光谱遥感光谱库构建与 SAM 分类',
+      'cw7.course': 'GEM521 · 高光谱遥感',
+      'cw7.desc': '使用 <strong>ASD FieldSpec Pro</strong> 野外采集 5 类地物反射光谱，计算 PRI/SIPI/ND705 植被指数；处理 BC 省 Gulf Islands AISA 机载高光谱数据（<strong>411 波段</strong>，430–2400nm）；在 ENVI 中构建自定义光谱库，应用光谱角填图（SAM）分类算法完成地物分类；另使用 eCognition 完成 OBIA 森林地类 SVM 监督分类。',
+      'cw7.tags': '<span class="cw-tag">ENVI</span><span class="cw-tag">SAM 光谱角填图</span><span class="cw-tag">高光谱 411 波段</span><span class="cw-tag">eCognition · OBIA</span>',
+      'cw8.title': '企业级 PostGIS 空间数据库管理',
+      'cw8.course': 'GEM510 · 空间数据库',
+      'cw8.desc': '通过 pgAdmin、QGIS、ArcGIS Pro 及 psql 四种方式连接多用户企业级 <strong>PostGIS</strong> 数据库；编写 SQL 查询从远程 PostgreSQL 服务器提取空间图层；使用 GDAL 工具（ogr2ogr、ogrinfo）完成 Shapefile ↔ PostgreSQL 格式转换与重投影；应用 Git + <strong>Kart</strong> 版本控制管理矢量空间数据协作工作流。',
+      'cw8.tags': '<span class="cw-tag">PostGIS</span><span class="cw-tag">PostgreSQL</span><span class="cw-tag">GDAL · ogr2ogr</span><span class="cw-tag">Kart 版本控制</span>',
+      'pub.label': '学术成果',
+      'pub.title': '发表论文',
+      'pub.sub': '同行评审学术论文',
+      'pub.meta': '同行评审期刊论文 · 共同作者 · <a href="https://doi.org/10.3390/buildings15224193" target="_blank" style="color:var(--primary)">DOI: 10.3390/buildings15224193</a>',
+      'edu.label': '教育背景',
+      'edu.title': '学历',
+      'edu.sub': '跨学科背景：地理信息 × 木材科学 × 商科',
+      'edu1.degree': '工学硕士 · Geomatics 地理信息与遥感',
+      'edu1.detail': 'GIS、遥感、LiDAR 数据处理方向 · 毕业设计：Wetzin\'kwa 社区森林 LiDAR 分析',
+      'edu2.degree': '工学学士 · 木材产品加工（辅修：商科）',
+      'edu2.detail': '北京林业大学 3+2 联合项目 · 商科辅修',
+      'edu3.degree': '工学学士 · 木材科学与工程',
+      'edu3.detail': '3+2 联合培养项目 · 赴 UBC 交换',
+      'contact.label': '联系方式',
+      'contact.title': '期待与你合作',
+      'contact.sub': '目前正在寻找 GIS / 遥感工程师岗位（2026 年 4 月毕业可赴岗）',
+      'contact.wechat': '微信 · CiyuanID',
+      'footer.text': '© 2025 金慈渊（Ciyuan Jin）· Built with HTML/CSS · Hosted on GitHub Pages'
+    },
+    en: {
+      'nav.skills': 'Skills',
+      'nav.projects': 'Projects',
+      'nav.coursework': 'Coursework',
+      'nav.pub': 'Publication',
+      'nav.edu': 'Education',
+      'nav.contact': 'Contact',
+      'hero.tag': 'GIS &amp; Remote Sensing Engineer · MSc Candidate 2026',
+      'hero.name': 'Ciyuan Jin · 金慈渊',
+      'hero.sub': 'University of British Columbia · <span style="color:var(--primary);font-weight:700">Geomatics MSc</span> · Graduating Apr 2026',
+      'hero.desc': 'Specializing in airborne LiDAR point cloud processing and remote sensing image analysis. Proficient in ArcGIS Pro, QGIS, R, and Python. 33,000-ha research area. Published SCI paper. Available immediately upon graduation.',
+      'hero.chip.1': 'ArcGIS Pro',
+      'hero.chip.2': 'QGIS',
+      'hero.chip.3': 'R · lidR',
+      'hero.chip.4': 'Python',
+      'hero.chip.5': 'LiDAR Point Cloud',
+      'hero.chip.6': 'Remote Sensing',
+      'hero.chip.7': 'Machine Learning',
+      'hero.btn1': 'View Projects →',
+      'hero.btn2': '📧 Send Email',
+      'skills.label': 'Core Competencies',
+      'skills.title': 'Technical Skills',
+      'skills.sub': 'Full stack: GIS · Remote Sensing · Programming · CAD',
+      'skills.card1.title': 'GIS & Spatial Analysis',
+      'skills.card1.tags': '<span class="skill-tag">ArcGIS Pro</span><span class="skill-tag">QGIS</span><span class="skill-tag">Least-Cost Path Analysis</span><span class="skill-tag">Spatial Data Processing</span><span class="skill-tag">Coordinate System & Reprojection</span>',
+      'skills.card2.title': 'Remote Sensing & LiDAR',
+      'skills.card2.tags': '<span class="skill-tag">LiDAR Point Cloud Processing (lidR)</span><span class="skill-tag">Dalponte2016 Individual Tree Segmentation</span><span class="skill-tag">Canopy Height Model CHM (0.5m)</span><span class="skill-tag">Remote Sensing Feature Extraction</span><span class="skill-tag">GDAL · PDAL</span><span class="skill-tag">ENVI Multispectral Analysis</span><span class="skill-tag">Google Earth Engine (GEE)</span><span class="skill-tag">eCognition · OBIA</span><span class="skill-tag">PostGIS / PostgreSQL</span><span class="skill-tag">MODIS / Landsat Time Series</span><span class="skill-tag">Hyperspectral SAM Classification</span>',
+      'skills.card3.title': 'Programming & Data Analysis',
+      'skills.card3.tags': '<span class="skill-tag">R (lidR · sf · terra · bfast · tidyverse)</span><span class="skill-tag">Python (rasterio · geopandas · NumPy · Pandas)</span><span class="skill-tag">Machine Learning (Random Forest / Regression / GWR)</span><span class="skill-tag">SQL / PostGIS Spatial Queries</span><span class="skill-tag">ggplot2 Data Visualization</span><span class="skill-tag">Forest Vegetation Simulator</span>',
+      'skills.card4.title': 'Design & Documentation',
+      'skills.card4.tags': '<span class="skill-tag">AutoCAD</span><span class="skill-tag">Autodesk Fusion 360</span><span class="skill-tag">SolidWorks</span><span class="skill-tag">Technical Writing in English</span><span class="skill-tag">SCI Literature Review (89 papers · 465 screened)</span>',
+      'projects.label': 'Experience',
+      'projects.title': 'Featured Projects',
+      'projects.sub': 'Remote sensing · Spatial analysis · Engineering design · Life cycle assessment',
+      'proj1.title': 'LiDAR Remote Sensing Analysis & Forest Thinning Planning',
+      'proj1.org': 'Wetzin\'kwa Community Forest (33,000 ha) · University of British Columbia · Sept 2025 – Apr 2026',
+      'proj1.desc': 'Full pipeline processing of airborne LiDAR point clouds across a 33,000-ha tenure area, generating high-resolution canopy height models. Machine learning-based individual tree detection with F1 = 0.91; operational thinning path design via least-cost path analysis; 100-year forest growth simulation with FVS.',
+      'proj1.m1': '<strong>F1 = 0.91</strong> Individual Tree Detection',
+      'proj1.m2': '<strong>R² = 0.21</strong> DBH Estimation Model',
+      'proj1.m3': '<strong>0.5m</strong> CHM Resolution',
+      'proj1.m4': '<strong>33,000 ha</strong> Study Area',
+      'proj1.m5': '<strong>100 yr</strong> FVS Growth Simulation',
+      'proj1.tags': '<span class="project-tag">R · lidR</span><span class="project-tag">Dalponte2016</span><span class="project-tag">ArcGIS Pro</span><span class="project-tag">QGIS</span><span class="project-tag">Python</span><span class="project-tag">FVS</span><span class="project-tag">Least-Cost Path</span>',
+      'proj2.title': 'Life Cycle Assessment of Engineered Wood Products (LCA)',
+      'proj2.org': 'Sustainable Built Environment Lab · University of British Columbia · Jan 2024 – Dec 2024',
+      'proj2.desc': 'Following PRISMA guidelines, screened 89 high-quality SCI papers from 465 Web of Science results, systematically reviewing LCA of 8 EWP types (CLT, GLT, PW, LVL, PB, MDF/FB, WPC, OSB). Identified CLT/GLT as lowest and most stable in climate impact; fiberboards highest and most variable due to adhesive content and energy-intensive manufacturing. Proposed LCA methodology standardization. Co-authored peer-reviewed publication.',
+      'proj2.m1': '<strong>89</strong> Selected SCI Papers (from 465)',
+      'proj2.m2': '<strong>8</strong> EWP Types (CLT · GLT · PW · LVL · PB · MDF · WPC · OSB)',
+      'proj2.m3': '<strong>1</strong> Peer-Reviewed Publication',
+      'proj2.tags': '<span class="project-tag">LCA Methodology</span><span class="project-tag">Carbon Assessment</span><span class="project-tag">Systematic Review</span><span class="project-tag">Data Standardization</span><span class="project-tag">Academic Writing</span>',
+      'proj3.title': 'Senior-Friendly Bedroom Furniture Design & Factory Planning (GoldenEase Living)',
+      'proj3.org': 'UBC WOOD 499 BSc Capstone · Jan 2025 – Apr 2025',
+      'proj3.desc': 'Team of 6 designed a 3-piece bedroom set (nightstand / bed frame / wardrobe) for Canadian seniors using locally sourced maple, formaldehyde-free adhesives, and water-based PU/UV lacquer. Completed 3D modeling, orthographic drawings, BOM; planned 8-department factory layout (receiving → solid breakdown → panel breakdown → edge-gluing → veneering → profiling & drilling → finishing → QC/assembly/packaging), machine selection, capacity calculations (CNC bottleneck 81%); completed NPV/break-even/payback period analysis.',
+      'proj3.m1': '<strong>3</strong>-Piece Product Set (Nightstand/Bed/Wardrobe)',
+      'proj3.m2': '<strong>8</strong> Production Departments',
+      'proj3.m3': '<strong>81%</strong> CNC Bottleneck Utilization',
+      'proj3.m4': 'NPV · Break-Even Analysis',
+      'proj3.tags': '<span class="project-tag">Autodesk Fusion 360</span><span class="project-tag">AutoCAD</span><span class="project-tag">Factory Layout Planning</span><span class="project-tag">Machine Selection</span><span class="project-tag">Capacity Calculation</span><span class="project-tag">Feasibility Analysis</span><span class="project-tag">Maple Solid Wood Furniture</span>',
+      'proj4.title': 'Wood Quality Inspection Internship',
+      'proj4.org': 'Tucson Wood, Zhejiang Shaoxing · June 2022 – Aug 2022',
+      'proj4.desc': 'Executed full-suite quality inspection tests on wood panel products (scratch resistance, thermal cycling, formaldehyde content); issued inspection reports and provided R&D feedback. Assisted 50+ customers with cross-departmental coordination, improving laboratory operational efficiency.',
+      'proj4.m1': '<strong>50+</strong> Customers Served',
+      'proj4.m2': 'Formaldehyde Testing',
+      'proj4.m3': 'Scratch / Thermal Resistance',
+      'proj4.tags': '<span class="project-tag">Quality Inspection</span><span class="project-tag">Lab Data Recording</span><span class="project-tag">Customer Communication</span><span class="project-tag">R&D Feedback</span>',
+      'cw.label': 'Academic Training',
+      'cw.title': 'Coursework Projects',
+      'cw.sub': 'UBC Geomatics MSc Courses GEM510 / GEM520 / GEM511 / GEM521 · 2025.09 – 2026.04',
+      'cw1.title': 'Landsat 9 Supervised Land Cover Classification',
+      'cw1.course': 'GEM520 · Remote Sensing Image Processing',
+      'cw1.desc': 'Supervised classification of Landsat 9 multispectral imagery using R (RStoolbox, terra, caret); manually interpreted 79 training polygons covering 7 land cover classes; applied Maximum Likelihood Classification (MLC) achieving <strong>94.6% overall accuracy</strong> (above 75% threshold); computed confusion matrix accuracy metrics; visual QC in QGIS with Google satellite imagery.',
+      'cw1.tags': '<span class="cw-tag">R · RStoolbox</span><span class="cw-tag">MLC Classification</span><span class="cw-tag">Confusion Matrix</span><span class="cw-tag">Accuracy 94.6%</span>',
+      'cw2.title': 'MODIS/Landsat Long-Term Vegetation Dynamics Monitoring',
+      'cw2.course': 'GEM520 · Time Series Remote Sensing',
+      'cw2.desc': 'Processed 2001–2020 MODIS MOD13Q1 NDVI time series (460 scenes, 16-day/250m); applied <strong>BFAST</strong> algorithm to detect structural breakpoints, identifying wildfire and logging disturbances; analyzed 33 years of VLCE Landsat land cover data to quantify annual forest gain/loss in BC\'s Williams Lake area.',
+      'cw2.tags': '<span class="cw-tag">R · bfast</span><span class="cw-tag">MODIS NDVI</span><span class="cw-tag">Breakpoint Detection</span><span class="cw-tag">Forest Change</span>',
+      'cw3.title': 'Random Forest Post-Fire Fuel Type Prediction',
+      'cw3.course': 'GEM511 · Advanced Spatial Analysis',
+      'cw3.desc': 'Integrated Landsat indices (NDVI/NBR/Tasseled Cap), ASTER terrain, ClimateNA climate grids, and VRI forestry data via PostgreSQL; conducted Moran\'s I spatial autocorrelation and exploratory regression in ArcGIS Pro for feature selection; designed 3 sampling schemes to compare Random Forest classification/regression model accuracy.',
+      'cw3.tags': '<span class="cw-tag">Random Forest</span><span class="cw-tag">PostgreSQL</span><span class="cw-tag">ArcGIS Pro</span><span class="cw-tag">Multi-Source Data</span>',
+      'cw4.title': 'GWR Urban Green Space Equity Analysis',
+      'cw4.course': 'GEM511 · Spatial Statistical Modeling',
+      'cw4.desc': 'Wrote advanced SQL/PostGIS queries (CTE, ST_Within) extracting Vancouver census data (1,016 tracts, from 57,936 dissemination areas with 2,631 variables); calculated Landsat NDVI green cover; built OLS and <strong>GWR</strong> models in ArcGIS Pro comparing global vs. local spatial relationships; produced policy recommendations on green space access for disadvantaged communities.',
+      'cw4.tags': '<span class="cw-tag">PostGIS</span><span class="cw-tag">GWR</span><span class="cw-tag">OLS</span><span class="cw-tag">ArcGIS Pro</span>',
+      'cw5.title': 'LiDAR Point Cloud Terrain Interpolation & 3D Visualization',
+      'cw5.course': 'GEM511 · Advanced LiDAR Processing',
+      'cw5.desc': 'Processed over <strong>1.6 billion points</strong> of large-scale LiDAR data using <strong>PDAL</strong> CLI, writing JSON pipelines for ground point classification and clipping (600%+ size reduction); streamed COPC format remotely in QGIS; compared Natural Neighbor/IDW/Spline interpolation algorithms in ArcGIS Pro; produced 3D terrain visualizations.',
+      'cw5.tags': '<span class="cw-tag">PDAL</span><span class="cw-tag">COPC</span><span class="cw-tag">Spatial Interpolation</span><span class="cw-tag">3D Visualization</span>',
+      'cw6.title': 'GEE Cloud-Based Urban Heat Island Mapping',
+      'cw6.course': 'GEM521 · Cloud Computing Remote Sensing',
+      'cw6.desc': 'Used <strong>Google Earth Engine</strong> (JavaScript API) to filter cloud-free Landsat 8 imagery for Vancouver; applied Scale/Offset corrections and land surface emissivity data to compute Land Surface Temperature (LST); built NDVI–LST scatter plots from 1,000 random samples to quantify vegetation-heat island relationship; completed GEE supervised land cover classification.',
+      'cw6.tags': '<span class="cw-tag">Google Earth Engine</span><span class="cw-tag">Land Surface Temperature</span><span class="cw-tag">Cloud Processing</span><span class="cw-tag">Heat Island</span>',
+      'cw7.title': 'Hyperspectral Remote Sensing Spectral Library & SAM Classification',
+      'cw7.course': 'GEM521 · Hyperspectral Remote Sensing',
+      'cw7.desc': 'Collected field spectra for 5 land cover types using <strong>ASD FieldSpec Pro</strong>; computed PRI/SIPI/ND705 vegetation indices; processed BC Gulf Islands AISA airborne hyperspectral data (<strong>411 bands</strong>, 430–2400nm) in ENVI; built custom spectral library and applied Spectral Angle Mapper (SAM) classification; completed OBIA forest classification with eCognition and SVM.',
+      'cw7.tags': '<span class="cw-tag">ENVI</span><span class="cw-tag">SAM Classification</span><span class="cw-tag">411 Bands</span><span class="cw-tag">eCognition · OBIA</span>',
+      'cw8.title': 'Enterprise-Level PostGIS Spatial Database Management',
+      'cw8.course': 'GEM510 · Spatial Databases',
+      'cw8.desc': 'Connected to a multi-user enterprise <strong>PostGIS</strong> database via pgAdmin, QGIS, ArcGIS Pro, and psql; extracted spatial layers with SQL queries from remote PostgreSQL server; used GDAL tools (ogr2ogr, ogrinfo) for Shapefile ↔ PostgreSQL conversion and reprojection; managed vector spatial data collaboration workflows with Git + <strong>Kart</strong> version control.',
+      'cw8.tags': '<span class="cw-tag">PostGIS</span><span class="cw-tag">PostgreSQL</span><span class="cw-tag">GDAL · ogr2ogr</span><span class="cw-tag">Kart Version Control</span>',
+      'pub.label': 'Academic Output',
+      'pub.title': 'Publication',
+      'pub.sub': 'Peer-reviewed academic paper',
+      'pub.meta': 'Peer-reviewed journal article · Co-author · <a href="https://doi.org/10.3390/buildings15224193" target="_blank" style="color:var(--primary)">DOI: 10.3390/buildings15224193</a>',
+      'edu.label': 'Education',
+      'edu.title': 'Academic Background',
+      'edu.sub': 'Interdisciplinary: Geomatics × Wood Science × Business',
+      'edu1.degree': 'MEng · Geomatics for Environmental Management',
+      'edu1.detail': 'GIS, Remote Sensing, LiDAR · Thesis: LiDAR Analysis of Wetzin\'kwa Community Forest',
+      'edu2.degree': 'BEng · Wood Products Processing (Business Minor)',
+      'edu2.detail': 'Beijing Forestry University 3+2 Joint Program · Business Minor',
+      'edu3.degree': 'BEng · Wood Science & Engineering',
+      'edu3.detail': '3+2 Joint Program · Exchange to UBC',
+      'contact.label': 'Contact',
+      'contact.title': 'Let\'s Connect',
+      'contact.sub': 'Currently seeking GIS / Remote Sensing Engineer positions (available Apr 2026)',
+      'contact.wechat': 'WeChat · CiyuanID',
+      'footer.text': '© 2025 Ciyuan Jin (金慈渊) · Built with HTML/CSS · Hosted on GitHub Pages'
+    }
+  };
+
+  let currentLang = localStorage.getItem('lang') || 'zh';
+
+  function applyLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('lang', lang);
+    document.getElementById('lang-toggle').textContent = lang === 'zh' ? 'EN' : '中文';
+    document.querySelectorAll('[data-key]').forEach(el => {
+      const val = i18n[lang][el.dataset.key];
+      if (val !== undefined) el.innerHTML = val;
+    });
+  }
+
+  function toggleLang() {
+    applyLang(currentLang === 'zh' ? 'en' : 'zh');
+  }
+
+  // Apply on load
+  applyLang(currentLang);
 </script>
 </body>
 </html>
